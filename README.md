@@ -1,4 +1,4 @@
-# IETF Network Slice Topology Model
+# IETF Network Slice Topology Model (updated)
 # draft-liu-teas-ietf-network-topology-yang
 
 ## Scope
