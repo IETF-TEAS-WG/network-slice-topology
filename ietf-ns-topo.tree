@@ -1,0 +1,116 @@
+module: ietf-ns-topo
+
+  augment /nw:networks/nw:network/nw:network-types:
+    +--rw network-slice!
+  augment /nw:networks/nw:network:
+    +--rw (slo-sle-policy)?
+       +--:(standard)
+       |  +--rw slo-sle-template?         leafref
+       +--:(custom)
+          +--rw service-slo-sle-policy
+             +--rw policy-description?       string
+             +--rw metric-bounds
+             |  +--rw metric-bound* [metric-type]
+             |     +--rw metric-type          identityref
+             |     +--rw metric-unit          string
+             |     +--rw value-description?   string
+             |     +--rw bound?               uint64
+             +--rw security*                 identityref
+             +--rw isolation?                identityref
+             +--rw max-occupancy-level?      uint8
+             +--rw mtu?                      uint16
+             +--rw steering-constraints
+             |  +--rw path-constraints
+             |  +--rw service-function
+             |  +--rw disjointness?
+             |  |       te-types:te-path-disjointness
+             |  +--rw service-info?       string
+             +--rw optimization-criterion?   identityref
+             +--rw delay-tolerance?          boolean
+             +--rw periodicity*              uint64
+             +--rw resize-requirement?       identityref
+             +--rw service-info?             string
+  augment /nw:networks/nw:network/nw:node:
+    +--rw (slo-sle-policy)?
+       +--:(standard)
+       |  +--rw slo-sle-template?         leafref
+       +--:(custom)
+          +--rw service-slo-sle-policy
+             +--rw policy-description?       string
+             +--rw metric-bounds
+             |  +--rw metric-bound* [metric-type]
+             |     +--rw metric-type          identityref
+             |     +--rw metric-unit          string
+             |     +--rw value-description?   string
+             |     +--rw bound?               uint64
+             +--rw security*                 identityref
+             +--rw isolation?                identityref
+             +--rw max-occupancy-level?      uint8
+             +--rw mtu?                      uint16
+             +--rw steering-constraints
+             |  +--rw path-constraints
+             |  +--rw service-function
+             +--rw optimization-criterion?   identityref
+             +--rw delay-tolerance?          boolean
+             +--rw periodicity*              uint64
+             +--rw resize-requirement?       identityref
+             +--rw service-info?             string
+  augment /nw:networks/nw:network/nw:node/nt:termination-point:
+    +--rw sdp-id?                         leafref
+    +--rw (slo-sle-policy)?
+       +--:(standard)
+       |  +--rw slo-sle-template?         leafref
+       +--:(custom)
+          +--rw service-slo-sle-policy
+             +--rw policy-description?       string
+             +--rw metric-bounds
+             |  +--rw metric-bound* [metric-type]
+             |     +--rw metric-type          identityref
+             |     +--rw metric-unit          string
+             |     +--rw value-description?   string
+             |     +--rw bound?               uint64
+             +--rw security*                 identityref
+             +--rw isolation?                identityref
+             +--rw max-occupancy-level?      uint8
+             +--rw mtu?                      uint16
+             +--rw steering-constraints
+             |  +--rw path-constraints
+             |  +--rw service-function
+             +--rw optimization-criterion?   identityref
+             +--rw delay-tolerance?          boolean
+             +--rw periodicity*              uint64
+             +--rw resize-requirement?       identityref
+             +--rw service-info?             string
+  augment /nw:networks/nw:network/nt:link:
+    +--rw (slo-sle-policy)?
+    |  +--:(standard)
+    |  |  +--rw slo-sle-template?         leafref
+    |  +--:(custom)
+    |     +--rw service-slo-sle-policy
+    |        +--rw policy-description?       string
+    |        +--rw metric-bounds
+    |        |  +--rw metric-bound* [metric-type]
+    |        |     +--rw metric-type          identityref
+    |        |     +--rw metric-unit          string
+    |        |     +--rw value-description?   string
+    |        |     +--rw bound?               uint64
+    |        +--rw security*                 identityref
+    |        +--rw isolation?                identityref
+    |        +--rw max-occupancy-level?      uint8
+    |        +--rw mtu?                      uint16
+    |        +--rw steering-constraints
+    |        |  +--rw path-constraints
+    |        |  +--rw service-function
+    |        |  +--rw disjointness?
+    |        |  |       te-types:te-path-disjointness
+    |        |  +--rw service-info?       string
+    |        +--rw optimization-criterion?   identityref
+    |        +--rw delay-tolerance?          boolean
+    |        +--rw periodicity*              uint64
+    |        +--rw resize-requirement?       identityref
+    |        +--rw service-info?             string
+    +--rw optimization-criterion?         identityref
+    +--rw delay-tolerance?                boolean
+    +--rw periodicity*                    uint64
+    +--rw resize-requirement?             identityref
+    +--rw service-info?                   string
