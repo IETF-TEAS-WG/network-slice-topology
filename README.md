@@ -1,5 +1,5 @@
 # IETF Network Slice Topology Model (updated)
-# draft-liu-teas-ietf-network-topology-yang
+# draft-liu-teas-transport-network-slice-yang
 
 ## Scope
 
