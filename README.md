@@ -33,8 +33,8 @@ N/A
 ### Other Resources
 
 Discussion of this work occurs on the
-[CCAMP working group mailing list](https://mailarchive.ietf.org/arch/browse/ccamp/)
-([subscribe](https://www.ietf.org/mailman/listinfo/ccamp)). In addition to
+[TEAS working group mailing list](https://mailarchive.ietf.org/arch/browse/teas/)
+([subscribe](https://www.ietf.org/mailman/listinfo/teas)). In addition to
 contributions in GitHub, you are encouraged to participate in discussions there.
 
 **Note**: Some working groups adopt a policy whereby substantive discussion of
