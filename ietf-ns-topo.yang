@@ -42,7 +42,10 @@
                 <mailto:aihuaguo.ietf@gmail.com>
 
         Editor: Sergio Belotti
-                <mailto:sergio.belotti@nokia.com>";
+                <mailto:sergio.belotti@nokia.com>
+
+        Editor: Luis M. Contreras
+                <mailto:luismiguel.contrerasmurillo@telefonica.com>";
 
      description
        "This module defines a base YANG data model for configuring
@@ -52,7 +55,7 @@
         The model fully conforms to the Network Management Datastore
         Architecture (NMDA).
 
-        Copyright (c) 2022 IETF Trust and the persons identified as
+        Copyright (c) 2023 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -299,14 +302,14 @@
        }
        description "Augment node configuration and state.";
 	   
-       leaf sdp-id {
+       leaf customer-facing-sdp-id {
 		 type leafref {
 		   path "/ietf-nss:network-slice-services"+
 				"/ietf-nss:slice-service"+
 				"/ietf-nss:sdps/ietf-nss:sdp/ietf-nss:sdp-id";
 		 }
 		 description
-		   "Relative reference to SDP id.";
+		   "Relative reference to a customer-facing SDP.";
 	   }
 
 	   uses ietf-nss:service-slo-sle-policy;

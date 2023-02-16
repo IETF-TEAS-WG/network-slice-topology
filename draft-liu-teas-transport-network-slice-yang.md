@@ -78,7 +78,8 @@ author:
    provider.  A customer can request or negotiate with a network slicing
    provider to create an instance.  The customer can incrementally
    update its requirements on individual topology elements in the slice
-   instance, and retrieve the operational states of these elements.
+   instance, e.g., adding or removing a node or link, updating desired
+   bandwidth of a link, and retrieve the operational states of these elements.
    With the help of other mechanisms and data models defined in IETF,
    the telemetry information can be published to the customer.
    
@@ -199,7 +200,8 @@ Please remove this note.
    
    In the example shown in {{fig-ns-topo-example}}, node virtualization is used to
    separate and allocate resources in physical devices.  Two virtual
-   routers VR1 and VR2 are created over physical router R1.  Each of the
+   routers VR1 and VR2 are created over physical router R1, and two virtual
+   routers VR3 and VR4 are created over physical router R2, respectively.  Each of the
    virtual routers,as a partition of the physical router, takes a portion 
    of the resources such as ports and memory in the physical router.  
    Depending on the requirements and the implementations, they may share 

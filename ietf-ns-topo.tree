@@ -56,7 +56,7 @@ module: ietf-ns-topo
              +--rw resize-requirement?       identityref
              +--rw service-info?             string
   augment /nw:networks/nw:network/nw:node/nt:termination-point:
-    +--rw sdp-id?                         leafref
+    +--rw customer-facing-sdp-id?         leafref
     +--rw (slo-sle-policy)?
        +--:(standard)
        |  +--rw slo-sle-template?         leafref
