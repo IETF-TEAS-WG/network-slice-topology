@@ -4,7 +4,8 @@
       {
         "network-id": "example-customized-blue-topology",
         "network-types": {
-          "ietf-ns-topo:network-slice": null
+          "ietf-ns-topo:network-slice": {
+          }
         },
         "supporting-network": [
           {
