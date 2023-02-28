@@ -1,0 +1,304 @@
+{
+  "ietf-network:networks": {
+    "network": [
+      {
+        "network-id": "example-customized-blue-topology",
+        "network-types": {
+          "ietf-ns-topo:network-slice": null
+        },
+        "supporting-network": [
+          {
+            "network-ref": "example-native-topology"
+          }
+        ],
+        "node": [
+          {
+            "node-id": "VR1",
+            "supporting-node": [
+              {
+                "network-ref": "example-native-topology",
+                "node-ref": "R1"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated",
+              "resize-requirement": "resize-hitless"
+            },
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "1-0-1"
+              },
+              {
+                "tp-id": "1-3-1"
+              }
+            ]
+          },
+          {
+            "node-id": "VR3",
+            "supporting-node": [
+              {
+                "network-ref": "example-native-topology",
+                "node-ref": "R2"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "isolation": "ietf-network-slice-service:service-isolation-shared",
+              "resize-requirement": "resize-hitless"
+            },
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "3-1-1"
+              },
+              {
+                "tp-id": "3-5-1"
+              }
+            ]
+          },
+          {
+            "node-id": "VR5",
+            "supporting-node": [
+              {
+                "network-ref": "example-native-topology",
+                "node-ref": "R3"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "isolation": "ietf-network-slice-service:service-isolation-shared",
+              "resize-requirement": "resize-hitless"
+            },
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "5-3-1"
+              },
+              {
+                "tp-id": "5-0-1"
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "VR1,1-0-1,,",
+            "source": {
+              "source-node": "VR1",
+              "source-tp": "1-0-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": "R1,1-0-1,,"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 60
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-shared"
+            }
+          },
+          {
+            "link-id": ",,VR1,1-0-1",
+            "destination": {
+              "dest-node": "VR1",
+              "dest-tp": "1-0-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": ",,R1,1-0-1"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 60
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
+            }
+          },
+          {
+            "link-id": "VR1,1-3-1,VR3,3-1-1",
+            "source": {
+              "source-node": "VR1",
+              "source-tp": "1-3-1"
+            },
+            "destination": {
+              "dest-node": "VR3",
+              "dest-tp": "3-1-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": "R1,1-2-1,R2,2-1-1"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 30
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
+            }
+          },
+          {
+            "link-id": "VR3,3-1-1,VR1,1-3-1",
+            "source": {
+              "source-node": "VR3",
+              "source-tp": "3-1-1"
+            },
+            "destination": {
+              "dest-node": "R1",
+              "dest-tp": "1-3-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": "R2,2-1-1,R1,1-2-1"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 30
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
+            }
+          },
+          {
+            "link-id": "VR3,3-5-1,VR5,5-3-1",
+            "source": {
+              "source-node": "VR3",
+              "source-tp": "3-5-1"
+            },
+            "destination": {
+              "dest-node": "VR5",
+              "dest-tp": "5-3-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": "R2,2-3-1,R3,3-2-1"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 35
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
+            }
+          },
+          {
+            "link-id": "VR5,5-3-1,VR3,3-5-1",
+            "source": {
+              "source-node": "VR5",
+              "source-tp": "5-3-1"
+            },
+            "destination": {
+              "dest-node": "VR3",
+              "dest-tp": "3-5-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": "R3,3-2-1,R2,2-3-1"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 35
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
+            }
+          },
+          {
+            "link-id": "VR5,5-0-1,,",
+            "source": {
+              "source-node": "VR5",
+              "source-tp": "5-0-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": "R3,3-0-1,,"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 25
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
+            }
+          },
+          {
+            "link-id": ",,VR5,5-0-1",
+            "destination": {
+              "dest-node": "VR5",
+              "dest-tp": "5-0-1"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example-native-topology",
+                "link-ref": ",,R3,3-0-1"
+              }
+            ],
+            "ietf-ns-topo:service-slo-sle-policy": {
+              "metric-bounds": {
+                "metric-bound": [
+                  {
+                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
+                    "metric-unit": "ms",
+                    "bound": 25
+                  }
+                ]
+              },
+              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
+            }
+          }
+        ],
+        "ietf-ns-topo:service-slo-sle-policy": {
+          "isolation": "ietf-network-slice-service:service-isolation-dedicated",
+          "optimization-criterion": "ietf-te-types:of-minimize-cost-path"
+        }
+      }
+    ]
+  }
+}
