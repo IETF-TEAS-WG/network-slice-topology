@@ -54,7 +54,7 @@ author:
 
    An IETF network slice may use an abstract topology to describe intended 
    underlay for connectivities between slice endpoints. Abstract topologies
-   help the customer to configure network slices with shared resources
+   help the customer to request network slices with shared resources
    amongst connections, and connections can be activated within the slice
    as needed.
 
@@ -138,7 +138,7 @@ Please remove this note.
 
 # Modeling Considerations
 
-   An IETF network slice is modeled as network topology defined in
+   An IETF network slice topology is modeled as network topology defined in
    {{!RFC8345}}, with augmentations.  A new network type "network-slice" is
    defined in this document.  When a network topology data instance
    contains the network-slice network type, it represents an instance of
@@ -197,6 +197,25 @@ Please remove this note.
    in the form of an abstract network topology, which can then be mapped
    to a network resource partition (NRP) according to the scenarios defined
    in {{?I-D.ietf-teas-ietf-network-slices}}.
+   
+   Network slices may be abstracted differently depending on the requirement
+   contained in the configuration provided by the slice customer. A customer
+   may request a network slice to provide just connectivity between specified
+   endpoints, in which case the network slice can be represented as a set of
+   endpoint-to-endpoint links, with each link formed by an end-to-end tunnel
+   across the underlying transport networks. The resources associated with
+   each link of the slice is reserved and commissioned in the underlying
+   physical network upon the completion of configuring the network slice and
+   all the links are active.
+   Alternatively a network slice can also be represented as an abstract topology
+   when the customer requests the slice to share resources between multiple
+   endpoints and to use the resources on demand. The abstract topology may
+   consist of virtual nodes and virtual links, and their associated resources
+   are reserved but not commissioned across the underlying transport networks.
+   The customer can later commission resources within the slice dynamically 
+   using the NBI provided by the service provider. A network slice could use
+   abstract topology to optimize the resource utilization, and connections
+   can be activated within the slice as needed.
    
    In the example shown in {{fig-ns-topo-example}}, node virtualization is used to
    separate and allocate resources in physical devices.  Two virtual
@@ -261,26 +280,13 @@ Please remove this note.
 # YANG Model Overview
    The following constructs and attributes are defined within the YANG model:
 
-   - Common attributes, which include a set of common attributes like slice identifier,
-     name, description, and names of customers who use the slice.
-
-   - Endpoints, which represent conceptual points of connection from a customer
-     device to the TNS. An endpoint is mapped to specific physical or virtual resources
-      of the customer and provider, and such mapping is pre-negotiated and known to 
-      both the customer and provider prior to the slice configuration. The mechanism 
-      for endpoint negotiation is outside the scope of this draft.
-
    - Network topology, which represent set of shared, reserved resources organized as a virtual 
       topology between all of the endpoints. A customer could use such network topology
       to define detailed connectivity path traversing the topology, and allow sharing of 
       resources between its multiple endpoint pairs.
 
-   - Connectivity matrix, which represent the intended virtual connections between the endpoints
-      within a TNS. A connectivity matrix entry could be associated with an explicit path 
-      over the above network topology. 
-
-   - Service-level objectives (SLOs) associated with different objects, including the TNS, 
-      node, link, termination point, and explicit path, within a TNS.
+   - Service-level objectives (SLOs) associated with different objects, including node, link, 
+     termination point of the topology.
    
 # Model Tree Structure
 
@@ -377,10 +383,10 @@ Please remove this note.
 ## Native Topology
    This section contains an example of an instance data tree in the JSON
    encoding {{!RFC7951}}.  The example instantiates "ietf-network" for the
-   native topology depicted in {{fig-ns-topo-example}}.
+   topology of Network Slice Blue depicted in {{fig-ns-topo-example}}.
    
 ~~~~
-{::include ./ietf-ns-topo-example.json}
+{::include ./ietf-ns-topo-blue.json}
 ~~~~
  
 {: numbered="false"}
