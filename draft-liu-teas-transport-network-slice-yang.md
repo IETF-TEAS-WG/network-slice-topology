@@ -217,34 +217,49 @@ Please remove this note.
    abstract topology to optimize the resource utilization, and connections
    can be activated within the slice as needed.
    
-   In the example shown in {{fig-ns-topo-example}}, node virtualization is used to
-   separate and allocate resources in physical devices.  Two virtual
+   In the example shown in {{fig-ns-topo-example}}, two network resource partitions
+   are created by the provider to support the two network slice topology requests
+   from the customers.  In realizing the network resource partitions, node virtualization
+   is used to separate and allocate resources in physical devices.  Two virtual
    routers VR1 and VR2 are created over physical router R1, and two virtual
    routers VR3 and VR4 are created over physical router R2, respectively.  Each of the
    virtual routers,as a partition of the physical router, takes a portion 
    of the resources such as ports and memory in the physical router.  
    Depending on the requirements and the implementations, they may share 
    certain resources such as processors, ASICs, and switch fabric.
+   
+   The network slice topology intent requested by the customers is then
+   mapped to a corresponding network resource partition. The provider also reports the
+   operational state of the topology, which shows the resources that are allocated.
+   Customers can process the requested topology and integrate it with their own topology.
 
    As an example, Appendix B. shows the JSON encoded data instances of
-   the native topology and the customized topology for Network Slice
-   Blue.
+   the customer topology intent for Network Slice Blue.
 
 ~~~~
-       Customer Topology                   Customer Topology
+       Customer Topology (Merged)          Customer Topology (Merged)
        Network Slice Blue                  Network Slice Red
                             +---+         +---+      +---+
                        -----|R3 |---   ---|R2 |------|R3 |
                       /     +---+         +---+      +---+                  
+      +---+      +---+        ^             ^          ^  \     +---+
+   ---|R1 |------|R2 |        |             |          |   -----|R4 |---
+      +---+      +---+        |             |          |        +---+
+		^          ^          v             v          v          ^
+        |          |        +---+         +---+      +---+        |
+        |          |   -----|VR5|---   ---|VR2|------|VR4|        |
+        v          v  /     +---+         +---+      +---+        v         
       +---+      +---+                                    \     +---+
-   ---|R1 |------|R2 |                                     -----|R4 |---
+   ---|VR1|------|VR3|                                     -----|VR6|---
       +---+      +---+                                          +---+
+       Customer Topology (Intended)        Customer Topology (Intended)
+       Network Slice Blue                  Network Slice Red
 
                                  Customers
    ---------------------------------------------------------------------
                                  Provider
 
-        Customized Topology (Network Resouce Partions)
+        Customized Topology (Network Resouce Partition)
         Provider Network with Virtual Devices
 
         Network Slice Blue: VR1, VR3, VR5         +---+             
