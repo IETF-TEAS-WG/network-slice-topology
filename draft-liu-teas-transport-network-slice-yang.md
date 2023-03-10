@@ -329,7 +329,7 @@ Please remove this note.
    To ensure the security and controllability of physical resource
    isolation, slice-based independent operation and management are
    required to achieve management isolation.
-   Each optical slice typically requires dedicated accounts,
+   Each network slice typically requires dedicated accounts,
    permissions, and resources for independent access and O&M. This
    mechanism is to guarantee the information isolation among slice
    tenants and to avoid resource conflicts. The access to slice

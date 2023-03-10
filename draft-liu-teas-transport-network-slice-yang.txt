@@ -993,7 +993,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
    To ensure the security and controllability of physical resource
    isolation, slice-based independent operation and management are
-   required to achieve management isolation.  Each optical slice
+   required to achieve management isolation.  Each network slice
    typically requires dedicated accounts, permissions, and resources for
    independent access and O&M.  This mechanism is to guarantee the
    information isolation among slice tenants and to avoid resource
