@@ -207,16 +207,21 @@ Please remove this note.
    each link of the slice is reserved and commissioned in the underlying
    physical network upon the completion of configuring the network slice and
    all the links are active.
+   
    Alternatively a network slice can also be represented as an abstract topology
    when the customer requests the slice to share resources between multiple
    endpoints and to use the resources on demand. The abstract topology may
    consist of virtual nodes and virtual links, and their associated resources
    are reserved but not commissioned across the underlying transport networks.
    The customer can later commission resources within the slice dynamically 
-   using the NBI provided by the service provider. A network slice could use
-   abstract topology to optimize the resource utilization, and connections
-   can be activated within the slice as needed.
+   using the NBI provided by the service provider. 
    
+   According to {{?I-D.ietf-teas-ietf-network-slices}}, the IETF Network Slice
+   service customer might ask for some level of control of, e.g., to customize
+   the service paths in a network slice. The abstract topology defined in this
+   draft could serve to enable this capability and optimize the resource utilization
+   for network slice connections activated on top of the abstract topology.
+ 
    In the example shown in {{fig-ns-topo-example}}, two network resource partitions
    are created by the provider to support the two network slice topology requests
    from the customers.  In realizing the network resource partitions, node virtualization
@@ -245,7 +250,7 @@ Please remove this note.
       +---+      +---+        ^             ^          ^  \     +---+
    ---|R1 |------|R2 |        |             |          |   -----|R4 |---
       +---+      +---+        |             |          |        +---+
-		^          ^          v             v          v          ^
+        ^          ^          v             v          v          ^
         |          |        +---+         +---+      +---+        |
         |          |   -----|VR5|---   ---|VR2|------|VR4|        |
         v          v  /     +---+         +---+      +---+        v         
@@ -313,7 +318,7 @@ Please remove this note.
 # YANG Modules
 
 ~~~~
-   <CODE BEGINS> file "ietf-ns-topo@2023-01-31.yang"
+   <CODE BEGINS> file "ietf-ns-topo@2023-03-11.yang"
 {::include ./ietf-ns-topo.yang}
    <CODE ENDS>
 ~~~~
