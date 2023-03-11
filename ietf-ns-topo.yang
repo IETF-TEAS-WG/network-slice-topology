@@ -77,64 +77,6 @@
      /*
       * Identities
       */
-     identity isolation-level {
-       description
-         "Base identity for the isolation-level.";
-       reference
-         "GSMA-NS-Template: Generic Network Slice Template,
-          Version 3.0.";
-     }
-     identity no-isolation {
-       base isolation-level;
-       description
-         "Network slices are not separated.";
-     }
-     identity physical-isolation {
-       base isolation-level;
-       description
-         "Network slices are physically separated (e.g. different
-          rack, different hardware, different location, etc.).";
-     }
-     identity logical-isolation {
-       base isolation-level;
-       description
-         "Network slices are logically separated.";
-     }
-     identity process-isolation {
-       base physical-isolation;
-       description
-         "Process and threads isolation.";
-     }
-     identity physical-memory-isolation {
-       base physical-isolation;
-       description
-         "Process and threads isolation.";
-     }
-     identity physical-network-isolation {
-       base physical-isolation;
-       description
-         "Process and threads isolation.";
-     }
-     identity virtual-resource-isolation {
-       base logical-isolation;
-       description
-         "A network slice has access to specific range of resources
-          that do not overlap with other network slices
-          (e.g. VM isolation).";
-     }
-     identity network-functions-isolation {
-       base logical-isolation;
-       description
-         "NF (Network Function) is dedicated to the network slice,
-          but virtual resources are shared.";
-     }
-     identity service-isolation {
-       base logical-isolation;
-       description
-         "NSC data are isolated from other NSCs, but virtual
-          resources and NFs are shared.";
-     }
-
      identity resize-option {
        description
          "Base identity for link or connectivity resizing options";
@@ -173,25 +115,6 @@
            description
              "Optimization criterion applied to this topology.";
        }
-       leaf delay-tolerance {
-         type boolean;
-         description
-           "'true' if is not too critical how long it takes to
-            deliver the amount of data.";
-         reference
-           "GSMA-NS-Template: Generic Network Slice Template,
-            Version 3.0.";
-       }
-       leaf-list periodicity {
-         type uint64;
-         units seconds;
-         description
-           "A list of periodicities supported by the network
-            slice.";
-         reference
-           "GSMA-NS-Template: Generic Network Slice Template,
-            Version 3.0.";
-       }
        leaf resize-requirement {
          type identityref {
            base resize-option;
@@ -218,13 +141,6 @@
          description
            "Indicate the level of disjointness for slice
             resources.";
-       }
-       leaf service-info {
-         type string;
-         description
-           "Describe type of services running on the slice. It may be
-            useful information to help the slice controller to 
-            optimize resource allocation";
        }
      }
 
