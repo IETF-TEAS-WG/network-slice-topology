@@ -23,11 +23,8 @@ module: ietf-ns-topo
              |  +--rw path-constraints
              |  +--rw service-function
              |  +--rw disjointness?
-             |  |       te-types:te-path-disjointness
-             |  +--rw service-info?       string
+             |          te-types:te-path-disjointness
              +--rw optimization-criterion?   identityref
-             +--rw delay-tolerance?          boolean
-             +--rw periodicity*              uint64
              +--rw resize-requirement?       identityref
              +--rw service-info?             string
   augment /nw:networks/nw:network/nw:node:
@@ -51,8 +48,6 @@ module: ietf-ns-topo
              |  +--rw path-constraints
              |  +--rw service-function
              +--rw optimization-criterion?   identityref
-             +--rw delay-tolerance?          boolean
-             +--rw periodicity*              uint64
              +--rw resize-requirement?       identityref
              +--rw service-info?             string
   augment /nw:networks/nw:network/nw:node/nt:termination-point:
@@ -77,8 +72,6 @@ module: ietf-ns-topo
              |  +--rw path-constraints
              |  +--rw service-function
              +--rw optimization-criterion?   identityref
-             +--rw delay-tolerance?          boolean
-             +--rw periodicity*              uint64
              +--rw resize-requirement?       identityref
              +--rw service-info?             string
   augment /nw:networks/nw:network/nt:link:
@@ -102,15 +95,10 @@ module: ietf-ns-topo
     |        |  +--rw path-constraints
     |        |  +--rw service-function
     |        |  +--rw disjointness?
-    |        |  |       te-types:te-path-disjointness
-    |        |  +--rw service-info?       string
+    |        |          te-types:te-path-disjointness
     |        +--rw optimization-criterion?   identityref
-    |        +--rw delay-tolerance?          boolean
-    |        +--rw periodicity*              uint64
     |        +--rw resize-requirement?       identityref
     |        +--rw service-info?             string
     +--rw optimization-criterion?         identityref
-    +--rw delay-tolerance?                boolean
-    +--rw periodicity*                    uint64
     +--rw resize-requirement?             identityref
     +--rw service-info?                   string
