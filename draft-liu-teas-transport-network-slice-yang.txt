@@ -5,7 +5,7 @@
 TEAS Working Group                                                X. Liu
 Internet-Draft                                           IBM Corporation
 Intended status: Standards Track                             J. Tantsura
-Expires: 12 September 2023                                     Microsoft
+Expires: 13 September 2023                                     Microsoft
                                                               I. Bryskin
                                                               Individual
                                                           L.M. Contreras
@@ -20,7 +20,7 @@ Expires: 12 September 2023                                     Microsoft
                                                                Futurewei
                                                                  I. Busi
                                                                   Huawei
-                                                           11 March 2023
+                                                           12 March 2023
 
 
               IETF Network Slice Topology YANG Data Model
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 1]
+Liu, et al.             Expires 13 September 2023               [Page 1]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -63,7 +63,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2023.
+   This Internet-Draft will expire on 13 September 2023.
 
 Copyright Notice
 
@@ -92,16 +92,16 @@ Table of Contents
    4.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .   8
    5.  Model Tree Structure  . . . . . . . . . . . . . . . . . . . .   8
    6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  10
-   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  18
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  19
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  19
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  20
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  20
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  21
-   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  22
-   Appendix B.  Data Tree for the Example in Section 3.1 . . . . . .  23
-     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  23
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  28
+   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  16
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  17
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  17
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  18
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  19
+   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  20
+   Appendix B.  Data Tree for the Example in Section 3.1 . . . . . .  21
+     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  21
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  26
 
 
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 2]
+Liu, et al.             Expires 13 September 2023               [Page 2]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -165,7 +165,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 3]
+Liu, et al.             Expires 13 September 2023               [Page 3]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -221,7 +221,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 4]
+Liu, et al.             Expires 13 September 2023               [Page 4]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -277,7 +277,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 5]
+Liu, et al.             Expires 13 September 2023               [Page 5]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -333,7 +333,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 6]
+Liu, et al.             Expires 13 September 2023               [Page 6]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -389,7 +389,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 7]
+Liu, et al.             Expires 13 September 2023               [Page 7]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -445,16 +445,13 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023               [Page 8]
+Liu, et al.             Expires 13 September 2023               [Page 8]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-                |  |       te-types:te-path-disjointness
-                |  +--rw service-info?       string
+                |          te-types:te-path-disjointness
                 +--rw optimization-criterion?   identityref
-                +--rw delay-tolerance?          boolean
-                +--rw periodicity*              uint64
                 +--rw resize-requirement?       identityref
                 +--rw service-info?             string
      augment /nw:networks/nw:network/nw:node:
@@ -478,8 +475,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 |  +--rw path-constraints
                 |  +--rw service-function
                 +--rw optimization-criterion?   identityref
-                +--rw delay-tolerance?          boolean
-                +--rw periodicity*              uint64
                 +--rw resize-requirement?       identityref
                 +--rw service-info?             string
      augment /nw:networks/nw:network/nw:node/nt:termination-point:
@@ -498,22 +493,20 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 |     +--rw bound?               uint64
                 +--rw security*                 identityref
                 +--rw isolation?                identityref
-
-
-
-Liu, et al.             Expires 12 September 2023               [Page 9]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
                 +--rw max-occupancy-level?      uint8
                 +--rw mtu?                      uint16
                 +--rw steering-constraints
                 |  +--rw path-constraints
                 |  +--rw service-function
+
+
+
+Liu, et al.             Expires 13 September 2023               [Page 9]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
+
                 +--rw optimization-criterion?   identityref
-                +--rw delay-tolerance?          boolean
-                +--rw periodicity*              uint64
                 +--rw resize-requirement?       identityref
                 +--rw service-info?             string
      augment /nw:networks/nw:network/nt:link:
@@ -537,30 +530,17 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
        |        |  +--rw path-constraints
        |        |  +--rw service-function
        |        |  +--rw disjointness?
-       |        |  |       te-types:te-path-disjointness
-       |        |  +--rw service-info?       string
+       |        |          te-types:te-path-disjointness
        |        +--rw optimization-criterion?   identityref
-       |        +--rw delay-tolerance?          boolean
-       |        +--rw periodicity*              uint64
        |        +--rw resize-requirement?       identityref
        |        +--rw service-info?             string
        +--rw optimization-criterion?         identityref
-       +--rw delay-tolerance?                boolean
-       +--rw periodicity*                    uint64
        +--rw resize-requirement?             identityref
        +--rw service-info?                   string
 
              Figure 3: Tree diagram for network slice topology
 
 6.  YANG Modules
-
-
-
-
-Liu, et al.             Expires 12 September 2023              [Page 10]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
    <CODE BEGINS> file "ietf-ns-topo@2023-03-11.yang"
       module ietf-ns-topo {
@@ -574,6 +554,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
           reference "RFC 8345: A YANG Data Model for Network Topologies";
         }
         import ietf-network-topology {
+
+
+
+Liu, et al.             Expires 13 September 2023              [Page 10]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
+
           prefix "nt";
           reference "RFC 8345: A YANG Data Model for Network Topologies";
         }
@@ -610,14 +598,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                    <mailto:sergio.belotti@nokia.com>
 
            Editor: Luis M. Contreras
-
-
-
-Liu, et al.             Expires 12 September 2023              [Page 11]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
                    <mailto:luismiguel.contrerasmurillo@telefonica.com>";
 
         description
@@ -630,6 +610,13 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
            Copyright (c) 2023 IETF Trust and the persons identified as
            authors of the code.  All rights reserved.
+
+
+
+Liu, et al.             Expires 13 September 2023              [Page 11]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
 
            Redistribution and use in source and binary forms, with or
            without modification, is permitted pursuant to, and subject
@@ -650,86 +637,12 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
         /*
          * Identities
          */
-        identity isolation-level {
-          description
-            "Base identity for the isolation-level.";
-          reference
-            "GSMA-NS-Template: Generic Network Slice Template,
-             Version 3.0.";
-        }
-        identity no-isolation {
-          base isolation-level;
-          description
-            "Network slices are not separated.";
-        }
-        identity physical-isolation {
-          base isolation-level;
-          description
-            "Network slices are physically separated (e.g. different
-
-
-
-Liu, et al.             Expires 12 September 2023              [Page 12]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
-             rack, different hardware, different location, etc.).";
-        }
-        identity logical-isolation {
-          base isolation-level;
-          description
-            "Network slices are logically separated.";
-        }
-        identity process-isolation {
-          base physical-isolation;
-          description
-            "Process and threads isolation.";
-        }
-        identity physical-memory-isolation {
-          base physical-isolation;
-          description
-            "Process and threads isolation.";
-        }
-        identity physical-network-isolation {
-          base physical-isolation;
-          description
-            "Process and threads isolation.";
-        }
-        identity virtual-resource-isolation {
-          base logical-isolation;
-          description
-            "A network slice has access to specific range of resources
-             that do not overlap with other network slices
-             (e.g. VM isolation).";
-        }
-        identity network-functions-isolation {
-          base logical-isolation;
-          description
-            "NF (Network Function) is dedicated to the network slice,
-             but virtual resources are shared.";
-        }
-        identity service-isolation {
-          base logical-isolation;
-          description
-            "NSC data are isolated from other NSCs, but virtual
-             resources and NFs are shared.";
-        }
-
         identity resize-option {
           description
             "Base identity for link or connectivity resizing options";
         }
 
         identity resize-none {
-
-
-
-Liu, et al.             Expires 12 September 2023              [Page 13]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
           base resize-option;
           description
             "Not resizable";
@@ -753,6 +666,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
         grouping ns-topo-slo-sle-policy {
           description
+
+
+
+Liu, et al.             Expires 13 September 2023              [Page 12]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
+
             "Policy grouping for Transport Network Slices.";
 
           leaf optimization-criterion {
@@ -761,33 +682,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               }
               description
                 "Optimization criterion applied to this topology.";
-          }
-          leaf delay-tolerance {
-            type boolean;
-            description
-              "'true' if is not too critical how long it takes to
-               deliver the amount of data.";
-            reference
-              "GSMA-NS-Template: Generic Network Slice Template,
-               Version 3.0.";
-          }
-          leaf-list periodicity {
-            type uint64;
-            units seconds;
-            description
-              "A list of periodicities supported by the network
-               slice.";
-            reference
-
-
-
-Liu, et al.             Expires 12 September 2023              [Page 14]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
-              "GSMA-NS-Template: Generic Network Slice Template,
-               Version 3.0.";
           }
           leaf resize-requirement {
             type identityref {
@@ -816,13 +710,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               "Indicate the level of disjointness for slice
                resources.";
           }
-          leaf service-info {
-            type string;
-            description
-              "Describe type of services running on the slice. It may be
-               useful information to help the slice controller to
-               optimize resource allocation";
-          }
         }
 
         /*
@@ -834,15 +721,15 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
             "Defines the Network Slice topology type.";
           container network-slice {
             presence "Indicates Network Slice topology";
+            description
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 15]
+Liu, et al.             Expires 13 September 2023              [Page 13]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-            description
               "Its presence identifies the Network Slice type.";
           }
         }
@@ -890,15 +777,15 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
         augment "/nw:networks/nw:network/nw:node" +
                 "/ns-topo:slo-sle-policy" +
+                "/ns-topo:custom" +
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 16]
+Liu, et al.             Expires 13 September 2023              [Page 14]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-                "/ns-topo:custom" +
                 "/ns-topo:service-slo-sle-policy" {
           when "../../nw:network-types/ns-topo:network-slice" {
             description "Augment only for Network Slice topology.";
@@ -946,15 +833,15 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
           when "../nw:network-types/ns-topo:network-slice" {
             description "Augment only for Network Slice topology.";
           }
+          description "Augment link configuration and state.";
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 17]
+Liu, et al.             Expires 13 September 2023              [Page 15]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-          description "Augment link configuration and state.";
           uses ietf-nss:service-slo-sle-policy;
               uses ns-topo-slo-sle-policy;
         }
@@ -1005,7 +892,8 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 18]
+
+Liu, et al.             Expires 13 September 2023              [Page 16]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1061,7 +949,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 19]
+Liu, et al.             Expires 13 September 2023              [Page 17]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1117,7 +1005,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 20]
+Liu, et al.             Expires 13 September 2023              [Page 18]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1173,7 +1061,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 21]
+Liu, et al.             Expires 13 September 2023              [Page 19]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1229,7 +1117,7 @@ Appendix A.  Acknowledgments
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 22]
+Liu, et al.             Expires 13 September 2023              [Page 20]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1285,7 +1173,7 @@ B.1.  Native Topology
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 23]
+Liu, et al.             Expires 13 September 2023              [Page 21]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1341,7 +1229,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 24]
+Liu, et al.             Expires 13 September 2023              [Page 22]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1397,7 +1285,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 25]
+Liu, et al.             Expires 13 September 2023              [Page 23]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1453,7 +1341,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 26]
+Liu, et al.             Expires 13 September 2023              [Page 24]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1509,7 +1397,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 27]
+Liu, et al.             Expires 13 September 2023              [Page 25]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1565,7 +1453,7 @@ Authors' Addresses
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 28]
+Liu, et al.             Expires 13 September 2023              [Page 26]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
@@ -1621,4 +1509,4 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-Liu, et al.             Expires 12 September 2023              [Page 29]
+Liu, et al.             Expires 13 September 2023              [Page 27]
