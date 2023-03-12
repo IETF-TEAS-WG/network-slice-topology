@@ -406,7 +406,7 @@ Please remove this note.
    topology of Network Slice Blue depicted in {{fig-ns-topo-example}}.
    
 ~~~~
-{::include ./ietf-ns-topo-blue.json}
+{::include json-examples/ietf-ns-topo-blue.txt}
 ~~~~
  
 {: numbered="false"}

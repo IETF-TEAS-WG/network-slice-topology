@@ -6,11 +6,13 @@
 
      import ietf-network {
        prefix "nw";
-       reference "RFC 8345: A YANG Data Model for Network Topologies";
+       reference
+        "RFC 8345: A YANG Data Model for Network Topologies";
      }
      import ietf-network-topology {
        prefix "nt";
-       reference "RFC 8345: A YANG Data Model for Network Topologies";
+       reference
+        "RFC 8345: A YANG Data Model for Network Topologies";
      }
 
      import ietf-te-types {
@@ -130,7 +132,7 @@
             optimize resource allocation";
        }
      }
-	 
+   
      grouping ns-topo-steering-constraints {
        description
          "Policy grouping for specifying steering constraints for
@@ -182,7 +184,7 @@
              "/ns-topo:slo-sle-policy" +
              "/ns-topo:custom" +
              "/ns-topo:service-slo-sle-policy" +
-			 "/ns-topo:steering-constraints" {
+       "/ns-topo:steering-constraints" {
        when "../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
@@ -214,12 +216,12 @@
              "/ns-topo:slo-sle-policy" + 
              "/ns-topo:custom" + 
              "/ns-topo:service-slo-sle-policy" +
-			 "/ns-topo:steering-constraints" {
+       "/ns-topo:steering-constraints" {
        when "../../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description
-	     "Augment IETF network slice services to include steering
+       "Augment IETF network slice services to include steering
           constraints for nodes.";
        uses ns-topo-steering-constraints;
      }
@@ -231,10 +233,10 @@
          description "Augment only for Network Slice topology.";
        }
        description "Augment node configuration and state.";
-	   
-	   uses ietf-nss:service-slo-sle-policy;
+     
+     uses ietf-nss:service-slo-sle-policy;
      }
-	 
+   
      augment "/nw:networks/nw:network/nw:node" +
              "/nt:termination-point" +
              "/ns-topo:slo-sle-policy" + 
@@ -244,7 +246,7 @@
          description "Augment only for Network Slice topology.";
        }
        description "Augment node configuration and state.";
-	   
+     
        uses ns-topo-slo-sle-policy;
      }
 
@@ -277,7 +279,7 @@
          description "Augment only for Network Slice topology.";
        }
        description
-	     "Augment IETF network slice services to include steering
+       "Augment IETF network slice services to include steering
           constraints for links within a resource-based transport
           network slice.";
        uses ns-topo-steering-constraints;
