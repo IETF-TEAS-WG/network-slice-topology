@@ -8,12 +8,13 @@ module: ietf-ns-topo
        |  +--rw slo-sle-template?         leafref
        +--:(custom)
           +--rw service-slo-sle-policy
-             +--rw policy-description?       string
+             +--rw description?              string
              +--rw metric-bounds
              |  +--rw metric-bound* [metric-type]
              |     +--rw metric-type          identityref
              |     +--rw metric-unit          string
              |     +--rw value-description?   string
+             |     +--rw percentile-value?    percentile
              |     +--rw bound?               uint64
              +--rw security*                 identityref
              +--rw isolation?                identityref
@@ -33,12 +34,13 @@ module: ietf-ns-topo
        |  +--rw slo-sle-template?         leafref
        +--:(custom)
           +--rw service-slo-sle-policy
-             +--rw policy-description?       string
+             +--rw description?              string
              +--rw metric-bounds
              |  +--rw metric-bound* [metric-type]
              |     +--rw metric-type          identityref
              |     +--rw metric-unit          string
              |     +--rw value-description?   string
+             |     +--rw percentile-value?    percentile
              |     +--rw bound?               uint64
              +--rw security*                 identityref
              +--rw isolation?                identityref
@@ -47,22 +49,24 @@ module: ietf-ns-topo
              +--rw steering-constraints
              |  +--rw path-constraints
              |  +--rw service-function
+             |  +--rw disjointness?
+             |          te-types:te-path-disjointness
              +--rw optimization-criterion?   identityref
              +--rw resize-requirement?       identityref
              +--rw service-info?             string
   augment /nw:networks/nw:network/nw:node/nt:termination-point:
-    +--rw customer-facing-sdp-id?         leafref
     +--rw (slo-sle-policy)?
        +--:(standard)
        |  +--rw slo-sle-template?         leafref
        +--:(custom)
           +--rw service-slo-sle-policy
-             +--rw policy-description?       string
+             +--rw description?              string
              +--rw metric-bounds
              |  +--rw metric-bound* [metric-type]
              |     +--rw metric-type          identityref
              |     +--rw metric-unit          string
              |     +--rw value-description?   string
+             |     +--rw percentile-value?    percentile
              |     +--rw bound?               uint64
              +--rw security*                 identityref
              +--rw isolation?                identityref
@@ -76,29 +80,27 @@ module: ietf-ns-topo
              +--rw service-info?             string
   augment /nw:networks/nw:network/nt:link:
     +--rw (slo-sle-policy)?
-    |  +--:(standard)
-    |  |  +--rw slo-sle-template?         leafref
-    |  +--:(custom)
-    |     +--rw service-slo-sle-policy
-    |        +--rw policy-description?       string
-    |        +--rw metric-bounds
-    |        |  +--rw metric-bound* [metric-type]
-    |        |     +--rw metric-type          identityref
-    |        |     +--rw metric-unit          string
-    |        |     +--rw value-description?   string
-    |        |     +--rw bound?               uint64
-    |        +--rw security*                 identityref
-    |        +--rw isolation?                identityref
-    |        +--rw max-occupancy-level?      uint8
-    |        +--rw mtu?                      uint16
-    |        +--rw steering-constraints
-    |        |  +--rw path-constraints
-    |        |  +--rw service-function
-    |        |  +--rw disjointness?
-    |        |          te-types:te-path-disjointness
-    |        +--rw optimization-criterion?   identityref
-    |        +--rw resize-requirement?       identityref
-    |        +--rw service-info?             string
-    +--rw optimization-criterion?         identityref
-    +--rw resize-requirement?             identityref
-    +--rw service-info?                   string
+       +--:(standard)
+       |  +--rw slo-sle-template?         leafref
+       +--:(custom)
+          +--rw service-slo-sle-policy
+             +--rw description?              string
+             +--rw metric-bounds
+             |  +--rw metric-bound* [metric-type]
+             |     +--rw metric-type          identityref
+             |     +--rw metric-unit          string
+             |     +--rw value-description?   string
+             |     +--rw percentile-value?    percentile
+             |     +--rw bound?               uint64
+             +--rw security*                 identityref
+             +--rw isolation?                identityref
+             +--rw max-occupancy-level?      uint8
+             +--rw mtu?                      uint16
+             +--rw steering-constraints
+             |  +--rw path-constraints
+             |  +--rw service-function
+             |  +--rw disjointness?
+             |          te-types:te-path-disjointness
+             +--rw optimization-criterion?   identityref
+             +--rw resize-requirement?       identityref
+             +--rw service-info?             string

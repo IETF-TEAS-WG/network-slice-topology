@@ -210,6 +210,20 @@
        uses ns-topo-slo-sle-policy;
      }
 
+     augment "/nw:networks/nw:network/nw:node" +
+             "/ns-topo:slo-sle-policy" + 
+             "/ns-topo:custom" + 
+             "/ns-topo:service-slo-sle-policy" +
+			 "/ns-topo:steering-constraints" {
+       when "../../../nw:network-types/ns-topo:network-slice" {
+         description "Augment only for Network Slice topology.";
+       }
+       description
+	     "Augment IETF network slice services to include steering
+          constraints for nodes.";
+       uses ns-topo-steering-constraints;
+     }
+
      /* network node's termination point augments */
      augment "/nw:networks/nw:network/nw:node" +
              "/nt:termination-point" {
@@ -218,16 +232,6 @@
        }
        description "Augment node configuration and state.";
 	   
-       leaf customer-facing-sdp-id {
-		 type leafref {
-		   path "/ietf-nss:network-slice-services"+
-				"/ietf-nss:slice-service"+
-				"/ietf-nss:sdps/ietf-nss:sdp/ietf-nss:sdp-id";
-		 }
-		 description
-		   "Relative reference to a customer-facing SDP.";
-	   }
-
 	   uses ietf-nss:service-slo-sle-policy;
      }
 	 
@@ -251,7 +255,6 @@
        }
        description "Augment link configuration and state.";
        uses ietf-nss:service-slo-sle-policy;
-	   uses ns-topo-slo-sle-policy;
      }
 
      augment "/nw:networks/nw:network/nt:link" +
