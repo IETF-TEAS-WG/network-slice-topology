@@ -36,7 +36,10 @@ Abstract
 
    This document describes a YANG data model for managing and
    controlling abstract topologies for IETF network slices defined in
-   [I-D.ietf-teas-ietf-network-slices].
+   RFC YYYY.
+
+   [RFC EDITOR NOTE: Please replace RFC YYYY with the RFC number of
+   draft-ietf-teas-ietf-network-slices once it has been published.
 
 Status of This Memo
 
@@ -47,9 +50,6 @@ Status of This Memo
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
    Drafts is at https://datatracker.ietf.org/drafts/current/.
-
-
-
 
 
 
@@ -82,9 +82,8 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
-     1.2.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   4
-     1.3.  Prefixes in Data Node Names . . . . . . . . . . . . . . .   4
+     1.1.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   3
+     1.2.  Prefixes in Data Node Names . . . . . . . . . . . . . . .   3
    2.  Modeling Considerations . . . . . . . . . . . . . . . . . . .   4
      2.1.  Relationships to Related Topology Models  . . . . . . . .   4
      2.2.  ACTN for Network Slicing  . . . . . . . . . . . . . . . .   5
@@ -100,8 +99,9 @@ Table of Contents
      10.2.  Informative References . . . . . . . . . . . . . . . . .  19
    Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  20
    Appendix B.  Data Tree for the Example in Section 3.1 . . . . . .  20
-     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  21
+     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  20
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  26
+
 
 
 
@@ -150,16 +150,16 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) [RFC8342].
 
-1.1.  Terminology
+1.1.  Tree Diagram
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
+   Tree diagrams used in this document follow the notation defined in
+   [RFC8340].
 
-   The terminology for describing YANG data models is found in
-   [RFC7950].
+1.2.  Prefixes in Data Node Names
+
+   In this document, names of data nodes and other data model objects
+   are prefixed using the standard prefix associated with the
+   corresponding YANG imported modules, as shown in Table 1.
 
 
 
@@ -169,17 +169,6 @@ Liu, et al.             Expires 14 September 2023               [Page 3]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
-
-1.2.  Tree Diagram
-
-   Tree diagrams used in this document follow the notation defined in
-   [RFC8340].
-
-1.3.  Prefixes in Data Node Names
-
-   In this document, names of data nodes and other data model objects
-   are prefixed using the standard prefix associated with the
-   corresponding YANG imported modules, as shown in Table 1.
 
              +==========+=======================+===========+
              | Prefix   | YANG Module           | Reference |
@@ -219,13 +208,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
    Network Topology Model: Defined in [RFC8345].
 
-
-
-Liu, et al.             Expires 14 September 2023               [Page 4]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
    Network Slicing Model: Defined in
    [I-D.ietf-teas-ietf-network-slice-nbi-yang].
 
@@ -233,6 +215,16 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
    Figure 1 shows the relationships among these models.  The box of
    dotted lines denotes the model defined in this document.
+
+
+
+
+
+
+Liu, et al.             Expires 14 September 2023               [Page 4]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
 
         +----------+                 +----------+
         | Network  |                 | Network  |
@@ -274,6 +266,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    requirement contained in the configuration provided by the slice
    customer.  A customer may request a network slice to provide just
    connectivity between specified endpoints, in which case the network
+   slice can be represented as a set of endpoint-to-endpoint links, with
+   each link formed by an end-to-end tunnel across the underlying
+   transport networks.  The resources associated with each link of the
+   slice is reserved and commissioned in the underlying physical network
+   upon the completion of configuring the network slice and all the
+   links are active.
+
+
 
 
 
@@ -281,13 +281,6 @@ Liu, et al.             Expires 14 September 2023               [Page 5]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
-
-   slice can be represented as a set of endpoint-to-endpoint links, with
-   each link formed by an end-to-end tunnel across the underlying
-   transport networks.  The resources associated with each link of the
-   slice is reserved and commissioned in the underlying physical network
-   upon the completion of configuring the network slice and all the
-   links are active.
 
    Alternatively a network slice can also be represented as an abstract
    topology when the customer requests the slice to share resources
@@ -327,17 +320,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    As an example, Appendix B. shows the JSON encoded data instances of
    the customer topology intent for Network Slice Blue.
 
-
-
-
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 6]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
        Customer Topology (Merged)          Customer Topology (Merged)
        Network Slice Blue                  Network Slice Red
                             +---+         +---+      +---+
@@ -348,6 +330,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
       +---+      +---+        |             |          |        +---+
         ^          ^          v             v          v          ^
         |          |        +---+         +---+      +---+        |
+
+
+
+Liu, et al.             Expires 14 September 2023               [Page 6]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
+
         |          |   -----|VR5|---   ---|VR2|------|VR4|        |
         v          v  /     +---+         +---+      +---+        v
       +---+      +---+                                    \     +---+
@@ -386,6 +376,16 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                                        /          +---+
                     +---+         +---+
               ======|R1 |=========|R2 |
+                    +---+         +---+
+                                       \          +---+
+                                        ----------|R4 |------
+                                                  +---+
+
+       Figure 2: Network Slicing Topologies for Virtualization
+
+
+
+
 
 
 
@@ -393,13 +393,6 @@ Liu, et al.             Expires 14 September 2023               [Page 7]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
-
-                    +---+         +---+
-                                       \          +---+
-                                        ----------|R4 |------
-                                                  +---+
-
-       Figure 2: Network Slicing Topologies for Virtualization
 
 4.  YANG Model Overview
 
@@ -442,6 +435,13 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 +--rw steering-constraints
                 |  +--rw path-constraints
                 |  +--rw service-function
+                |  +--rw disjointness?
+                |          te-types:te-path-disjointness
+                +--rw optimization-criterion?   identityref
+                +--rw resize-requirement?       identityref
+                +--rw service-info?             string
+     augment /nw:networks/nw:network/nw:node:
+       +--rw (slo-sle-policy)?
 
 
 
@@ -450,13 +450,6 @@ Liu, et al.             Expires 14 September 2023               [Page 8]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-                |  +--rw disjointness?
-                |          te-types:te-path-disjointness
-                +--rw optimization-criterion?   identityref
-                +--rw resize-requirement?       identityref
-                +--rw service-info?             string
-     augment /nw:networks/nw:network/nw:node:
-       +--rw (slo-sle-policy)?
           +--:(standard)
           |  +--rw slo-sle-template?         leafref
           +--:(custom)
@@ -498,6 +491,13 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 +--rw security*                 identityref
                 +--rw isolation?                identityref
                 +--rw max-occupancy-level?      uint8
+                +--rw mtu?                      uint16
+                +--rw steering-constraints
+                |  +--rw path-constraints
+                |  +--rw service-function
+                +--rw optimization-criterion?   identityref
+                +--rw resize-requirement?       identityref
+                +--rw service-info?             string
 
 
 
@@ -506,13 +506,6 @@ Liu, et al.             Expires 14 September 2023               [Page 9]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-                +--rw mtu?                      uint16
-                +--rw steering-constraints
-                |  +--rw path-constraints
-                |  +--rw service-function
-                +--rw optimization-criterion?   identityref
-                +--rw resize-requirement?       identityref
-                +--rw service-info?             string
      augment /nw:networks/nw:network/nt:link:
        +--rw (slo-sle-policy)?
           +--:(standard)
@@ -553,7 +546,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
         import ietf-network {
           prefix "nw";
-          reference "RFC 8345: A YANG Data Model for Network Topologies";
+          reference
+           "RFC 8345: A YANG Data Model for Network Topologies";
+        }
+        import ietf-network-topology {
+          prefix "nt";
+          reference
+           "RFC 8345: A YANG Data Model for Network Topologies";
+        }
 
 
 
@@ -561,12 +561,6 @@ Liu, et al.             Expires 14 September 2023              [Page 10]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
-
-        }
-        import ietf-network-topology {
-          prefix "nt";
-          reference "RFC 8345: A YANG Data Model for Network Topologies";
-        }
 
         import ietf-te-types {
           prefix "te-types";
@@ -610,6 +604,12 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
            The model fully conforms to the Network Management Datastore
            Architecture (NMDA).
 
+           Copyright (c) 2023 IETF Trust and the persons
+           identified as authors of the code.  All rights reserved.
+
+           Redistribution and use in source and binary forms, with
+           or without modification, is permitted pursuant to, and
+           subject to the license terms contained in, the Revised
 
 
 
@@ -618,18 +618,13 @@ Liu, et al.             Expires 14 September 2023              [Page 11]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-           Copyright (c) 2023 IETF Trust and the persons identified as
-           authors of the code.  All rights reserved.
-
-           Redistribution and use in source and binary forms, with or
-           without modification, is permitted pursuant to, and subject
-           to the license terms contained in, the Revised BSD License
-           set forth in Section 4.c of the IETF Trust's Legal Provisions
-           Relating to IETF Documents
+           BSD License set forth in Section 4.c of the IETF Trust's
+           Legal Provisions Relating to IETF Documents
            (https://trustee.ietf.org/license-info).
 
-           This version of this YANG module is part of RFC XXXX; see the
-           RFC itself for full legal notices.";
+           This version of this YANG module is part of RFC XXXX; see
+           the RFC itself for full legal notices.";
+
 
         revision 2023-03-11 {
           description "Initial revision";
@@ -667,16 +662,17 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
          * Groupings
          */
 
+        grouping ns-topo-slo-sle-policy {
+          description
+            "Policy grouping for Transport Network Slices.";
+
+
 
 
 Liu, et al.             Expires 14 September 2023              [Page 12]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
-
-        grouping ns-topo-slo-sle-policy {
-          description
-            "Policy grouping for Transport Network Slices.";
 
           leaf optimization-criterion {
               type identityref {
@@ -722,6 +718,10 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
           description
             "Defines the Network Slice topology type.";
           container network-slice {
+            presence "Indicates Network Slice topology";
+            description
+              "Its presence identifies the Network Slice type.";
+          }
 
 
 
@@ -730,10 +730,6 @@ Liu, et al.             Expires 14 September 2023              [Page 13]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-            presence "Indicates Network Slice topology";
-            description
-              "Its presence identifies the Network Slice type.";
-          }
         }
 
         /* network topology augments */
@@ -760,7 +756,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 "/ns-topo:slo-sle-policy" +
                 "/ns-topo:custom" +
                 "/ns-topo:service-slo-sle-policy" +
-                            "/ns-topo:steering-constraints" {
+          "/ns-topo:steering-constraints" {
           when "../../nw:network-types/ns-topo:network-slice" {
             description "Augment only for Network Slice topology.";
           }
@@ -778,6 +774,10 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
         }
 
         augment "/nw:networks/nw:network/nw:node" +
+                "/ns-topo:slo-sle-policy" +
+                "/ns-topo:custom" +
+                "/ns-topo:service-slo-sle-policy" {
+          when "../../nw:network-types/ns-topo:network-slice" {
 
 
 
@@ -786,10 +786,6 @@ Liu, et al.             Expires 14 September 2023              [Page 14]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-                "/ns-topo:slo-sle-policy" +
-                "/ns-topo:custom" +
-                "/ns-topo:service-slo-sle-policy" {
-          when "../../nw:network-types/ns-topo:network-slice" {
             description "Augment only for Network Slice topology.";
           }
           description "Augment node configuration and state.";
@@ -800,12 +796,12 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 "/ns-topo:slo-sle-policy" +
                 "/ns-topo:custom" +
                 "/ns-topo:service-slo-sle-policy" +
-                            "/ns-topo:steering-constraints" {
+          "/ns-topo:steering-constraints" {
           when "../../../nw:network-types/ns-topo:network-slice" {
             description "Augment only for Network Slice topology.";
           }
           description
-                "Augment IETF network slice services to include steering
+          "Augment IETF network slice services to include steering
              constraints for nodes.";
           uses ns-topo-steering-constraints;
         }
@@ -818,7 +814,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
           }
           description "Augment node configuration and state.";
 
-              uses ietf-nss:service-slo-sle-policy;
+        uses ietf-nss:service-slo-sle-policy;
         }
 
         augment "/nw:networks/nw:network/nw:node" +
@@ -834,6 +830,10 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
           uses ns-topo-slo-sle-policy;
         }
 
+        /* network link augments */
+        augment "/nw:networks/nw:network/nt:link" {
+          when "../nw:network-types/ns-topo:network-slice" {
+            description "Augment only for Network Slice topology.";
 
 
 
@@ -842,10 +842,6 @@ Liu, et al.             Expires 14 September 2023              [Page 15]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-        /* network link augments */
-        augment "/nw:networks/nw:network/nt:link" {
-          when "../nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
           }
           description "Augment link configuration and state.";
           uses ietf-nss:service-slo-sle-policy;
@@ -871,7 +867,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
             description "Augment only for Network Slice topology.";
           }
           description
-                "Augment IETF network slice services to include steering
+          "Augment IETF network slice services to include steering
              constraints for links within a resource-based transport
              network slice.";
           uses ns-topo-steering-constraints;
@@ -890,6 +886,10 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    independent access and O&M.  This mechanism is to guarantee the
    information isolation among slice tenants and to avoid resource
    conflicts.  The access to slice management functions will only be
+   permitted after successful security checks.
+
+
+
 
 
 
@@ -897,8 +897,6 @@ Liu, et al.             Expires 14 September 2023              [Page 16]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
-
-   permitted after successful security checks.
 
 8.  Security Considerations
 
@@ -943,8 +941,10 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    This document registers a YANG module in the YANG Module Names
    registry [RFC6020].
 
-
-
+      name: ietf-ns-topo
+      namespace: urn:ietf:params:xml:ns:yang:ietf-ns-topo
+      prefix: ns-topo
+      reference: RFC XXXX
 
 
 
@@ -954,19 +954,9 @@ Liu, et al.             Expires 14 September 2023              [Page 17]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-      name: ietf-ns-topo
-      namespace: urn:ietf:params:xml:ns:yang:ietf-ns-topo
-      prefix: ns-topo
-      reference: RFC XXXX
-
 10.  References
 
 10.1.  Normative References
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
@@ -1002,18 +992,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/info/rfc8040>.
 
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 18]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
               <https://www.rfc-editor.org/info/rfc8340>.
@@ -1022,6 +1000,15 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/info/rfc8341>.
+
+
+
+
+
+Liu, et al.             Expires 14 September 2023              [Page 18]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
 
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
@@ -1036,11 +1023,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/info/rfc8446>.
-
-   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
-              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
-              DOI 10.17487/RFC8453, August 2018,
-              <https://www.rfc-editor.org/info/rfc8453>.
 
    [RFC8776]  Saad, T., Gandhi, R., Liu, X., Beeram, V., and I. Bryskin,
               "Common YANG Data Types for Traffic Engineering",
@@ -1058,14 +1040,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    [I-D.contreras-teas-slice-controller-models]
               Contreras, L. M., Rokui, R., Tantsura, J., Wu, B., Liu,
               X., Dhody, D., and S. Belotti, "IETF Network Slice
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 19]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
               Controller and its associated data models", Work in
               Progress, Internet-Draft, draft-contreras-teas-slice-
               controller-models-04, 24 October 2022,
@@ -1084,17 +1058,25 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               Lee, Y., Zheng, H., Ceccarelli, D., Yoon, B. Y., and S.
               Belotti, "Applicability of YANG models for Abstraction and
               Control of Traffic Engineered Networks", Work in Progress,
+
+
+
+Liu, et al.             Expires 14 September 2023              [Page 19]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
+
               Internet-Draft, draft-ietf-teas-actn-yang-11, 7 March
               2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
               teas-actn-yang-11>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., Han, L., and J.
-              Mullooly, "IETF Network Slice Service YANG Model", Work in
-              Progress, Internet-Draft, draft-ietf-teas-ietf-network-
-              slice-nbi-yang-03, 24 October 2022,
+              Mullooly, "A YANG Data Model for the IETF Network Slice
+              Service", Work in Progress, Internet-Draft, draft-ietf-
+              teas-ietf-network-slice-nbi-yang-04, 13 March 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-03>.
+              ietf-network-slice-nbi-yang-04>.
 
    [I-D.ietf-teas-ietf-network-slices]
               Farrel, A., Drake, J., Rokui, R., Homma, S., Makhijani,
@@ -1103,6 +1085,11 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               draft-ietf-teas-ietf-network-slices-19, 21 January 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
               ietf-network-slices-19>.
+
+   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
+              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
+              DOI 10.17487/RFC8453, August 2018,
+              <https://www.rfc-editor.org/info/rfc8453>.
 
 Appendix A.  Acknowledgments
 
@@ -1114,6 +1101,19 @@ Appendix A.  Acknowledgments
 
 Appendix B.  Data Tree for the Example in Section 3.1
 
+B.1.  Native Topology
+
+   This section contains an example of an instance data tree in the JSON
+   encoding [RFC7951].  The example instantiates "ietf-network" for the
+   topology of Network Slice Blue depicted in Figure 2.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-network:networks": {
+       "network": [
+         {
+           "network-id": "example-customized-blue-topology",
 
 
 
@@ -1122,54 +1122,54 @@ Liu, et al.             Expires 14 September 2023              [Page 20]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-B.1.  Native Topology
-
-   This section contains an example of an instance data tree in the JSON
-   encoding [RFC7951].  The example instantiates "ietf-network" for the
-   topology of Network Slice Blue depicted in Figure 2.
-
-{
-  "ietf-network:networks": {
-    "network": [
-      {
-        "network-id": "example-customized-blue-topology",
-        "network-types": {
-          "ietf-ns-topo:network-slice": {
-          }
-        },
-        "node": [
-          {
-            "node-id": "VR1",
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated",
-              "resize-requirement": "resize-hitless"
-            },
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "1-0-1"
-              },
-              {
-                "tp-id": "1-3-1"
-              }
-            ]
-          },
-          {
-            "node-id": "VR3",
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "isolation": "ietf-network-slice-service:service-isolation-shared",
-              "resize-requirement": "resize-hitless"
-            },
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "3-1-1"
-              },
-              {
-                "tp-id": "3-5-1"
-              }
-            ]
-          },
-          {
-            "node-id": "VR5",
+           "network-types": {
+             "ietf-ns-topo:network-slice": {
+             }
+           },
+           "node": [
+             {
+               "node-id": "VR1",
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-dedicated",
+                 "resize-requirement": "resize-hitless"
+               },
+               "ietf-network-topology:termination-point": [
+                 {
+                   "tp-id": "1-0-1"
+                 },
+                 {
+                   "tp-id": "1-3-1"
+                 }
+               ]
+             },
+             {
+               "node-id": "VR3",
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-shared",
+                 "resize-requirement": "resize-hitless"
+               },
+               "ietf-network-topology:termination-point": [
+                 {
+                   "tp-id": "3-1-1"
+                 },
+                 {
+                   "tp-id": "3-5-1"
+                 }
+               ]
+             },
+             {
+               "node-id": "VR5",
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-shared",
+                 "resize-requirement": "resize-hitless"
+               },
+               "ietf-network-topology:termination-point": [
+                 {
+                   "tp-id": "5-3-1"
+                 },
 
 
 
@@ -1178,54 +1178,54 @@ Liu, et al.             Expires 14 September 2023              [Page 21]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "isolation": "ietf-network-slice-service:service-isolation-shared",
-              "resize-requirement": "resize-hitless"
-            },
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "5-3-1"
-              },
-              {
-                "tp-id": "5-0-1"
-              }
-            ]
-          }
-        ],
-        "ietf-network-topology:link": [
-          {
-            "link-id": "VR1,1-0-1,,",
-            "source": {
-              "source-node": "VR1",
-              "source-tp": "1-0-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 60
-                  }
-                ]
-              },
-              "isolation": "ietf-network-slice-service:service-isolation-shared"
-            }
-          },
-          {
-            "link-id": ",,VR1,1-0-1",
-            "destination": {
-              "dest-node": "VR1",
-              "dest-tp": "1-0-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 60
-                  }
+                 {
+                   "tp-id": "5-0-1"
+                 }
+               ]
+             }
+           ],
+           "ietf-network-topology:link": [
+             {
+               "link-id": "VR1,1-0-1,,",
+               "source": {
+                 "source-node": "VR1",
+                 "source-tp": "1-0-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 60
+                     }
+                   ]
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-shared"
+               }
+             },
+             {
+               "link-id": ",,VR1,1-0-1",
+               "destination": {
+                 "dest-node": "VR1",
+                 "dest-tp": "1-0-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 60
+                     }
+                   ]
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-dedicated"
+               }
 
 
 
@@ -1234,54 +1234,54 @@ Liu, et al.             Expires 14 September 2023              [Page 22]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-                ]
-              },
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
-            }
-          },
-          {
-            "link-id": "VR1,1-3-1,VR3,3-1-1",
-            "source": {
-              "source-node": "VR1",
-              "source-tp": "1-3-1"
-            },
-            "destination": {
-              "dest-node": "VR3",
-              "dest-tp": "3-1-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 30
-                  }
-                ]
-              },
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
-            }
-          },
-          {
-            "link-id": "VR3,3-1-1,VR1,1-3-1",
-            "source": {
-              "source-node": "VR3",
-              "source-tp": "3-1-1"
-            },
-            "destination": {
-              "dest-node": "R1",
-              "dest-tp": "1-3-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 30
-                  }
-                ]
-              },
+             },
+             {
+               "link-id": "VR1,1-3-1,VR3,3-1-1",
+               "source": {
+                 "source-node": "VR1",
+                 "source-tp": "1-3-1"
+               },
+               "destination": {
+                 "dest-node": "VR3",
+                 "dest-tp": "3-1-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 30
+                     }
+                   ]
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-dedicated"
+               }
+             },
+             {
+               "link-id": "VR3,3-1-1,VR1,1-3-1",
+               "source": {
+                 "source-node": "VR3",
+                 "source-tp": "3-1-1"
+               },
+               "destination": {
+                 "dest-node": "R1",
+                 "dest-tp": "1-3-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 30
+                     }
+                   ]
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
 
 
 
@@ -1290,54 +1290,54 @@ Liu, et al.             Expires 14 September 2023              [Page 23]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
-            }
-          },
-          {
-            "link-id": "VR3,3-5-1,VR5,5-3-1",
-            "source": {
-              "source-node": "VR3",
-              "source-tp": "3-5-1"
-            },
-            "destination": {
-              "dest-node": "VR5",
-              "dest-tp": "5-3-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 35
-                  }
-                ]
-              },
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
-            }
-          },
-          {
-            "link-id": "VR5,5-3-1,VR3,3-5-1",
-            "source": {
-              "source-node": "VR5",
-              "source-tp": "5-3-1"
-            },
-            "destination": {
-              "dest-node": "VR3",
-              "dest-tp": "3-5-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 35
-                  }
-                ]
-              },
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
-            }
+   tion-dedicated"
+               }
+             },
+             {
+               "link-id": "VR3,3-5-1,VR5,5-3-1",
+               "source": {
+                 "source-node": "VR3",
+                 "source-tp": "3-5-1"
+               },
+               "destination": {
+                 "dest-node": "VR5",
+                 "dest-tp": "5-3-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 35
+                     }
+                   ]
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-dedicated"
+               }
+             },
+             {
+               "link-id": "VR5,5-3-1,VR3,3-5-1",
+               "source": {
+                 "source-node": "VR5",
+                 "source-tp": "5-3-1"
+               },
+               "destination": {
+                 "dest-node": "VR3",
+                 "dest-tp": "3-5-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 35
+                     }
+                   ]
 
 
 
@@ -1346,54 +1346,54 @@ Liu, et al.             Expires 14 September 2023              [Page 24]
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
-          },
-          {
-            "link-id": "VR5,5-0-1,,",
-            "source": {
-              "source-node": "VR5",
-              "source-tp": "5-0-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 25
-                  }
-                ]
-              },
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
-            }
-          },
-          {
-            "link-id": ",,VR5,5-0-1",
-            "destination": {
-              "dest-node": "VR5",
-              "dest-tp": "5-0-1"
-            },
-            "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
-                  {
-                    "metric-type": "ietf-network-slice-service:service-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 25
-                  }
-                ]
-              },
-              "isolation": "ietf-network-slice-service:service-isolation-dedicated"
-            }
-          }
-        ],
-        "ietf-ns-topo:service-slo-sle-policy": {
-          "isolation": "ietf-network-slice-service:service-isolation-dedicated",
-          "optimization-criterion": "ietf-te-types:of-minimize-cost-path"
-        }
-      }
-    ]
-  }
-}
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-dedicated"
+               }
+             },
+             {
+               "link-id": "VR5,5-0-1,,",
+               "source": {
+                 "source-node": "VR5",
+                 "source-tp": "5-0-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 25
+                     }
+                   ]
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-dedicated"
+               }
+             },
+             {
+               "link-id": ",,VR5,5-0-1",
+               "destination": {
+                 "dest-node": "VR5",
+                 "dest-tp": "5-0-1"
+               },
+               "ietf-ns-topo:service-slo-sle-policy": {
+                 "metric-bounds": {
+                   "metric-bound": [
+                     {
+                       "metric-type": "ietf-network-slice-service:servi\
+   ce-slo-two-way-delay",
+                       "metric-unit": "ms",
+                       "bound": 25
+                     }
+                   ]
+                 },
+                 "isolation": "ietf-network-slice-service:service-isola\
+   tion-dedicated"
+               }
+             }
+           ],
 
 
 
@@ -1401,6 +1401,17 @@ Liu, et al.             Expires 14 September 2023              [Page 25]
 
 Internet-Draft      Network Slice Topology Data Model         March 2023
 
+
+           "ietf-ns-topo:service-slo-sle-policy": {
+             "isolation": "ietf-network-slice-service:service-isolation\
+   -dedicated",
+             "optimization-criterion": "ietf-te-types:of-minimize-cost-\
+   path"
+           }
+         }
+       ]
+     }
+   }
 
 Authors' Addresses
 
@@ -1440,6 +1451,13 @@ Authors' Addresses
    Email: Sergio.belotti@nokia.com
 
 
+
+
+Liu, et al.             Expires 14 September 2023              [Page 26]
+
+Internet-Draft      Network Slice Topology Data Model         March 2023
+
+
    Reza Rokui
    Ciena
 
@@ -1452,28 +1470,10 @@ Authors' Addresses
    Email: aihuaguo.ietf@gmail.com
 
 
-
-Liu, et al.             Expires 14 September 2023              [Page 26]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
    Italo Busi
    Huawei
 
    Email: italo.busi@huawei.com
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
