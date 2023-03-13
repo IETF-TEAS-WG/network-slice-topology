@@ -60,7 +60,10 @@ author:
 
    This document describes a YANG data model for managing and
    controlling abstract topologies for IETF network slices defined in
-   {{?I-D.ietf-teas-ietf-network-slices}}.
+   RFC YYYY. 
+   
+   [RFC EDITOR NOTE: Please replace RFC YYYY with the RFC number of
+   draft-ietf-teas-ietf-network-slices once it has been published.
 
 --- middle
 
@@ -94,21 +97,10 @@ author:
    in this document complements the data model defined in
    {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.  In addition to the
    provider's view, the data model defined in this document models the
-   Type 2 service defined in {{!RFC8453}}.
+   Type 2 service defined in {{?RFC8453}}.
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) {{!RFC8342}}.
-
-## Terminology
-
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in
-   BCP 14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all
-   capitals, as shown here.
-
-   The terminology for describing YANG data models is found in
-   {{!RFC7950}}.
 
 ## Tree Diagram
 
@@ -185,7 +177,7 @@ Please remove this note.
    Since ACTN topology data models are based on the network topology
    model defined in {{!RFC8345}}, the augmentations defined in this
    document are effective augmentations to the ACTN topology data
-   models, resulting in making the ACTN framework {{!RFC8453}} and data
+   models, resulting in making the ACTN framework {{?RFC8453}} and data
    models {{?I-D.ietf-teas-actn-yang}} capable of slicing networks with the
    required network characteristics.
 
