@@ -52,14 +52,14 @@ author:
 
 --- abstract
 
-   An IETF network slice may use an abstract topology to describe intended 
-   underlay for connectivities between slice endpoints. Abstract topologies
-   help the customer to request network slices with shared resources
-   amongst connections, and connections can be activated within the slice
-   as needed.
-
+   An IETF network slice may use a customized topology to describe intended
+   resource reservation for connectivities between slice endpoints. Customized
+   topologies enable customers to request shared resources among connections activated
+   on demand and to customize the service paths in a network slice with 
+   an extensive level of control.
+   
    This document describes a YANG data model for managing and
-   controlling abstract topologies for IETF network slices defined in
+   controlling customized topologies for IETF network slices defined in
    RFC YYYY. 
    
    [RFC EDITOR NOTE: Please replace RFC YYYY with the RFC number of
@@ -69,38 +69,81 @@ author:
 
 # Introduction
 
+   {{?I-D.ietf-teas-ietf-network-slices}} describes that an IETF network
+   slice service customer might ask for some level of control, e.g., 
+   to customize the service paths while requesting network slice services.
+   These customized controls may well be expressed by customer-defined 
+   topologies, i.e. customized topologies.
+   
+   Furthermore, by using customized topologies, customers can request advanced
+   resource reservation for all potential network slices that can be activated 
+   on demand in the future. This capability provides customers with full control
+   over when and how resources are allocated by the slices. The resources can be
+   shared by network slices created at different times as well as by connections
+   between different edge pairs within the same network slice. This could significantly
+   reduce overall bandwidth requirements and provide great economic advantages
+   to the customer.
+
+   A typical example of network slicing with resource reservation using 
+   customized topologies is in recursive network slicing for
+   network wholesale, where [add example]
+   
    This document defines a YANG {{!RFC7950}} data model for representing,
-   managing, and controlling IETF network slices as abstract
+   managing, and controlling IETF network slices over customized
    network topologies, where the network slices are defined
-   in {{?I-D.ietf-teas-ietf-network-slices}}.
+   in {{?I-D.ietf-teas-ietf-network-slices}}. The YANG model augments
+   the data model defined in {{!RFC8345}} to enable a customer to 
+   express desired service-level objectives (SLOs) and service-level expectations (SLEs)
+   over various constructs within the customized topology.
 
    The defined data model is an interface between customers and
    providers for configurations and state retrievals, so as to support
-   network slicing as a service.  Through this model, a customer can
-   learn the slicing capabilities and the available resources of the
-   provider.  A customer can request or negotiate with a network slicing
-   provider to create an instance.  The customer can incrementally
-   update its requirements on individual topology elements in the slice
-   instance, e.g., adding or removing a node or link, updating desired
-   bandwidth of a link, and retrieve the operational states of these elements.
-   With the help of other mechanisms and data models defined in IETF,
-   the telemetry information can be published to the customer.
+   network slicing as a service.  Through this model, a customer can request or 
+   negotiate with a network slicing provider to create an instance.  
+   The customer can incrementally update its requirements on individual 
+   topology elements in the slice instance, e.g., adding or removing a node or 
+   link, updating desired bandwidth of a link, and retrieve the operational states
+   of these elements. With the help of other mechanisms and data models defined 
+   in IETF, the telemetry information can be published to the customer, too.
    
-   The YANG model defines technology-agnostic constructs common to network slicing
-   at network layers of different technologies, e.g. IP/MPLS(-TP), OTN and WDM.
-   Therefore, this model may be used as a common base model on which other
-   network slicing models, such as {{?I-D.ietf-ccamp-yang-otn-slicing}}, may
-   augments with technology-specific constructs.
+   The YANG model defines constructs that are technology-agnostic to network slicing
+   built on network layers with different technologies, e.g. IP/MPLS, MPLS-TP, 
+   OTN and WDM optical. Therefore, this model can serve as a common and base model
+   on which technology-specific models for network slicing, such as 
+   {{?I-D.ietf-ccamp-yang-otn-slicing}}, may be built.
 
    As described in Section 3 of
    {{?I-D.contreras-teas-slice-controller-models}}, the data model defined
-   in this document complements the data model defined in
-   {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.  In addition to the
+   in this document is optional for network slicing, and complements the data model
+   defined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}. In addition to the
    provider's view, the data model defined in this document models the
    Type 2 service defined in {{?RFC8453}}.
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) {{!RFC8342}}.
+
+## Terminologies and Notations
+
+   The following terminologies for describing network slices are defined in 
+   {{?I-D.ietf-teas-ietf-network-slices}} and are not redefined herein.
+   - Network Slice
+   - Network Slice Customer
+   - Network Slice Service Provider
+   - Network Slice Controller
+   - Network Resource Partition (NRP)
+   
+   The following terms are defined and used in this document.
+   
+   - Customized Topology:
+       A topology defined by the customer and served as an input to the network slice 
+       service provider, i.e. to the Network Slice Controller (NSC).
+   - Abstract Topology:
+       A topology exposed to the customer by the network slice service provider prior to
+       the creation of network slices. The provider uses an abstract topology expose
+       useful information, such as available resources to the customer.
+   - NRP Topology:
+       A topology internal to the NSC to facilitate the mapping of network slices to
+       underlying network resources.
 
 ## Tree Diagram
 
@@ -130,11 +173,12 @@ Please remove this note.
 
 # Modeling Considerations
 
-   An IETF network slice topology is modeled as network topology defined in
-   {{!RFC8345}}, with augmentations.  A new network type "network-slice" is
-   defined in this document.  When a network topology data instance
-   contains the network-slice network type, it represents an instance of
-   an IETF network slice topology.
+   An IETF network slice topology is a customized topology 
+   modeled as network topology defined in {{!RFC8345}}, with augmentations. 
+   A new network type "network-slice" is defined in this document.  
+   When a network topology data instance contains the network-slice 
+   network type, it represents an instance of an IETF network slice 
+   topology.
 
 ## Relationships to Related Topology Models
 
@@ -174,49 +218,47 @@ Please remove this note.
   
 ## ACTN for Network Slicing
 
-   Since ACTN topology data models are based on the network topology
+   Since ACTN topology data models defined in {{!RFC8795}} are based on the network topology
    model defined in {{!RFC8345}}, the augmentations defined in this
    document are effective augmentations to the ACTN topology data
    models, resulting in making the ACTN framework {{?RFC8453}} and data
    models {{?I-D.ietf-teas-actn-yang}} capable of slicing networks with the
    required network characteristics.
+   
+   The ACTN topology {{!RFC8795}} and tunnel {{?I-D.ietf-teas-yang-te}} data models
+   can also be considered as viable models for network slice realization. In this
+   case the ACTN data models are used at the MDSC-to-PNC interface (MPI), 
+   at the southbound of the NSC, according to {{!RFC8453}} and 
+   {{?I-D.ietf-teas-applicability-actn-slicing}}.
 
 # Model Applicability
 
    There are many technologies to achieve network slicing.  The data
    model defined in this document can be used to configure resource-based
-   network slices, where the resources of a network slice is represented
-   in the form of an abstract network topology, which can then be mapped
+   network slices, where the resources for network slices are reserved
+   and represented in the form of a customized topology, which can then be mapped
    to a network resource partition (NRP) according to the scenarios defined
    in {{?I-D.ietf-teas-ietf-network-slices}}.
    
-   Network slices may be abstracted differently depending on the requirement
-   contained in the configuration provided by the slice customer. A customer
-   may request a network slice to provide just connectivity between specified
-   endpoints, in which case the network slice can be represented as a set of
-   endpoint-to-endpoint links, with each link formed by an end-to-end tunnel
-   across the underlying transport networks. The resources associated with
-   each link of the slice is reserved and commissioned in the underlying
-   physical network upon the completion of configuring the network slice and
-   all the links are active.
+   Network slices may be abstracted differently depending on the requirement of 
+   the network slice customer. A customer may request a network slice with
+   direct connectivity between pairs of service demarcation points (SDPs).
+   Each connection within the network slice may be further supported by an 
+   end-to-end tunnel that traverse a specific path in a given customized topology
+   supplied by the customer. The resources associated with a link is immediately
+   commissioned by the realization at the time of network slice configuration.
    
-   Alternatively a network slice can also be represented as an abstract topology
-   when the customer requests the slice to share resources between multiple
-   endpoints and to use the resources on demand. The abstract topology may
-   consist of virtual nodes and virtual links, and their associated resources
-   are reserved but not commissioned across the underlying transport networks.
-   The customer can later commission resources within the slice dynamically 
-   using the NBI provided by the service provider. 
-   
-   According to {{?I-D.ietf-teas-ietf-network-slices}}, the IETF Network Slice
-   service customer might ask for some level of control of, e.g., to customize
-   the service paths in a network slice. The abstract topology defined in this
-   draft could serve to enable this capability and optimize the resource utilization
-   for network slice connections activated on top of the abstract topology.
- 
-   In the example shown in {{fig-ns-topo-example}}, two network resource partitions
-   are created by the provider to support the two network slice topology requests
-   from the customers.  In realizing the network resource partitions, node virtualization
+   Alternatively, a customer may initially request resources to be reserved for
+   potential network slices through a customized topology, and use the resources
+   to build network slices in the future. The customized topology represents resources that
+   are reserved but not commissioned at the time of request. By that way, the customer can share 
+   resources between multiple endpoints and use the resources on demand. 
+      
+   In the example shown in {{fig-ns-topo-example}}, two customized topology intents named as
+   Network Slice Blue and Network Slice Red, are created
+   by separate customers and delivered to the network slice service provider.
+   The provider maps the two intents internally to corresponding network resource partitions (NRPs)
+   internally. In realizing the network resource partitions, node virtualization
    is used to separate and allocate resources in physical devices.  Two virtual
    routers VR1 and VR2 are created over physical router R1, and two virtual
    routers VR3 and VR4 are created over physical router R2, respectively.  Each of the
@@ -225,10 +267,13 @@ Please remove this note.
    Depending on the requirements and the implementations, they may share 
    certain resources such as processors, ASICs, and switch fabric.
    
-   The network slice topology intent requested by the customers is then
-   mapped to a corresponding network resource partition. The provider also reports the
-   operational state of the topology, which shows the resources that are allocated.
-   Customers can process the requested topology and integrate it with their own topology.
+   The provider reports the operational state of the topology, which represents the allocated
+   resources agreed upon through negotiations between the customer and the provider.
+   Customers can subquently process the requested topology and integrate it into their own topology.
+   Note that this relationship between the customer and provider can be recursive, e.g.,
+   a customer for network slices can be a provider of its own to offer
+   network slice services with customized topologies to its own customer further above
+   the hierarchy.
 
    As an example, Appendix B. shows the JSON encoded data instances of
    the customer topology intent for Network Slice Blue.

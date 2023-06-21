@@ -5,7 +5,7 @@
 TEAS Working Group                                                X. Liu
 Internet-Draft                                           IBM Corporation
 Intended status: Standards Track                             J. Tantsura
-Expires: 14 September 2023                                     Microsoft
+Expires: 24 December 2023                                      Microsoft
                                                               I. Bryskin
                                                               Individual
                                                           L.M. Contreras
@@ -20,7 +20,7 @@ Expires: 14 September 2023                                     Microsoft
                                                                Futurewei
                                                                  I. Busi
                                                                   Huawei
-                                                           13 March 2023
+                                                            22 June 2023
 
 
               IETF Network Slice Topology YANG Data Model
@@ -28,14 +28,14 @@ Expires: 14 September 2023                                     Microsoft
 
 Abstract
 
-   An IETF network slice may use an abstract topology to describe
-   intended underlay for connectivities between slice endpoints.
-   Abstract topologies help the customer to request network slices with
-   shared resources amongst connections, and connections can be
-   activated within the slice as needed.
+   An IETF network slice may use a customized topology to describe
+   intended resource reservation for connectivities between slice
+   endpoints.  Customized topologies enable customers to request shared
+   resources among connections activated on demand and to customize the
+   service paths in a network slice with an extensive level of control.
 
    This document describes a YANG data model for managing and
-   controlling abstract topologies for IETF network slices defined in
+   controlling customized topologies for IETF network slices defined in
    RFC YYYY.
 
    [RFC EDITOR NOTE: Please replace RFC YYYY with the RFC number of
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Liu, et al.             Expires 14 September 2023               [Page 1]
+Liu, et al.             Expires 24 December 2023                [Page 1]
 
-Internet-Draft      Network Slice Topology Data Model         March 2023
+Internet-Draft      Network Slice Topology Data Model          June 2023
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,7 +63,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 September 2023.
+   This Internet-Draft will expire on 24 December 2023.
 
 Copyright Notice
 
@@ -82,25 +82,26 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     1.1.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   3
-     1.2.  Prefixes in Data Node Names . . . . . . . . . . . . . . .   3
-   2.  Modeling Considerations . . . . . . . . . . . . . . . . . . .   4
-     2.1.  Relationships to Related Topology Models  . . . . . . . .   4
-     2.2.  ACTN for Network Slicing  . . . . . . . . . . . . . . . .   5
-   3.  Model Applicability . . . . . . . . . . . . . . . . . . . . .   5
-   4.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .   8
-   5.  Model Tree Structure  . . . . . . . . . . . . . . . . . . . .   8
-   6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  10
-   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  16
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  17
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  17
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  18
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  19
-   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  20
-   Appendix B.  Data Tree for the Example in Section 3.1 . . . . . .  20
-     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  20
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  26
+     1.1.  Terminologies and Notations . . . . . . . . . . . . . . .   4
+     1.2.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   4
+     1.3.  Prefixes in Data Node Names . . . . . . . . . . . . . . .   5
+   2.  Modeling Considerations . . . . . . . . . . . . . . . . . . .   5
+     2.1.  Relationships to Related Topology Models  . . . . . . . .   5
+     2.2.  ACTN for Network Slicing  . . . . . . . . . . . . . . . .   6
+   3.  Model Applicability . . . . . . . . . . . . . . . . . . . . .   6
+   4.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .   9
+   5.  Model Tree Structure  . . . . . . . . . . . . . . . . . . . .   9
+   6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  11
+   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  18
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  18
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  18
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  19
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  20
+   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  22
+   Appendix B.  Data Tree for the Example in Section 3.1 . . . . . .  22
+     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  22
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  27
 
 
 
@@ -108,67 +109,128 @@ Table of Contents
 
 
 
-
-Liu, et al.             Expires 14 September 2023               [Page 2]
+Liu, et al.             Expires 24 December 2023                [Page 2]
 
-Internet-Draft      Network Slice Topology Data Model         March 2023
+Internet-Draft      Network Slice Topology Data Model          June 2023
 
 
 1.  Introduction
 
+   [I-D.ietf-teas-ietf-network-slices] describes that an IETF network
+   slice service customer might ask for some level of control, e.g., to
+   customize the service paths while requesting network slice services.
+   These customized controls may well be expressed by customer-defined
+   topologies, i.e. customized topologies.
+
+   Furthermore, by using customized topologies, customers can request
+   advanced resource reservation for all potential network slices that
+   can be activated on demand in the future.  This capability provides
+   customers with full control over when and how resources are allocated
+   by the slices.  The resources can be shared by network slices created
+   at different times as well as by connections between different edge
+   pairs within the same network slice.  This could significantly reduce
+   overall bandwidth requirements and provide great economic advantages
+   to the customer.
+
+   A typical example of network slicing with resource reservation using
+   customized topologies is in recursive network slicing for network
+   wholesale, where [add example]
+
    This document defines a YANG [RFC7950] data model for representing,
-   managing, and controlling IETF network slices as abstract network
+   managing, and controlling IETF network slices over customized network
    topologies, where the network slices are defined in
-   [I-D.ietf-teas-ietf-network-slices].
+   [I-D.ietf-teas-ietf-network-slices].  The YANG model augments the
+   data model defined in [RFC8345] to enable a customer to express
+   desired service-level objectives (SLOs) and service-level
+   expectations (SLEs) over various constructs within the customized
+   topology.
 
    The defined data model is an interface between customers and
    providers for configurations and state retrievals, so as to support
    network slicing as a service.  Through this model, a customer can
-   learn the slicing capabilities and the available resources of the
-   provider.  A customer can request or negotiate with a network slicing
-   provider to create an instance.  The customer can incrementally
-   update its requirements on individual topology elements in the slice
-   instance, e.g., adding or removing a node or link, updating desired
-   bandwidth of a link, and retrieve the operational states of these
-   elements.  With the help of other mechanisms and data models defined
-   in IETF, the telemetry information can be published to the customer.
+   request or negotiate with a network slicing provider to create an
+   instance.
+   The customer can incrementally update its requirements on individual
+   topology elements in the slice instance, e.g., adding or removing a
+   node or link, updating desired bandwidth of a link, and retrieve the
+   operational states of these elements.  With the help of other
+   mechanisms and data models defined in IETF, the telemetry information
+   can be published to the customer, too.
 
-   The YANG model defines technology-agnostic constructs common to
-   network slicing at network layers of different technologies, e.g.
-   IP/MPLS(-TP), OTN and WDM.  Therefore, this model may be used as a
-   common base model on which other network slicing models, such as
-   [I-D.ietf-ccamp-yang-otn-slicing], may augments with technology-
-   specific constructs.
+
+
+
+
+
+
+
+
+Liu, et al.             Expires 24 December 2023                [Page 3]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
+   The YANG model defines constructs that are technology-agnostic to
+   network slicing built on network layers with different technologies,
+   e.g.  IP/MPLS, MPLS-TP, OTN and WDM optical.  Therefore, this model
+   can serve as a common and base model on which technology-specific
+   models for network slicing, such as
+   [I-D.ietf-ccamp-yang-otn-slicing], may be built.
 
    As described in Section 3 of
    [I-D.contreras-teas-slice-controller-models], the data model defined
-   in this document complements the data model defined in
-   [I-D.ietf-teas-ietf-network-slice-nbi-yang].  In addition to the
-   provider's view, the data model defined in this document models the
-   Type 2 service defined in [RFC8453].
+   in this document is optional for network slicing, and complements the
+   data model defined in [I-D.ietf-teas-ietf-network-slice-nbi-yang].
+   In addition to the provider's view, the data model defined in this
+   document models the Type 2 service defined in [RFC8453].
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) [RFC8342].
 
-1.1.  Tree Diagram
+1.1.  Terminologies and Notations
+
+   The following terminologies for describing network slices are defined
+   in [I-D.ietf-teas-ietf-network-slices] and are not redefined herein.
+   - Network Slice - Network Slice Customer - Network Slice Service
+   Provider - Network Slice Controller - Network Resource Partition
+   (NRP)
+
+   The following terms are defined and used in this document.
+
+   *  Customized Topology: A topology defined by the customer and served
+      as an input to the network slice service provider, i.e. to the
+      Network Slice Controller (NSC).
+
+   *  Abstract Topology: A topology exposed to the customer by the
+      network slice service provider prior to the creation of network
+      slices.  The provider uses an abstract topology expose useful
+      information, such as available resources to the customer.
+
+   *  NRP Topology: A topology internal to the NSC to facilitate the
+      mapping of network slices to underlying network resources.
+
+1.2.  Tree Diagram
 
    Tree diagrams used in this document follow the notation defined in
    [RFC8340].
 
-1.2.  Prefixes in Data Node Names
+
+
+
+
+
+
+
+Liu, et al.             Expires 24 December 2023                [Page 4]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
+1.3.  Prefixes in Data Node Names
 
    In this document, names of data nodes and other data model objects
    are prefixed using the standard prefix associated with the
    corresponding YANG imported modules, as shown in Table 1.
-
-
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 3]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
              +==========+=======================+===========+
              | Prefix   | YANG Module           | Reference |
@@ -195,11 +257,12 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 2.  Modeling Considerations
 
-   An IETF network slice topology is modeled as network topology defined
-   in [RFC8345], with augmentations.  A new network type "network-slice"
-   is defined in this document.  When a network topology data instance
-   contains the network-slice network type, it represents an instance of
-   an IETF network slice topology.
+   An IETF network slice topology is a customized topology modeled as
+   network topology defined in [RFC8345], with augmentations.  A new
+   network type "network-slice" is defined in this document.
+   When a network topology data instance contains the network-slice
+   network type, it represents an instance of an IETF network slice
+   topology.
 
 2.1.  Relationships to Related Topology Models
 
@@ -211,20 +274,18 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    Network Slicing Model: Defined in
    [I-D.ietf-teas-ietf-network-slice-nbi-yang].
 
+
+
+
+Liu, et al.             Expires 24 December 2023                [Page 5]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
    OTN Slicing: Defined in [I-D.ietf-ccamp-yang-otn-slicing].
 
    Figure 1 shows the relationships among these models.  The box of
    dotted lines denotes the model defined in this document.
-
-
-
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 4]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
         +----------+                 +----------+
         | Network  |                 | Network  |
@@ -246,79 +307,92 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 2.2.  ACTN for Network Slicing
 
-   Since ACTN topology data models are based on the network topology
-   model defined in [RFC8345], the augmentations defined in this
-   document are effective augmentations to the ACTN topology data
-   models, resulting in making the ACTN framework [RFC8453] and data
-   models [I-D.ietf-teas-actn-yang] capable of slicing networks with the
-   required network characteristics.
+   Since ACTN topology data models defined in [RFC8795] are based on the
+   network topology model defined in [RFC8345], the augmentations
+   defined in this document are effective augmentations to the ACTN
+   topology data models, resulting in making the ACTN framework
+   [RFC8453] and data models [I-D.ietf-teas-actn-yang] capable of
+   slicing networks with the required network characteristics.
+
+   The ACTN topology [RFC8795] and tunnel [I-D.ietf-teas-yang-te] data
+   models can also be considered as viable models for network slice
+   realization.  In this case the ACTN data models are used at the MDSC-
+   to-PNC interface (MPI), at the southbound of the NSC, according to
+   [RFC8453] and [I-D.ietf-teas-applicability-actn-slicing].
 
 3.  Model Applicability
 
    There are many technologies to achieve network slicing.  The data
    model defined in this document can be used to configure resource-
-   based network slices, where the resources of a network slice is
-   represented in the form of an abstract network topology, which can
-   then be mapped to a network resource partition (NRP) according to the
-   scenarios defined in [I-D.ietf-teas-ietf-network-slices].
+   based network slices, where the resources for network slices are
+   reserved and represented in the form of a customized topology, which
+   can then be mapped to a network resource partition (NRP) according to
+   the scenarios defined in [I-D.ietf-teas-ietf-network-slices].
+
+
+
+
+
+Liu, et al.             Expires 24 December 2023                [Page 6]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
 
    Network slices may be abstracted differently depending on the
-   requirement contained in the configuration provided by the slice
-   customer.  A customer may request a network slice to provide just
-   connectivity between specified endpoints, in which case the network
-   slice can be represented as a set of endpoint-to-endpoint links, with
-   each link formed by an end-to-end tunnel across the underlying
-   transport networks.  The resources associated with each link of the
-   slice is reserved and commissioned in the underlying physical network
-   upon the completion of configuring the network slice and all the
-   links are active.
+   requirement of the network slice customer.  A customer may request a
+   network slice with direct connectivity between pairs of service
+   demarcation points (SDPs).  Each connection within the network slice
+   may be further supported by an end-to-end tunnel that traverse a
+   specific path in a given customized topology supplied by the
+   customer.  The resources associated with a link is immediately
+   commissioned by the realization at the time of network slice
+   configuration.
 
+   Alternatively, a customer may initially request resources to be
+   reserved for potential network slices through a customized topology,
+   and use the resources to build network slices in the future.  The
+   customized topology represents resources that are reserved but not
+   commissioned at the time of request.  By that way, the customer can
+   share resources between multiple endpoints and use the resources on
+   demand.
 
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 5]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
-   Alternatively a network slice can also be represented as an abstract
-   topology when the customer requests the slice to share resources
-   between multiple endpoints and to use the resources on demand.  The
-   abstract topology may consist of virtual nodes and virtual links, and
-   their associated resources are reserved but not commissioned across
-   the underlying transport networks.  The customer can later commission
-   resources within the slice dynamically using the NBI provided by the
-   service provider.
-
-   According to [I-D.ietf-teas-ietf-network-slices], the IETF Network
-   Slice service customer might ask for some level of control of, e.g.,
-   to customize the service paths in a network slice.  The abstract
-   topology defined in this draft could serve to enable this capability
-   and optimize the resource utilization for network slice connections
-   activated on top of the abstract topology.
-
-   In the example shown in Figure 2, two network resource partitions are
-   created by the provider to support the two network slice topology
-   requests from the customers.  In realizing the network resource
-   partitions, node virtualization is used to separate and allocate
-   resources in physical devices.  Two virtual routers VR1 and VR2 are
-   created over physical router R1, and two virtual routers VR3 and VR4
-   are created over physical router R2, respectively.  Each of the
-   virtual routers,as a partition of the physical router, takes a
-   portion of the resources such as ports and memory in the physical
-   router.
+   In the example shown in Figure 2, two customized topology intents
+   named as Network Slice Blue and Network Slice Red, are created by
+   separate customers and delivered to the network slice service
+   provider.  The provider maps the two intents internally to
+   corresponding network resource partitions (NRPs) internally.  In
+   realizing the network resource partitions, node virtualization is
+   used to separate and allocate resources in physical devices.  Two
+   virtual routers VR1 and VR2 are created over physical router R1, and
+   two virtual routers VR3 and VR4 are created over physical router R2,
+   respectively.  Each of the virtual routers,as a partition of the
+   physical router, takes a portion of the resources such as ports and
+   memory in the physical router.
    Depending on the requirements and the implementations, they may share
    certain resources such as processors, ASICs, and switch fabric.
 
-   The network slice topology intent requested by the customers is then
-   mapped to a corresponding network resource partition.  The provider
-   also reports the operational state of the topology, which shows the
-   resources that are allocated.  Customers can process the requested
-   topology and integrate it with their own topology.
+   The provider reports the operational state of the topology, which
+   represents the allocated resources agreed upon through negotiations
+   between the customer and the provider.  Customers can subquently
+   process the requested topology and integrate it into their own
+   topology.  Note that this relationship between the customer and
+   provider can be recursive, e.g., a customer for network slices can be
+   a provider of its own to offer network slice services with customized
+   topologies to its own customer further above the hierarchy.
 
    As an example, Appendix B. shows the JSON encoded data instances of
    the customer topology intent for Network Slice Blue.
+
+
+
+
+
+
+
+Liu, et al.             Expires 24 December 2023                [Page 7]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
 
        Customer Topology (Merged)          Customer Topology (Merged)
        Network Slice Blue                  Network Slice Red
@@ -330,14 +404,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
       +---+      +---+        |             |          |        +---+
         ^          ^          v             v          v          ^
         |          |        +---+         +---+      +---+        |
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 6]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
         |          |   -----|VR5|---   ---|VR2|------|VR4|        |
         v          v  /     +---+         +---+      +---+        v
       +---+      +---+                                    \     +---+
@@ -376,23 +442,20 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                                        /          +---+
                     +---+         +---+
               ======|R1 |=========|R2 |
+
+
+
+Liu, et al.             Expires 24 December 2023                [Page 8]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                     +---+         +---+
                                        \          +---+
                                         ----------|R4 |------
                                                   +---+
 
        Figure 2: Network Slicing Topologies for Virtualization
-
-
-
-
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 7]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
 4.  YANG Model Overview
 
@@ -435,6 +498,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 +--rw steering-constraints
                 |  +--rw path-constraints
                 |  +--rw service-function
+
+
+
+Liu, et al.             Expires 24 December 2023                [Page 9]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                 |  +--rw disjointness?
                 |          te-types:te-path-disjointness
                 +--rw optimization-criterion?   identityref
@@ -442,14 +513,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 +--rw service-info?             string
      augment /nw:networks/nw:network/nw:node:
        +--rw (slo-sle-policy)?
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 8]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
           +--:(standard)
           |  +--rw slo-sle-template?         leafref
           +--:(custom)
@@ -491,6 +554,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 +--rw security*                 identityref
                 +--rw isolation?                identityref
                 +--rw max-occupancy-level?      uint8
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 10]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                 +--rw mtu?                      uint16
                 +--rw steering-constraints
                 |  +--rw path-constraints
@@ -498,14 +569,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 +--rw optimization-criterion?   identityref
                 +--rw resize-requirement?       identityref
                 +--rw service-info?             string
-
-
-
-Liu, et al.             Expires 14 September 2023               [Page 9]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
      augment /nw:networks/nw:network/nt:link:
        +--rw (slo-sle-policy)?
           +--:(standard)
@@ -547,6 +610,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
         import ietf-network {
           prefix "nw";
           reference
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 11]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
            "RFC 8345: A YANG Data Model for Network Topologies";
         }
         import ietf-network-topology {
@@ -554,13 +625,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
           reference
            "RFC 8345: A YANG Data Model for Network Topologies";
         }
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 10]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
         import ietf-te-types {
           prefix "te-types";
@@ -602,6 +666,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
            Optical Transport Network (OTN).
 
            The model fully conforms to the Network Management Datastore
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 12]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
            Architecture (NMDA).
 
            Copyright (c) 2023 IETF Trust and the persons
@@ -610,14 +682,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
            Redistribution and use in source and binary forms, with
            or without modification, is permitted pursuant to, and
            subject to the license terms contained in, the Revised
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 11]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
            BSD License set forth in Section 4.c of the IETF Trust's
            Legal Provisions Relating to IETF Documents
            (https://trustee.ietf.org/license-info).
@@ -658,6 +722,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
             "Hitless resizable";
         }
 
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 13]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
         /*
          * Groupings
          */
@@ -665,14 +737,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
         grouping ns-topo-slo-sle-policy {
           description
             "Policy grouping for Transport Network Slices.";
-
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 12]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
           leaf optimization-criterion {
               type identityref {
@@ -714,6 +778,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
          * Augmented data nodes
          */
         /* network type augments */
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 14]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
         augment "/nw:networks/nw:network/nw:network-types" {
           description
             "Defines the Network Slice topology type.";
@@ -722,14 +794,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
             description
               "Its presence identifies the Network Slice type.";
           }
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 13]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
         }
 
         /* network topology augments */
@@ -770,6 +834,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
             description "Augment only for Network Slice topology.";
           }
           description "Augment node configuration and state.";
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 15]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
           uses ietf-nss:service-slo-sle-policy;
         }
 
@@ -778,14 +850,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                 "/ns-topo:custom" +
                 "/ns-topo:service-slo-sle-policy" {
           when "../../nw:network-types/ns-topo:network-slice" {
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 14]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
             description "Augment only for Network Slice topology.";
           }
           description "Augment node configuration and state.";
@@ -827,6 +891,13 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
           }
           description "Augment node configuration and state.";
 
+
+
+Liu, et al.             Expires 24 December 2023               [Page 16]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
           uses ns-topo-slo-sle-policy;
         }
 
@@ -834,14 +905,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
         augment "/nw:networks/nw:network/nt:link" {
           when "../nw:network-types/ns-topo:network-slice" {
             description "Augment only for Network Slice topology.";
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 15]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
           }
           description "Augment link configuration and state.";
           uses ietf-nss:service-slo-sle-policy;
@@ -877,6 +940,20 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
               Figure 4: YANG model for network slice topology
 
+
+
+
+
+
+
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 17]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
 7.  Manageability Considerations
 
    To ensure the security and controllability of physical resource
@@ -887,16 +964,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    information isolation among slice tenants and to avoid resource
    conflicts.  The access to slice management functions will only be
    permitted after successful security checks.
-
-
-
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 16]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
 8.  Security Considerations
 
@@ -934,6 +1001,15 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    It is proposed to IANA to assign new URIs from the "IETF XML
    Registry" [RFC3688] as follows:
 
+
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 18]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
       URI: urn:ietf:params:xml:ns:yang:ietf-ns-topo
       Registrant Contact: The IESG
       XML: N/A; the requested URI is an XML namespace.
@@ -945,14 +1021,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
       namespace: urn:ietf:params:xml:ns:yang:ietf-ns-topo
       prefix: ns-topo
       reference: RFC XXXX
-
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 17]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
 10.  References
 
@@ -988,6 +1056,16 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
               <https://www.rfc-editor.org/info/rfc7951>.
 
+
+
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 19]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/info/rfc8040>.
@@ -1000,15 +1078,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/info/rfc8341>.
-
-
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 18]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
 
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
@@ -1023,6 +1092,11 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/info/rfc8446>.
+
+   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
+              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
+              DOI 10.17487/RFC8453, August 2018,
+              <https://www.rfc-editor.org/info/rfc8453>.
 
    [RFC8776]  Saad, T., Gandhi, R., Liu, X., Beeram, V., and I. Bryskin,
               "Common YANG Data Types for Traffic Engineering",
@@ -1040,35 +1114,44 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
    [I-D.contreras-teas-slice-controller-models]
               Contreras, L. M., Rokui, R., Tantsura, J., Wu, B., Liu,
               X., Dhody, D., and S. Belotti, "IETF Network Slice
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 20]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
               Controller and its associated data models", Work in
               Progress, Internet-Draft, draft-contreras-teas-slice-
-              controller-models-04, 24 October 2022,
+              controller-models-05, 13 March 2023,
               <https://datatracker.ietf.org/doc/html/draft-contreras-
-              teas-slice-controller-models-04>.
+              teas-slice-controller-models-05>.
 
    [I-D.ietf-ccamp-yang-otn-slicing]
               Guo, A., Contreras, L. M., Belotti, S., Rokui, R., Xu, Y.,
               Zhao, Y., and X. Liu, "Framework and Data Model for OTN
               Network Slicing", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-yang-otn-slicing-03, 24 October 2022,
+              ietf-ccamp-yang-otn-slicing-04, 13 March 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              yang-otn-slicing-03>.
+              yang-otn-slicing-04>.
 
    [I-D.ietf-teas-actn-yang]
               Lee, Y., Zheng, H., Ceccarelli, D., Yoon, B. Y., and S.
               Belotti, "Applicability of YANG models for Abstraction and
               Control of Traffic Engineered Networks", Work in Progress,
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 19]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
               Internet-Draft, draft-ietf-teas-actn-yang-11, 7 March
               2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
               teas-actn-yang-11>.
+
+   [I-D.ietf-teas-applicability-actn-slicing]
+              King, D., Drake, J., Zheng, H., and A. Farrel,
+              "Applicability of Abstraction and Control of Traffic
+              Engineered Networks (ACTN) to Network Slicing", Work in
+              Progress, Internet-Draft, draft-ietf-teas-applicability-
+              actn-slicing-03, 6 March 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
+              applicability-actn-slicing-03>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., Han, L., and J.
@@ -1082,14 +1165,26 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
               Farrel, A., Drake, J., Rokui, R., Homma, S., Makhijani,
               K., Contreras, L. M., and J. Tantsura, "A Framework for
               IETF Network Slices", Work in Progress, Internet-Draft,
-              draft-ietf-teas-ietf-network-slices-19, 21 January 2023,
+              draft-ietf-teas-ietf-network-slices-21, 15 June 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slices-19>.
+              ietf-network-slices-21>.
 
-   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
-              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
-              DOI 10.17487/RFC8453, August 2018,
-              <https://www.rfc-editor.org/info/rfc8453>.
+
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 21]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
+   [I-D.ietf-teas-yang-te]
+              Saad, T., Gandhi, R., Liu, X., Beeram, V. P., Bryskin, I.,
+              and O. G. de Dios, "A YANG Data Model for Traffic
+              Engineering Tunnels, Label Switched Paths and Interfaces",
+              Work in Progress, Internet-Draft, draft-ietf-teas-yang-te-
+              32, 12 March 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-yang-te-32>.
 
 Appendix A.  Acknowledgments
 
@@ -1114,14 +1209,6 @@ B.1.  Native Topology
        "network": [
          {
            "network-id": "example-customized-blue-topology",
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 20]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
            "network-types": {
              "ietf-ns-topo:network-slice": {
              }
@@ -1139,6 +1226,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                    "tp-id": "1-0-1"
                  },
                  {
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 22]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                    "tp-id": "1-3-1"
                  }
                ]
@@ -1170,14 +1265,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                  {
                    "tp-id": "5-3-1"
                  },
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 21]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
                  {
                    "tp-id": "5-0-1"
                  }
@@ -1195,6 +1282,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                  "metric-bounds": {
                    "metric-bound": [
                      {
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 23]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                        "metric-type": "ietf-network-slice-service:servi\
    ce-slo-two-way-delay",
                        "metric-unit": "ms",
@@ -1226,14 +1321,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                  "isolation": "ietf-network-slice-service:service-isola\
    tion-dedicated"
                }
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 22]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
              },
              {
                "link-id": "VR1,1-3-1,VR3,3-1-1",
@@ -1251,6 +1338,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                      {
                        "metric-type": "ietf-network-slice-service:servi\
    ce-slo-two-way-delay",
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 24]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                        "metric-unit": "ms",
                        "bound": 30
                      }
@@ -1282,14 +1377,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                    ]
                  },
                  "isolation": "ietf-network-slice-service:service-isola\
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 23]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
    tion-dedicated"
                }
              },
@@ -1307,6 +1394,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                  "metric-bounds": {
                    "metric-bound": [
                      {
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 25]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                        "metric-type": "ietf-network-slice-service:servi\
    ce-slo-two-way-delay",
                        "metric-unit": "ms",
@@ -1338,14 +1433,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                        "bound": 35
                      }
                    ]
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 24]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
                  },
                  "isolation": "ietf-network-slice-service:service-isola\
    tion-dedicated"
@@ -1363,6 +1450,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                      {
                        "metric-type": "ietf-network-slice-service:servi\
    ce-slo-two-way-delay",
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 26]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
+
+
                        "metric-unit": "ms",
                        "bound": 25
                      }
@@ -1394,14 +1489,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
                }
              }
            ],
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 25]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
            "ietf-ns-topo:service-slo-sle-policy": {
              "isolation": "ietf-network-slice-service:service-isolation\
    -dedicated",
@@ -1419,6 +1506,12 @@ Authors' Addresses
    IBM Corporation
 
    Email: xufeng.liu.ietf@gmail.com
+
+
+
+Liu, et al.             Expires 24 December 2023               [Page 27]
+
+Internet-Draft      Network Slice Topology Data Model          June 2023
 
 
    Jeff Tantsura
@@ -1451,13 +1544,6 @@ Authors' Addresses
    Email: Sergio.belotti@nokia.com
 
 
-
-
-Liu, et al.             Expires 14 September 2023              [Page 26]
-
-Internet-Draft      Network Slice Topology Data Model         March 2023
-
-
    Reza Rokui
    Ciena
 
@@ -1479,34 +1565,4 @@ Internet-Draft      Network Slice Topology Data Model         March 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Liu, et al.             Expires 14 September 2023              [Page 27]
+Liu, et al.             Expires 24 December 2023               [Page 28]
