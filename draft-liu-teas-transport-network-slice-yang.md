@@ -107,14 +107,14 @@ author:
    in IETF, the telemetry information can be published to the customer, too.
    
    The YANG model defines constructs that are technology-agnostic to network slicing
-   built on network layers with different technologies, e.g. IP/MPLS, MPLS-TP, 
+   built on network layers with different technologies such as IP/MPLS, MPLS-TP, 
    OTN and WDM optical. Therefore, this model can serve as a common and base model
    on which technology-specific models for network slicing, such as 
    {{?I-D.ietf-ccamp-yang-otn-slicing}}, may be built.
 
    As described in Section 3 of
    {{?I-D.contreras-teas-slice-controller-models}}, the data model defined
-   in this document is optional for network slicing, and complements the data model
+   in this document is optional for network slicing and complements the data model
    defined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}. In addition to the
    provider's view, the data model defined in this document models the
    Type 2 service defined in {{?RFC8453}}.
@@ -126,10 +126,15 @@ author:
 
    The following terminologies for describing network slices are defined in 
    {{?I-D.ietf-teas-ietf-network-slices}} and are not redefined herein.
-   - Network Slice
+   
+   - Network Slice (NS)
+   
    - Network Slice Customer
+   
    - Network Slice Service Provider
-   - Network Slice Controller
+   
+   - Network Slice Controller (NSC)
+   
    - Network Resource Partition (NRP)
    
    The following terms are defined and used in this document.
@@ -245,19 +250,19 @@ Please remove this note.
    direct connectivity between pairs of service demarcation points (SDPs).
    Each connection within the network slice may be further supported by an 
    end-to-end tunnel that traverse a specific path in a given customized topology
-   supplied by the customer. The resources associated with a link is immediately
+   supplied by the customer. The resources associated with a link are immediately
    commissioned by the realization at the time of network slice configuration.
    
-   Alternatively, a customer may initially request resources to be reserved for
+   Alternatively, a customer can request resources to be reserved for
    potential network slices through a customized topology, and use the resources
    to build network slices in the future. The customized topology represents resources that
-   are reserved but not commissioned at the time of request. By that way, the customer can share 
-   resources between multiple endpoints and use the resources on demand. 
-      
+   are reserved but not commissioned at the time of request. By doing so, customers can share 
+   resources between multiple endpoints and use them on demand.
+
    In the example shown in {{fig-ns-topo-example}}, two customized topology intents named as
    Network Slice Blue and Network Slice Red, are created
    by separate customers and delivered to the network slice service provider.
-   The provider maps the two intents internally to corresponding network resource partitions (NRPs)
+   The provider maps the two intents to corresponding network resource partitions (NRPs)
    internally. In realizing the network resource partitions, node virtualization
    is used to separate and allocate resources in physical devices.  Two virtual
    routers VR1 and VR2 are created over physical router R1, and two virtual
@@ -266,13 +271,20 @@ Please remove this note.
    of the resources such as ports and memory in the physical router.  
    Depending on the requirements and the implementations, they may share 
    certain resources such as processors, ASICs, and switch fabric.
-   
+
+   A network slice customer can configure customized topologies without prior knowledge
+   of the provider's network and its resource availability. Alternatively, the provider may
+   choose to expose its resource availability through an abstract topology to the customer.
+   This enables the customer to understand and use this knowledge to build customized topologies.
+   The process and the data models for exposing provider's abstract topology are outside
+   the scope of this document.   
+      
    The provider reports the operational state of the topology, which represents the allocated
    resources agreed upon through negotiations between the customer and the provider.
    Customers can subquently process the requested topology and integrate it into their own topology.
-   Note that this relationship between the customer and provider can be recursive, e.g.,
-   a customer for network slices can be a provider of its own to offer
-   network slice services with customized topologies to its own customer further above
+   It's important to note that this relationship between the customer and provider can be recursive.
+   For example, a customer for network slices can be a provider of its own to offer
+   network slice services using customized topologies to its own customers further up
    the hierarchy.
 
    As an example, Appendix B. shows the JSON encoded data instances of
