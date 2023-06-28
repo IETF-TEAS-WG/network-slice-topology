@@ -108,7 +108,7 @@
       * Groupings
       */
 
-     grouping ns-topo-slo-sle-policy {
+     grouping ns-topo-sle-policy {
        description
          "Policy grouping for Transport Network Slices.";
 
@@ -174,20 +174,22 @@
      augment "/nw:networks/nw:network" +
              "/ns-topo:slo-sle-policy" +
              "/ns-topo:custom" +
-             "/ns-topo:service-slo-sle-policy" {
-       when "../nw:network-types/ns-topo:network-slice" {
+             "/ns-topo:service-slo-sle-policy" +
+             "/ns-topo:sle-policy" {
+       when "../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description "Augment topology configuration and state.";
-       uses ns-topo-slo-sle-policy;
+       uses ns-topo-sle-policy;
      }
 
      augment "/nw:networks/nw:network" +
              "/ns-topo:slo-sle-policy" +
              "/ns-topo:custom" +
              "/ns-topo:service-slo-sle-policy" +
-       "/ns-topo:steering-constraints" {
-       when "../../nw:network-types/ns-topo:network-slice" {
+             "/ns-topo:sle-policy" +
+             "/ns-topo:steering-constraints" {
+       when "../../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description "Augment topology configuration and state.";
@@ -206,20 +208,22 @@
      augment "/nw:networks/nw:network/nw:node" +
              "/ns-topo:slo-sle-policy" + 
              "/ns-topo:custom" + 
-             "/ns-topo:service-slo-sle-policy" {
-       when "../../nw:network-types/ns-topo:network-slice" {
+             "/ns-topo:service-slo-sle-policy" +
+             "/ns-topo:sle-policy" {
+       when "../../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description "Augment node configuration and state.";
-       uses ns-topo-slo-sle-policy;
+       uses ns-topo-sle-policy;
      }
 
      augment "/nw:networks/nw:network/nw:node" +
              "/ns-topo:slo-sle-policy" + 
              "/ns-topo:custom" + 
              "/ns-topo:service-slo-sle-policy" +
-       "/ns-topo:steering-constraints" {
-       when "../../../nw:network-types/ns-topo:network-slice" {
+             "/ns-topo:sle-policy" +
+             "/ns-topo:steering-constraints" {
+       when "../../../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description
@@ -243,13 +247,14 @@
              "/nt:termination-point" +
              "/ns-topo:slo-sle-policy" + 
              "/ns-topo:custom" + 
-             "/ns-topo:service-slo-sle-policy" {
-       when "../../../nw:network-types/ns-topo:network-slice" {
+             "/ns-topo:service-slo-sle-policy" +
+             "/ns-topo:sle-policy" {
+       when "../../../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description "Augment node configuration and state.";
      
-       uses ns-topo-slo-sle-policy;
+       uses ns-topo-sle-policy;
      }
 
      /* network link augments */
@@ -264,20 +269,22 @@
      augment "/nw:networks/nw:network/nt:link" +
              "/ns-topo:slo-sle-policy" + 
              "/ns-topo:custom" + 
-             "/ns-topo:service-slo-sle-policy" {
-       when "../../nw:network-types/ns-topo:network-slice" {
+             "/ns-topo:service-slo-sle-policy" +
+             "/ns-topo:sle-policy" {
+       when "../../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description "Augment link configuration and state.";
-       uses ns-topo-slo-sle-policy;
+       uses ns-topo-sle-policy;
      }
 
      augment "/nw:networks/nw:network/nt:link" +
              "/ns-topo:slo-sle-policy" + 
              "/ns-topo:custom" + 
              "/ns-topo:service-slo-sle-policy" + 
+             "/ns-topo:sle-policy" +
              "/ns-topo:steering-constraints" {
-       when "../../../nw:network-types/ns-topo:network-slice" {
+       when "../../../../nw:network-types/ns-topo:network-slice" {
          description "Augment only for Network Slice topology.";
        }
        description
