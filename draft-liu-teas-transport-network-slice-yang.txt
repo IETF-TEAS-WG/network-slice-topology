@@ -250,9 +250,9 @@ Internet-Draft      Network Slice Topology Data Model          June 2023
              +----------+-----------------------+-----------+
              | tet      | ietf-te-topology      | [RFC8795] |
              +----------+-----------------------+-----------+
-             | te-types | ietf-te-types         | RFCYYYY   |
+             | te-types | ietf-te-types         | [RFCYYYY] |
              +----------+-----------------------+-----------+
-             | ns-topo  | ietf-ns-topo          | RFCXXXX   |
+             | ns-topo  | ietf-ns-topo          | [RFCXXXX] |
              +----------+-----------------------+-----------+
 
              Table 1: Prefixes and Corresponding YANG Modules
