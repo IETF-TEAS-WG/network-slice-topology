@@ -237,28 +237,29 @@ Internet-Draft      Network Slice Topology Data Model          June 2023
    are prefixed using the standard prefix associated with the
    corresponding YANG imported modules, as shown in Table 1.
 
-   +==========+=======================+================================+
-   | Prefix   | YANG Module           | Reference                      |
-   +==========+=======================+================================+
-   | yang     | ietf-yang-types       | [RFC6991]                      |
-   +----------+-----------------------+--------------------------------+
-   | inet     | ietf-inet-types       | [RFC6991]                      |
-   +----------+-----------------------+--------------------------------+
-   | nt       | ietf-network-topology | [RFC8345]                      |
-   +----------+-----------------------+--------------------------------+
-   | nw       | ietf-network-topology | [RFC8345]                      |
-   +----------+-----------------------+--------------------------------+
-   | tet      | ietf-te-topology      | [RFC8795]                      |
-   +----------+-----------------------+--------------------------------+
-   | te-types | ietf-te-types         | [I-D.ietf-teas-rfc8776-update] |
-   +----------+-----------------------+--------------------------------+
-   | ns-topo  | ietf-ns-topo          | RFCXXXX                        |
-   +----------+-----------------------+--------------------------------+
+             +==========+=======================+===========+
+             | Prefix   | YANG Module           | Reference |
+             +==========+=======================+===========+
+             | yang     | ietf-yang-types       | [RFC6991] |
+             +----------+-----------------------+-----------+
+             | inet     | ietf-inet-types       | [RFC6991] |
+             +----------+-----------------------+-----------+
+             | nt       | ietf-network-topology | [RFC8345] |
+             +----------+-----------------------+-----------+
+             | nw       | ietf-network-topology | [RFC8345] |
+             +----------+-----------------------+-----------+
+             | tet      | ietf-te-topology      | [RFC8795] |
+             +----------+-----------------------+-----------+
+             | te-types | ietf-te-types         | RFCYYYY   |
+             +----------+-----------------------+-----------+
+             | ns-topo  | ietf-ns-topo          | RFCXXXX   |
+             +----------+-----------------------+-----------+
 
-              Table 1: Prefixes and Corresponding YANG Modules
+             Table 1: Prefixes and Corresponding YANG Modules
 
    RFC Editor Note: Please replace XXXX with the RFC number assigned to
-   this document.  Please remove this note.
+   this document.  Please replace YYYY with the RFC number assigned to
+   [I-D.ietf-teas-rfc8776-update].  Please remove this note.
 
 2.  Modeling Considerations
 
@@ -273,7 +274,6 @@ Internet-Draft      Network Slice Topology Data Model          June 2023
 
    There are several related YANG data models that have been defined in
    IETF.  Some of these are:
-
 
 
 

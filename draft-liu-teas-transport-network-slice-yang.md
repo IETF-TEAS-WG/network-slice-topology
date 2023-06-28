@@ -168,12 +168,13 @@ author:
    | nt       | ietf-network-topology        | {{!RFC8345}}      |
    | nw       | ietf-network-topology        | {{!RFC8345}}      |
    | tet      | ietf-te-topology             | {{!RFC8795}}      |
-   | te-types | ietf-te-types                | {{?I-D.ietf-teas-rfc8776-update}}      |
+   | te-types | ietf-te-types                | RFCYYYY           |
    | ns-topo  | ietf-ns-topo                 | RFCXXXX           |
 {: #tab-prefixes title="Prefixes and Corresponding YANG Modules"}
 
 RFC Editor Note:
 Please replace XXXX with the RFC number assigned to this document.
+Please replace YYYY with the RFC number assigned to {{?I-D.ietf-teas-rfc8776-update}}.
 Please remove this note.
 
 # Modeling Considerations
