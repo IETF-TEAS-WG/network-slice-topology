@@ -4,7 +4,7 @@ coding: utf-8
 title: IETF Network Slice Topology YANG Data Model
 
 abbrev: Network Slice Topology Data Model
-docname: draft-liu-teas-transport-network-slice-yang-06
+docname: draft-liu-teas-transport-network-slice-yang-07
 workgroup: TEAS Working Group
 category: std
 ipr: trust200902
@@ -168,7 +168,7 @@ author:
    | nt       | ietf-network-topology        | {{!RFC8345}}      |
    | nw       | ietf-network-topology        | {{!RFC8345}}      |
    | tet      | ietf-te-topology             | {{!RFC8795}}      |
-   | te-types | ietf-te-types                | {{!RFC8776}}      |
+   | te-types | ietf-te-types                | {{?I-D.ietf-teas-rfc8776-update}}      |
    | ns-topo  | ietf-ns-topo                 | RFCXXXX           |
 {: #tab-prefixes title="Prefixes and Corresponding YANG Modules"}
 
