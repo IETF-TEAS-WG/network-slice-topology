@@ -84,9 +84,10 @@ author:
    reduce overall bandwidth requirements and provide great economic advantages
    to the customer.
 
-   A typical example of network slicing with resource reservation using 
-   customized topologies is in recursive network slicing for
-   network wholesale, where [add example]
+   A typical example of using customized topologies for network slicing 
+   is in the scenario of recursive network slicing for network wholesalers, 
+   where an high-level network slice service provider may request customized
+   topologies from multiple lower-level providers to support [TBD]
    
    This document defines a YANG {{!RFC7950}} data model for representing,
    managing, and controlling IETF network slices over customized
@@ -113,11 +114,9 @@ author:
    {{?I-D.ietf-ccamp-yang-otn-slicing}}, may be built.
 
    As described in Section 3 of
-   {{?I-D.contreras-teas-slice-controller-models}}, the data model defined
-   in this document is optional for network slicing and complements the data model
-   defined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}. In addition to the
-   provider's view, the data model defined in this document models the
-   Type 2 service defined in {{?RFC8453}}.
+   {{?I-D.contreras-teas-slice-controller-models}}, using customized topologies and 
+   control of resource reservation is optional for network slicing and complements
+   the data model defined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}. 
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) {{!RFC8342}}.
@@ -144,8 +143,9 @@ author:
        service provider, i.e. to the Network Slice Controller (NSC).
    - Abstract Topology:
        A topology exposed to the customer by the network slice service provider prior to
-       the creation of network slices. The provider uses an abstract topology expose
-       useful information, such as available resources to the customer.
+       the creation of network slices. The provider uses an abstract topology to expose
+       useful information, such as available resources to the customer, which can facilitate
+	   the build-up of customized topologies by the customer.
    - NRP Topology:
        A topology internal to the NSC to facilitate the mapping of network slices to
        underlying network resources.
@@ -222,21 +222,6 @@ Please remove this note.
 ~~~~
 {: #fig-model-relationship title="Model Relationships"}
   
-## ACTN for Network Slicing
-
-   Since ACTN topology data models defined in {{!RFC8795}} are based on the network topology
-   model defined in {{!RFC8345}}, the augmentations defined in this
-   document are effective augmentations to the ACTN topology data
-   models, resulting in making the ACTN framework {{?RFC8453}} and data
-   models {{?I-D.ietf-teas-actn-yang}} capable of slicing networks with the
-   required network characteristics.
-   
-   The ACTN topology {{!RFC8795}} and tunnel {{?I-D.ietf-teas-yang-te}} data models
-   can also be considered as viable models for network slice realization. In this
-   case the ACTN data models are used at the MDSC-to-PNC interface (MPI), 
-   at the southbound of the NSC, according to {{!RFC8453}} and 
-   {{?I-D.ietf-teas-applicability-actn-slicing}}.
-
 # Model Applicability
 
    There are many technologies to achieve network slicing.  The data
@@ -273,13 +258,16 @@ Please remove this note.
    Depending on the requirements and the implementations, they may share 
    certain resources such as processors, ASICs, and switch fabric.
 
-   A network slice customer can configure customized topologies without prior knowledge
-   of the provider's network and its resource availability. Alternatively, the provider may
-   choose to expose its resource availability through an abstract topology to the customer.
-   This enables the customer to understand and use this knowledge to build customized topologies.
-   The process and the data models for exposing provider's abstract topology are outside
+   A network slice customer can configure customized topologies without any prior knowledge
+   of the provider's network and resource availability. Alternatively, the provider may
+   choose to expose such information a prior to the customer to facilitate the customer
+   with building customized topologies. For example, the customer could specify the nodes 
+   and links in a customized topology to share the same ids with, or reference, the
+   corresponding nodes and links in the abstract topology exposed a prior by the provider.
+   
+   The process and the data models for the provider to expose abstract topologies are outside
    the scope of this document.   
-      
+
    The provider reports the operational state of the topology, which represents the allocated
    resources agreed upon through negotiations between the customer and the provider.
    Customers can subquently process the requested topology and integrate it into their own topology.
