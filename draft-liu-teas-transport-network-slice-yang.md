@@ -81,14 +81,17 @@ author:
    over when and how resources are allocated by the slices. The resources can be
    shared by network slices created at different times as well as by connections
    between different edge pairs within the same network slice. This could significantly
-   reduce overall bandwidth requirements and provide great economic advantages
-   to the customer.
-
-   A typical example of using customized topologies for network slicing 
-   is in the scenario of recursive network slicing for network wholesalers, 
-   where an high-level network slice service provider may request customized
-   topologies from multiple lower-level providers to support [TBD]
+   reduce the overall bandwidth requirements of a network slice and provide economic
+   advantages to the customer. 
    
+   For example, in a hub-and-spoke network slice scenario, multiple customer’s 
+   spoke sites are expected to be dynamically connected to the hub site and the 
+   bandwidth is shared between the spoke sites. To create a customized topology with 
+   two virtual nodes, one representing all the spoke sites and the other representing 
+   the hub site, connected by a shared link between the two, can ensure that resources 
+   for the shared connection are reserved in advance and hence are readily 
+   available whenever needed by the customer.
+      
    This document defines a YANG {{!RFC7950}} data model for representing,
    managing, and controlling IETF network slices over customized
    network topologies, where the network slices are defined
@@ -168,13 +171,15 @@ author:
    | nt       | ietf-network-topology        | {{!RFC8345}}      |
    | nw       | ietf-network-topology        | {{!RFC8345}}      |
    | tet      | ietf-te-topology             | {{!RFC8795}}      |
-   | te-types | ietf-te-types                | \[RFCYYYY]        |
    | ns-topo  | ietf-ns-topo                 | \[RFCXXXX]        |
+   | te-types | ietf-te-types                | \[RFCYYYY]        |
+   | ietf-nss | ietf-network-slice-service   | \[RFCZZZZ]        |
 {: #tab-prefixes title="Prefixes and Corresponding YANG Modules"}
 
 RFC Editor Note:
 Please replace XXXX with the RFC number assigned to this document.
 Please replace YYYY with the RFC number assigned to {{?I-D.ietf-teas-rfc8776-update}}.
+Please replace ZZZZ with the RFC number assigned to {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
 Please remove this note.
 
 # Modeling Considerations
@@ -207,14 +212,14 @@ Please remove this note.
      +----------+                 +----------+
      | Network  |                 | Network  |
      | Slice    |                 | Topology +
-     | NBI YANG >------+          | Model    |
+     | NBI YANG +------+          | Model    |
      | Model    |      |          | RFC 8345 |
      +----+-----+      |          +-----+----+
           |            |                |
-          |augments    |references      |augments
+          |augments    |augments        |augments
           |            |                |
      +----^-----+      |          ......^.....
-     | OTN      |      +----------: Network  :
+     | OTN      |      +----------< Network  :
      | Slicing  | augments        : Slice    :
      | Model    >-----------------: Topology :
      |          |                 : Model    :
@@ -259,11 +264,12 @@ Please remove this note.
    certain resources such as processors, ASICs, and switch fabric.
 
    A network slice customer can configure customized topologies without any prior knowledge
-   of the provider's network and resource availability. Alternatively, the provider may
-   choose to expose such information a prior to the customer to facilitate the customer
-   with building customized topologies. For example, the customer could specify the nodes 
-   and links in a customized topology to share the same ids with, or reference, the
-   corresponding nodes and links in the abstract topology exposed a prior by the provider.
+   of the provider’s network and resource availability. However, this could potentially make 
+   it difficult for the provider to understand and realize the topology. Alternatively, the 
+   provider may choose to describe the available resources and capabilities as an abstract 
+   topology and expose it to the customer prior to network slice requests. This can facilitate 
+   the customer with building customized topologies and avoid unnecessary negotiations between 
+   the customer and provider. 
    
    The process and the data models for the provider to expose abstract topologies are outside
    the scope of this document.   
@@ -356,7 +362,7 @@ Please remove this note.
 # YANG Modules
 
 ~~~~
-   <CODE BEGINS> file "ietf-ns-topo@2023-03-11.yang"
+   <CODE BEGINS> file "ietf-ns-topo@2023-07-06.yang"
 {::include ./ietf-ns-topo.yang}
    <CODE ENDS>
 ~~~~
@@ -430,11 +436,10 @@ Please remove this note.
 
 # Acknowledgments
 
-   The TEAS Network Slicing Design Team (NSDT) members included Aijun
-   Wang, Dong Jie, Eric Gray, Jari Arkko, Jeff Tantsura, John E Drake,
-   Luis M.  Contreras, Rakesh Gandhi, Ran Chen, Reza Rokui, Ricard
-   Vilalta, Ron Bonica, Sergio Belotti, Tomonobu Niwa, Xuesong Geng, and
-   Xufeng Liu.
+   The authors would like to thank Danielle Ceccarelli, Bo Wu,
+   Mohamed Boucadair, and Vishnu Beeram for providing valuable
+   insights.
+
 
 # Data Tree for the Example in Section 3.1
 
