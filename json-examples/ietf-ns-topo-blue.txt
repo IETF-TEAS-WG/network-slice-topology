@@ -13,9 +13,14 @@
           {
             "node-id": "VR1",
             "ietf-ns-topo:service-slo-sle-policy": {
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated",
-              "resize-requirement": "resize-hitless"
+              "sle-policy": {
+                "isolation": [
+                  {
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
+                  }
+                ]
+              } 
             },
             "ietf-network-topology:termination-point": [
               {
@@ -29,9 +34,14 @@ tion-dedicated",
           {
             "node-id": "VR3",
             "ietf-ns-topo:service-slo-sle-policy": {
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-shared",
-              "resize-requirement": "resize-hitless"
+              "sle-policy": {
+                "isolation": [
+                  {
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
+                  }
+                ]
+              } 
             },
             "ietf-network-topology:termination-point": [
               {
@@ -45,9 +55,14 @@ tion-shared",
           {
             "node-id": "VR5",
             "ietf-ns-topo:service-slo-sle-policy": {
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-shared",
-              "resize-requirement": "resize-hitless"
+              "sle-policy": {
+                "isolation": [
+                  {
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
+                  }
+                ]
+              } 
             },
             "ietf-network-topology:termination-point": [
               {
@@ -67,18 +82,26 @@ tion-shared",
               "source-tp": "1-0-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 60
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 60
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-shared"
+              } 
             }
           },
           {
@@ -88,18 +111,26 @@ tion-shared"
               "dest-tp": "1-0-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 30
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 60
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated"
+              } 
             }
           },
           {
@@ -113,18 +144,26 @@ tion-dedicated"
               "dest-tp": "3-1-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 30
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 30
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated"
+              } 
             }
           },
           {
@@ -138,18 +177,26 @@ tion-dedicated"
               "dest-tp": "1-3-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 30
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 30
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated"
+              } 
             }
           },
           {
@@ -163,18 +210,26 @@ tion-dedicated"
               "dest-tp": "5-3-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 35
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 35
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated"
+              } 
             }
           },
           {
@@ -188,18 +243,26 @@ tion-dedicated"
               "dest-tp": "3-5-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 35
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 35
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated"
+              } 
             }
           },
           {
@@ -209,19 +272,27 @@ tion-dedicated"
               "source-tp": "5-0-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 25
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 25
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated"
-            }
+              }
+			}
           },
           {
             "link-id": ",,VR5,5-0-1",
@@ -230,26 +301,38 @@ tion-dedicated"
               "dest-tp": "5-0-1"
             },
             "ietf-ns-topo:service-slo-sle-policy": {
-              "metric-bounds": {
-                "metric-bound": [
+              "slo-policy": {
+                "metric-bounds": {
+                  "metric-bound": [
+                    {
+                      "metric-type": "ietf-network-slice-service:se\
+rvice-slo-two-way-delay",
+                      "metric-unit": "ms",
+                      "bound": 25
+                    }
+                  ]
+                }
+              }, 
+              "sle-policy": {
+                "isolation": [
                   {
-                    "metric-type": "ietf-network-slice-service:servi\
-ce-slo-two-way-delay",
-                    "metric-unit": "ms",
-                    "bound": 25
+                    "ietf-network-slice-service:service-traffic-iso\
+lation"
                   }
                 ]
-              },
-              "isolation": "ietf-network-slice-service:service-isola\
-tion-dedicated"
+              } 
             }
           }
         ],
         "ietf-ns-topo:service-slo-sle-policy": {
-          "isolation": "ietf-network-slice-service:service-isolation\
--dedicated",
-          "optimization-criterion": "ietf-te-types:of-minimize-cost-\
-path"
+		  "sle-policy": {
+			"isolation": [
+			  {
+				"ietf-network-slice-service:service-traffic-isolati\
+on"
+			  }
+			]
+		  } 
         }
       }
     ]

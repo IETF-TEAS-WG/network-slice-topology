@@ -106,12 +106,12 @@ author:
    The defined data model is an interface between customers and
    providers for configurations and state retrievals, so as to support
    network slicing as a service.  Through this model, a customer can request or 
-   negotiate with a network slicing provider to create an instance.  
-   The customer can incrementally update its requirements on individual 
-   topology elements in the slice instance, e.g., adding or removing a node or 
-   link, updating desired bandwidth of a link, and retrieve the operational states
-   of these elements. With the help of other mechanisms and data models defined 
-   in IETF, the telemetry information can be published to the customer, too.
+   negotiate with a network slicing provider to create an instance. The customer can 
+   incrementally update its requirements on individual topology elements in the slice
+   instance, e.g., adding or removing a node or link, updating desired bandwidth of 
+   a link, and retrieve the operational states of these elements. With the help of 
+   other mechanisms and data models defined in IETF, the telemetry information can 
+   be published to the customer, too.
    
    The YANG model defines constructs that are technology-agnostic to network slicing
    built on network layers with different technologies such as IP/MPLS, MPLS-TP, 
@@ -365,7 +365,7 @@ Please remove this note.
 # YANG Modules
 
 ~~~~
-   <CODE BEGINS> file "ietf-ns-topo@2023-07-06.yang"
+   <CODE BEGINS> file "ietf-ns-topo@2023-07-07.yang"
 {::include ./ietf-ns-topo.yang}
    <CODE ENDS>
 ~~~~

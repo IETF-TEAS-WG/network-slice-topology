@@ -72,38 +72,12 @@
         the RFC itself for full legal notices.";
 
 
-     revision 2023-07-06 {
+     revision 2023-07-07 {
        description "Initial revision";
        reference
          "RFC XXXX: IETF Network Slice Topology YANG Data Model";
      }
 
-     /*
-      * Identities
-      */
-     identity resize-option {
-       description
-         "Base identity for link or connectivity resizing options";
-     }
- 
-     identity resize-none {
-       base resize-option;
-       description
-         "Not resizable";
-     }
- 
-     identity resize-with-hit {
-       base resize-option;
-       description
-         "Resizable with traffic hits";
-     }
-
-     identity resize-hitless {
-       base resize-option;
-       description
-         "Hitless resizable";
-     }
- 
      /*
       * Groupings
       */   
