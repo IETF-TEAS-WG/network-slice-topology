@@ -84,7 +84,7 @@ author:
    reduce the overall bandwidth requirements of a network slice and provide economic
    advantages to the customer. 
    
-   For example, in a hub-and-spoke network slice scenario, multiple customer’s 
+   For example, in a hub-and-spoke network slice scenario, multiple customer's 
    spoke sites are expected to be dynamically connected to the hub site and the 
    bandwidth is shared between the spoke sites. To create a customized topology with 
    two virtual nodes, one representing all the spoke sites and the other representing 
@@ -267,7 +267,7 @@ Please remove this note.
    certain resources such as processors, ASICs, and switch fabric.
 
    A network slice customer can configure customized topologies without any prior knowledge
-   of the provider’s network and resource availability. However, this could potentially make 
+   of the provider's network and resource availability. However, this could potentially make 
    it difficult for the provider to understand and realize the topology. Alternatively, the 
    provider may choose to describe the available resources and capabilities as an abstract 
    topology and expose it to the customer prior to network slice requests. This can facilitate 
