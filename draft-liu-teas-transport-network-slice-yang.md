@@ -90,7 +90,10 @@ author:
    two virtual nodes, one representing all the spoke sites and the other representing 
    the hub site, connected by a shared link between the two, can ensure that resources 
    for the shared connection are reserved in advance and hence are readily 
-   available whenever needed by the customer.
+   available whenever needed by the customer. On the other hand, to achieve the same level
+   of bandwidth assurance with connections, it would be necessary to create separate, 
+   dedicated connections between every spoke and the hub. However, this would result 
+   in significant waste of bandwidth.
       
    This document defines a YANG {{!RFC7950}} data model for representing,
    managing, and controlling IETF network slices over customized
