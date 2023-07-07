@@ -325,14 +325,14 @@ lation"
           }
         ],
         "ietf-ns-topo:service-slo-sle-policy": {
-		  "sle-policy": {
-			"isolation": [
-			  {
-				"ietf-network-slice-service:service-traffic-isolati\
+          "sle-policy": {
+            "isolation": [
+              {
+                "ietf-network-slice-service:service-traffic-isolati\
 on"
-			  }
-			]
-		  } 
+              }
+            ]
+          } 
         }
       }
     ]

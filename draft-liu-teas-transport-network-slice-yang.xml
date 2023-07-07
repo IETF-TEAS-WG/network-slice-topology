@@ -1807,14 +1807,14 @@ lation"
           }
         ],
         "ietf-ns-topo:service-slo-sle-policy": {
-                  "sle-policy": {
-                        "isolation": [
-                          {
-                                "ietf-network-slice-service:service-traffic-isolati\
+          "sle-policy": {
+            "isolation": [
+              {
+                "ietf-network-slice-service:service-traffic-isolati\
 on"
-                          }
-                        ]
-                  } 
+              }
+            ]
+          } 
         }
       }
     ]
@@ -1829,7 +1829,7 @@ on"
   </back>
 
 <!-- ##markdown-source:
-H4sIAIVIqGQAA+09a3MbN5LfVeX/gFWqLnbCoWz5EYfZJJYlJdGWLfskXbx7
+H4sIABNMqGQAA+09a3MbN5LfVeX/gFWqLnbCoWz5EYfZJJYlJdGWLfskXbx7
 eWwNSZCa9XCGNw/J3NhX9zfu790vuX7gOYMhqSiJlSyndh1qBmg0Gv1CowFE
 UXRra5SPk2w6EHU1iR7f2rq1VSVVKgfi6PDsK3Esq8u8eC1O02QkxVk+z9N8
 uhB/2zv+WhzEVSye52OZYq14OCzkxaCrhlt4nI+yeAZNjIt4UkVpUkeVjMuo
@@ -2030,9 +2030,9 @@ n5cLD5XYiM57EJ37G9FZ1c/riw4LDpjQHt4EyW7Wr2l8Wsa6KUFXE9imX+4L
 bMBr3AjsRmCb1X5nAqvEtGdE9xoCG5AfT2DXkKCrCOxKA7tSPWzkdTn4jbze
 SHl9SPL6sPfwV5fXVpTjega2Gd7wBTYw+d4I7K8osA83Aruin7+EwCox7RnR
 vYbABuTHE9g1JOiX9YhX6oeNwC4HvxHYGymw142brhbUTfDnN5Sc3Y3krOpn
-iBbtL1cIoSoxul4IdZXDuJGijRSZ5yZI0RL7Y363V/quyp9UdWUJ3cQKsumn
-G0QD23VJia1+vxUmZZsqzafNQh55dUX+LxZ+t/XOJMrR3gzOFJbjz7cncVpK
-vNrh/wGzDygUn8MAAA==
+iBbtL1cIoSoxul4IdZXDuJGijRSZ5yZI0RL7Y363V/quwp/LyLSURCGKXok0
+CPn7rTZplqxuWnLoQvxfLPRu651JbKO9FJzZK8efb0/itJR4FcP/AyOEk1NP
+wwAA
 
 -->
 
