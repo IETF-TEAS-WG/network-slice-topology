@@ -3,7 +3,7 @@
 
 
 TEAS Working Group                                                X. Liu
-Internet-Draft                                           IBM Corporation
+Internet-Draft                                                 Alef Edge
 Intended status: Standards Track                             J. Tantsura
 Expires: 8 January 2024                                        Microsoft
                                                               I. Bryskin
@@ -1665,7 +1665,7 @@ Internet-Draft      Network Slice Topology Data Model          July 2023
 Authors' Addresses
 
    Xufeng Liu
-   IBM Corporation
+   Alef Edge
 
    Email: xufeng.liu.ietf@gmail.com
 

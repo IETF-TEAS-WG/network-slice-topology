@@ -15,7 +15,7 @@ pi: [toc, sortrefs, symrefs, comments]
 author:
   -
     name: Xufeng Liu
-    org: IBM Corporation
+    org: Alef Edge
     email: xufeng.liu.ietf@gmail.com
   -
     name: Jeff Tantsura
