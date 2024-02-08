@@ -52,15 +52,15 @@ author:
 
 --- abstract
 
-   An IETF network slice may use a customized topology to describe intended
-   resource reservation for connectivities between slice endpoints. Customized
-   topologies enable customers to request shared resources among connections activated
-   on demand and to customize the service paths in a network slice with 
-   an extensive level of control.
+   An IETF network slice may utilize customized topologies to express
+   resource reservation intentions within the provider’s network. These
+   customized topologies allow customers to request shared resources
+   for future connections that can be flexibly allocated and customized.
+   Additionally, they provide an extensive level of control over underlay
+   service paths within the network slice.
    
-   This document describes a YANG data model for managing and
-   controlling customized topologies for IETF network slices defined in
-   RFC YYYY. 
+   This document describes a YANG data model for configuring customized
+   topologies for IETF network slices defined in RFC YYYY. 
    
    [RFC EDITOR NOTE: Please replace RFC YYYY with the RFC number of
    draft-ietf-teas-ietf-network-slices once it has been published.
@@ -69,61 +69,74 @@ author:
 
 # Introduction
 
-   {{?I-D.ietf-teas-ietf-network-slices}} describes that an IETF network
-   slice service customer might ask for some level of control, e.g., 
-   to customize the service paths while requesting network slice services.
-   These customized controls may well be expressed by customer-defined 
-   topologies, i.e. customized topologies.
+   Network service providers utilize topologies to convey controlled information
+   about their networks, such as bandwidth availability and connectivity, 
+   with customers, to facilitates customer service requests. Customers can also
+   define custom topologies to streamline their internal operations. When
+   requesting provider support for such custom topologies, they are considered
+   as customized topologies.
    
-   Furthermore, by using customized topologies, customers can request advanced
-   resource reservation for all potential network slices that can be activated 
-   on demand in the future. This capability provides customers with full control
-   over when and how resources are allocated by the slices. The resources can be
-   shared by network slices created at different times as well as by connections
-   between different edge pairs within the same network slice. This could significantly
-   reduce the overall bandwidth requirements of a network slice and provide economic
-   advantages to the customer. 
+   In the context of network slicing, customized topologies enables customers
+   to express resource reservation preferences. These topologies allow flexible
+   configuration and activation of network slices on demand. By providing full
+   control over resource allocation timing and methods, customized topologies
+   ensure that resources are consistently available. Moreover, the resources
+   reserved via customized topologies can be shared across network slices created
+   at different times or between different connections within the same slice.
+   Compared to network slices with dedicated full-mesh connections between
+   endpoints, network slices utilizing customized topologies can reduce overall
+   resource requirements, offering significant economic benefits to the customer.
+
+   Consider a hub-and-spoke network slice scenario where multiple customer spoke
+   sites dynamically connect to a central hub site, sharing available bandwidth.
+   By designing a customized topology with two virtual nodes — one representing
+   all the spoke sites and the other representing the hub site — connected via
+   a shared link, we proactively reserve resources for the shared connection.
+   This ensures that bandwidth is readily available whenever the customer requires
+   it. In contrast, achieving equivalent bandwidth assurance through individual
+   dedicated connections would necessitate creating separate links between each
+   spoke and the hub, which would lead to substantial bandwidth inefficiency.
    
-   For example, in a hub-and-spoke network slice scenario, multiple customer's 
-   spoke sites are expected to be dynamically connected to the hub site and the 
-   bandwidth is shared between the spoke sites. To create a customized topology with 
-   two virtual nodes, one representing all the spoke sites and the other representing 
-   the hub site, connected by a shared link between the two, can ensure that resources 
-   for the shared connection are reserved in advance and hence are readily 
-   available whenever needed by the customer. On the other hand, to achieve the same level
-   of bandwidth assurance with connections, it would be necessary to create separate, 
-   dedicated connections between every spoke and the hub. However, this would result 
-   in significant waste of bandwidth.
+   Customized topology complements connectivity-based network slicing by providing
+   customers a mechanism to to specify additional underlay service paths to gain
+   extensive control over specific or all connections within the network slice,
+   as outlined in {{?I-D.ietf-teas-ietf-network-slices}}.
+
+   A customized topology embodies the customer’s intent and is defined within
+   their context. It can include pure customer information or refer to network
+   resources identifiable within the provider’s context. Prior to configuring
+   the customized topology, any necessary communication between the customer
+   and provider occurs separately. While the details of this communication
+   mechanism fall outside the scope of this document, the provider’s responsibility
+   lies in understanding and translating the customized topology into suitable
+   realizations within their domain.
+
+   This document introduces a YANG data model, based on {{!RFC7950}}, for
+   configuring customized network topologies. The YANG model extends the existing
+   data model from {{!RFC8345}}, allowing customers to express desired
+   service-level objectives (SLOs) and service-level expectations (SLEs)
+   across different elements within the customized topology.
       
-   This document defines a YANG {{!RFC7950}} data model for representing,
-   managing, and controlling IETF network slices over customized
-   network topologies, where the network slices are defined
-   in {{?I-D.ietf-teas-ietf-network-slices}}. The YANG model augments
-   the data model defined in {{!RFC8345}} to enable a customer to 
-   express desired service-level objectives (SLOs) and service-level expectations (SLEs)
-   over various constructs within the customized topology.
+   The defined data model serves as an interface between customers and providers,
+   enabling configurations and state retrievals for network slicing as a service.
+   Customers can use this model to request or negotiate the creation of network
+   slice instances. Additionally, they can incrementally adjust requirements for
+   individual topology elements within the slice—for instance, adding or removing
+   nodes or links, updating link bandwidth—and retrieve operational states.
+   Leveraging other IETF mechanisms and data models, telemetry information can
+   also be convey to the customer.
 
-   The defined data model is an interface between customers and
-   providers for configurations and state retrievals, so as to support
-   network slicing as a service.  Through this model, a customer can request or 
-   negotiate with a network slicing provider to create an instance. The customer can 
-   incrementally update its requirements on individual topology elements in the slice
-   instance, e.g., adding or removing a node or link, updating desired bandwidth of 
-   a link, and retrieve the operational states of these elements. With the help of 
-   other mechanisms and data models defined in IETF, the telemetry information can 
-   be published to the customer, too.
+   The YANG model encompasses constructs that are independent of specific technologies,
+   accommodating network slicing across diverse layers (including IP/MPLS, MPLS-TP,
+   OTN, and WDM optical). As a result, this model serves as a foundational framework
+   upon which technology-specific network slicing models — such as 
+   {{?I-D.ietf-ccamp-yang-otn-slicing}} — can be developed.
+
+   Section 3 of {{?I-D.contreras-teas-slice-controller-models}} outlines that the use
+   of customized topologies and resource reservation control is optional within network
+   slicing. These features complement the data model defined in 
+   {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
    
-   The YANG model defines constructs that are technology-agnostic to network slicing
-   built on network layers with different technologies such as IP/MPLS, MPLS-TP, 
-   OTN and WDM optical. Therefore, this model can serve as a common and base model
-   on which technology-specific models for network slicing, such as 
-   {{?I-D.ietf-ccamp-yang-otn-slicing}}, may be built.
-
-   As described in Section 3 of
-   {{?I-D.contreras-teas-slice-controller-models}}, using customized topologies and 
-   control of resource reservation is optional for network slicing and complements
-   the data model defined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}. 
-
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) {{!RFC8342}}.
 
@@ -145,16 +158,21 @@ author:
    The following terms are defined and used in this document.
    
    - Customized Topology:
-       A topology defined by the customer and served as an input to the network slice 
-       service provider, i.e. to the Network Slice Controller (NSC).
+       A topology defined by the customer and provided as input to the
+	   network slice service provider (specifically, the Network Slice
+	   Controller or NSC). It represents the customer’s desired network
+	   topology.
+	   
    - Abstract Topology:
-       A topology exposed to the customer by the network slice service provider prior to
-       the creation of network slices. The provider uses an abstract topology to expose
-       useful information, such as available resources to the customer, which can facilitate
+       A topology exposed to the customer by the network slice service
+	   provider prior to the creation of network slices. The provider
+	   uses an abstract topology to expose useful information, such
+	   as available resources to the customer, which can facilitate
 	   the build-up of customized topologies by the customer.
+	   
    - NRP Topology:
-       A topology internal to the NSC to facilitate the mapping of network slices to
-       underlying network resources.
+       A topology internal to the NSC to facilitate the mapping of
+	   network slices to underlying network resources.
 
 ## Tree Diagram
 
@@ -193,42 +211,53 @@ Please remove this note.
    When a network topology data instance contains the network-slice 
    network type, it represents an instance of an IETF network slice 
    topology.
+   
+   This data model augments the network topology model by incorporating 
+   intent-based Service-Level Objectives (SLOs) and Service-Level
+   Expectations (SLEs). These apply to various components within the
+   customized topology, including nodes, links, and termination points (TPs).
+   
+   The model defined in this document can be combined through multi-inheritance
+   with other topology data models, such as Traffic Engineering (TE) topologies
+   described in {{!RFC8795}} or Optical Transport Network (OTN) topologies
+   described in {{?I-D.ietf-ccamp-otn-topo-yang}}. This flexibility allows
+   the creation of technology-specific customized topologies tailored to
+   specific network requirements.
+   
+## Relationships with ACTN VN
 
-## Relationships to Related Topology Models
+   TBD.
 
-   There are several related YANG data models that have been defined in
-   IETF.  Some of these are:
+## Data Model Relationship
 
-   Network Topology Model:
-      Defined in {{!RFC8345}}.
-
-   Network Slicing Model:
-      Defined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
-
-   OTN Slicing:
-      Defined in {{?I-D.ietf-ccamp-yang-otn-slicing}}.
-
-   {{fig-model-relationship}} shows the relationships among these models.  The box of
-   dotted lines denotes the model defined in this document.
+   The data model defined in this document extends the generic network topology
+   model defined in {{!RFC8345}}. It is expected to be used by other data models,
+   such as OTN Slicing (defined in {{?I-D.ietf-ccamp-yang-otn-slicing}}), to
+   support resource reservation-based network slicing in addition to the
+   connectivity-based network slicing as defined in 
+   {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
+   
+   The relationship of the related data models is illustrated in {{fig-model-relationship}}.
+   The box with dotted lines represents the model defined in this document.   
   
 ~~~~
      +----------+                 +----------+
      | Network  |                 | Network  |
      | Slice    |                 | Topology +
-     | NBI YANG +------+          | Model    |
-     | Model    |      |          | RFC 8345 |
-     +----+-----+      |          +-----+----+
-          |            |                |
-          |augments    |augments        |augments
-          |            |                |
-     +----^-----+      |          ......^.....
-     | OTN      |      +----------< Network  :
+     | NBI YANG |                 | Model    |
+     | Model    |                 | RFC 8345 |
+     +----+-----+                 +-----+----+
+          |                             |
+          |augments                     |augments
+          |                             |
+     +----^-----+                 ......^.....
+     | OTN      |                 : Network  :
      | Slicing  | augments        : Slice    :
      | Model    >-----------------: Topology :
      |          |                 : Model    :
-     +----------+                 ''''''''''''
+     +----------+                 ............
 ~~~~
-{: #fig-model-relationship title="Model Relationships"}
+{: #fig-model-relationship title="Model Relationship"}
   
 # Model Applicability
 
