@@ -94,36 +94,52 @@
        }
      }
 
-     grouping topology-ref {
+     grouping underlay-path {
        description
-         "Grouping for network topology reference.";
-       leaf topology-id {
-         type leafref {
-           path "/nw:networks/nw:network/nw:network-id";
-         }
-         description
-           "Relative reference to network slice topology id.";
-       }
-       uses explicit-path;
-     }
+         "Underlay explicit path within a customer intent
+          topology.";
+		 
+       uses nw:network-ref;
 
-     grouping explicit-path {
-       description
-         "Explicit path for a connectivity matrix entry";
-
-       list explicit-path {
-         key "tp-id";
-         description
-           "List of TPs within a network topology that form a
-            path.";
-         leaf tp-id {
-           type leafref {
-             path "/nw:networks/nw:network/nw:node"+
-                  "/nt:termination-point/nt:tp-id";
-           }
-           description
-             "Relative reference to TP id.";
-         }
+       list path-element {
+        key "index";
+        description
+          "List of path elements.";
+        leaf index {
+          type uint32;
+          description
+            "Index of the hop within the underlay path.";
+        }
+        leaf is-strict-hop {
+	      type boolean;
+	      description
+	        "Indicate whether the hop is strict or loose";
+        }
+        choice type {
+          description
+            "Type of the hop.";
+          case node-hop {
+            leaf node-id {
+              type nw:node-id;
+              description
+                "Node identifier.";
+            }
+          }
+          case link-hop {
+            leaf link-id {
+              type nt:link-id;
+              description
+                "Link identifier.";
+            }
+          }
+          case tp-hop {
+            leaf tp-id {
+              type nt:tp-id;
+              description
+                "Termination Point (TP) identifier.";
+            }
+          }
+        }
        }
      }
 
@@ -135,7 +151,7 @@
        description
          "Defines the Network Slice topology type.";
        container network-slice {
-         presence "Indicates Network Slice topology";
+         presence "Indicates a Network Slice topology";
          description
            "Its presence identifies the Network Slice type.";
        }
@@ -144,9 +160,13 @@
      /* network topology augments */
      augment "/nw:networks/nw:network" {
        when "./nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment topology configuration and state.";
+       description
+         "SLO and SLE of the topology.";
+
        uses ietf-nss:service-slo-sle-policy;
      }
 
@@ -157,18 +177,26 @@
              "/ns-topo:sle-policy" +
              "/ns-topo:steering-constraints" {
        when "../../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment topology configuration and state.";
+       description
+         "Steering constraints for the topology.";
+
        uses ns-topo-steering-constraints;
      }
 
      /* network node augments */
      augment "/nw:networks/nw:network/nw:node" {
        when "../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment node configuration and state.";
+       description
+         "SLO and SLE for nodes.";
+
        uses ietf-nss:service-slo-sle-policy;
      }
 
@@ -179,11 +207,13 @@
              "/ns-topo:sle-policy" +
              "/ns-topo:steering-constraints" {
        when "../../../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
        description
-       "Augment IETF network slice services to include steering
-          constraints for nodes.";
+         "Steering constraints for nodes.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -191,9 +221,12 @@
      augment "/nw:networks/nw:network/nw:node" +
              "/nt:termination-point" {
        when "../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment node configuration and state.";
+       description
+         "SLO and SLE for termination points.";
      
      uses ietf-nss:service-slo-sle-policy;
      }
@@ -201,9 +234,13 @@
      /* network link augments */
      augment "/nw:networks/nw:network/nt:link" {
        when "../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment link configuration and state.";
+       description
+         "SLO and SLE for links.";
+
        uses ietf-nss:service-slo-sle-policy;
      }
 
@@ -214,12 +251,14 @@
              "/ns-topo:sle-policy" +
              "/ns-topo:steering-constraints" {
        when "../../../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
+
        description
-       "Augment IETF network slice services to include steering
-          constraints for links within a resource-based transport
-          network slice.";
+       "Steering constraints for links.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -229,8 +268,8 @@
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-          "Augment IETF network slice service templates with
-		   technology-specific steering constraints.";
+           "Steering constraints for network slice service
+            templates.";
   
        uses ns-topo-steering-constraints;
      }
@@ -243,9 +282,7 @@
              "/ietf-nss:sle-policy" + 
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for connectivity-based transport network
-         slices.";
+           "Steering constraints for network slice services.";
           
        uses ns-topo-steering-constraints;
      }
@@ -261,9 +298,9 @@
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for connectivity-constructs within a
-         connectivity-based transport network slice.";
+         "Steering constraints for connectivity-constructs
+          within a network slice.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -278,9 +315,9 @@
              "/ietf-nss:steering-constraints" +
              "/ietf-nss:path-constraints" {
        description
-         "Add toplogy id and explicit path to the connection group";
+         "Underlay path for connection group.";
 
-       uses topology-ref;
+       uses underlay-path;
      }
 
      augment "/ietf-nss:network-slice-services" +
@@ -294,9 +331,9 @@
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for connectivity-constructs within a
-         connectivity-based transport network slice.";
+         "Steering constraints connectivity constructs
+          within a network slice.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -312,10 +349,9 @@
              "/ietf-nss:steering-constraints" +
              "/ietf-nss:path-constraints" {
        description
-         "Add toplogy id and explicit path to the connectivity
-		  construct";
+         "Underlay path for connection group.";
 
-       uses topology-ref;
+       uses underlay-path;
      }
 
      augment "/ietf-nss:network-slice-services" +
@@ -332,9 +368,8 @@
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for a2a connectivity-constructs within a
-         connectivity-based transport network slice.";
+         "Steering constraints for a2a connectivity-constructs.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -353,9 +388,8 @@
              "/ietf-nss:steering-constraints" +
              "/ietf-nss:path-constraints" {
        description
-         "Add toplogy id and explicit path to a2a connectivity
-		  construct";
-
-       uses topology-ref;
+         "Underlay path for a2a connectivity constructs.";
+ 
+       uses underlay-path;
      }
    }

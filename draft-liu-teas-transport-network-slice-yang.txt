@@ -5,7 +5,7 @@
 TEAS Working Group                                                X. Liu
 Internet-Draft                                                 Alef Edge
 Intended status: Standards Track                             J. Tantsura
-Expires: 16 August 2024                                        Microsoft
+Expires: 20 August 2024                                        Microsoft
                                                               I. Bryskin
                                                               Individual
                                                           L.M. Contreras
@@ -20,7 +20,7 @@ Expires: 16 August 2024                                        Microsoft
                                                                Futurewei
                                                                  I. Busi
                                                                   Huawei
-                                                        13 February 2024
+                                                        17 February 2024
 
 
               IETF Network Slice Topology YANG Data Model
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 1]
+Liu, et al.              Expires 20 August 2024                 [Page 1]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -68,7 +68,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 August 2024.
+   This Internet-Draft will expire on 20 August 2024.
 
 Copyright Notice
 
@@ -100,25 +100,25 @@ Table of Contents
    3.  Model Applicability . . . . . . . . . . . . . . . . . . . . .   9
    4.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .  12
    5.  Model Tree Structure  . . . . . . . . . . . . . . . . . . . .  12
-   6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  15
-   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  23
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  23
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  24
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  24
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  24
+   6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  16
+   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  24
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  25
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  25
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  26
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  26
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 2]
+Liu, et al.              Expires 20 August 2024                 [Page 2]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  26
-   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  27
-   Appendix B.  Data Tree for the Example in Section 3 . . . . . . .  27
-     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  27
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  35
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  27
+   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  28
+   Appendix B.  Data Tree for the Example in Section 3 . . . . . . .  28
+     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  29
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  36
 
 1.  Introduction
 
@@ -165,7 +165,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 3]
+Liu, et al.              Expires 20 August 2024                 [Page 3]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -221,7 +221,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 4]
+Liu, et al.              Expires 20 August 2024                 [Page 4]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -277,7 +277,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 5]
+Liu, et al.              Expires 20 August 2024                 [Page 5]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -333,7 +333,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 6]
+Liu, et al.              Expires 20 August 2024                 [Page 6]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -389,7 +389,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 7]
+Liu, et al.              Expires 20 August 2024                 [Page 7]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -445,7 +445,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 8]
+Liu, et al.              Expires 20 August 2024                 [Page 8]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -501,7 +501,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                 [Page 9]
+Liu, et al.              Expires 20 August 2024                 [Page 9]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -557,7 +557,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                [Page 10]
+Liu, et al.              Expires 20 August 2024                [Page 10]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -613,7 +613,7 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-Liu, et al.              Expires 16 August 2024                [Page 11]
+Liu, et al.              Expires 20 August 2024                [Page 11]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
@@ -644,203 +644,223 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 5.  Model Tree Structure
 
-  module: ietf-ns-topo
+   module: ietf-ns-topo
 
-    augment /nw:networks/nw:network/nw:network-types:
-      +--rw network-slice!
-    augment /nw:networks/nw:network:
-      +--rw (slo-sle-policy)?
-         +--:(standard)
-         |  +--rw slo-sle-template?         leafref
-         +--:(custom)
-            +--rw service-slo-sle-policy
-               +--rw description?   string
-               +--rw slo-policy
-               |  +--rw metric-bound* [metric-type]
-               |  |  +--rw metric-type          identityref
-               |  |  +--rw metric-unit          string
-               |  |  +--rw value-description?   string
-               |  |  +--rw percentile-value?    percentile
-               |  |  +--rw bound?               uint64
-               |  +--rw availability?   identityref
-               |  +--rw mtu?            uint16
-               +--rw sle-policy
-                  +--rw security*               identityref
+     augment /nw:networks/nw:network/nw:network-types:
+       +--rw network-slice!
+     augment /nw:networks/nw:network:
+       +--rw (slo-sle-policy)?
+          +--:(standard)
+          |  +--rw slo-sle-template?         leafref
+          +--:(custom)
+             +--rw service-slo-sle-policy
+                +--rw description?   string
+                +--rw slo-policy
+                |  +--rw metric-bound* [metric-type]
+                |  |  +--rw metric-type          identityref
+                |  |  +--rw metric-unit          string
+                |  |  +--rw value-description?   string
+                |  |  +--rw percentile-value?    percentile
+                |  |  +--rw bound?               uint64
+                |  +--rw availability?   identityref
+                |  +--rw mtu?            uint16
+                +--rw sle-policy
+                   +--rw security*               identityref
 
 
 
-Liu, et al.              Expires 16 August 2024                [Page 12]
+Liu, et al.              Expires 20 August 2024                [Page 12]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
-                  +--rw isolation*              identityref
-                  +--rw max-occupancy-level?    uint8
-                  +--rw steering-constraints
-                     +--rw path-constraints
-                     +--rw service-function
-                     +--rw disjointness?
-                             te-types:te-path-disjointness
-    augment /nw:networks/nw:network/nw:node:
-      +--rw (slo-sle-policy)?
-         +--:(standard)
-         |  +--rw slo-sle-template?         leafref
-         +--:(custom)
-            +--rw service-slo-sle-policy
-               +--rw description?   string
-               +--rw slo-policy
-               |  +--rw metric-bound* [metric-type]
-               |  |  +--rw metric-type          identityref
-               |  |  +--rw metric-unit          string
-               |  |  +--rw value-description?   string
-               |  |  +--rw percentile-value?    percentile
-               |  |  +--rw bound?               uint64
-               |  +--rw availability?   identityref
-               |  +--rw mtu?            uint16
-               +--rw sle-policy
-                  +--rw security*               identityref
-                  +--rw isolation*              identityref
-                  +--rw max-occupancy-level?    uint8
-                  +--rw steering-constraints
-                     +--rw path-constraints
-                     +--rw service-function
-                     +--rw disjointness?
-                             te-types:te-path-disjointness
-    augment /nw:networks/nw:network/nw:node/nt:termination-point:
-      +--rw (slo-sle-policy)?
-         +--:(standard)
-         |  +--rw slo-sle-template?         leafref
-         +--:(custom)
-            +--rw service-slo-sle-policy
-               +--rw description?   string
-               +--rw slo-policy
-               |  +--rw metric-bound* [metric-type]
-               |  |  +--rw metric-type          identityref
-               |  |  +--rw metric-unit          string
-               |  |  +--rw value-description?   string
-               |  |  +--rw percentile-value?    percentile
-               |  |  +--rw bound?               uint64
-               |  +--rw availability?   identityref
-               |  +--rw mtu?            uint16
+                   +--rw isolation*              identityref
+                   +--rw max-occupancy-level?    uint8
+                   +--rw steering-constraints
+                      +--rw path-constraints
+                      +--rw service-function
+                      +--rw disjointness?
+                              te-types:te-path-disjointness
+     augment /nw:networks/nw:network/nw:node:
+       +--rw (slo-sle-policy)?
+          +--:(standard)
+          |  +--rw slo-sle-template?         leafref
+          +--:(custom)
+             +--rw service-slo-sle-policy
+                +--rw description?   string
+                +--rw slo-policy
+                |  +--rw metric-bound* [metric-type]
+                |  |  +--rw metric-type          identityref
+                |  |  +--rw metric-unit          string
+                |  |  +--rw value-description?   string
+                |  |  +--rw percentile-value?    percentile
+                |  |  +--rw bound?               uint64
+                |  +--rw availability?   identityref
+                |  +--rw mtu?            uint16
+                +--rw sle-policy
+                   +--rw security*               identityref
+                   +--rw isolation*              identityref
+                   +--rw max-occupancy-level?    uint8
+                   +--rw steering-constraints
+                      +--rw path-constraints
+                      +--rw service-function
+                      +--rw disjointness?
+                              te-types:te-path-disjointness
+     augment /nw:networks/nw:network/nw:node/nt:termination-point:
+       +--rw (slo-sle-policy)?
+          +--:(standard)
+          |  +--rw slo-sle-template?         leafref
+          +--:(custom)
+             +--rw service-slo-sle-policy
+                +--rw description?   string
+                +--rw slo-policy
+                |  +--rw metric-bound* [metric-type]
+                |  |  +--rw metric-type          identityref
+                |  |  +--rw metric-unit          string
+                |  |  +--rw value-description?   string
+                |  |  +--rw percentile-value?    percentile
+                |  |  +--rw bound?               uint64
+                |  +--rw availability?   identityref
+                |  +--rw mtu?            uint16
 
 
 
-Liu, et al.              Expires 16 August 2024                [Page 13]
+Liu, et al.              Expires 20 August 2024                [Page 13]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
-               +--rw sle-policy
-                  +--rw security*               identityref
-                  +--rw isolation*              identityref
-                  +--rw max-occupancy-level?    uint8
-                  +--rw steering-constraints
-                     +--rw path-constraints
-                     +--rw service-function
-    augment /nw:networks/nw:network/nt:link:
-      +--rw (slo-sle-policy)?
-         +--:(standard)
-         |  +--rw slo-sle-template?         leafref
-         +--:(custom)
-            +--rw service-slo-sle-policy
-               +--rw description?   string
-               +--rw slo-policy
-               |  +--rw metric-bound* [metric-type]
-               |  |  +--rw metric-type          identityref
-               |  |  +--rw metric-unit          string
-               |  |  +--rw value-description?   string
-               |  |  +--rw percentile-value?    percentile
-               |  |  +--rw bound?               uint64
-               |  +--rw availability?   identityref
-               |  +--rw mtu?            uint16
-               +--rw sle-policy
-                  +--rw security*               identityref
-                  +--rw isolation*              identityref
-                  +--rw max-occupancy-level?    uint8
-                  +--rw steering-constraints
-                     +--rw path-constraints
-                     +--rw service-function
-                     +--rw disjointness?
-                             te-types:te-path-disjointness
-    augment /ietf-nss:network-slice-services/ietf-nss:slo-sle-templates
-              /ietf-nss:slo-sle-template/ietf-nss:sle-policy
-              /ietf-nss:steering-constraints:
-      +--rw disjointness?   te-types:te-path-disjointness
-    augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-              /ietf-nss:slo-sle-policy/ietf-nss:custom
-              /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
-              /ietf-nss:steering-constraints:
-      +--rw disjointness?   te-types:te-path-disjointness
-    augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-              /ietf-nss:connection-groups/ietf-nss:connection-group
-              /ietf-nss:slo-sle-policy/ietf-nss:custom
-              /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
-              /ietf-nss:steering-constraints:
-      +--rw disjointness?   te-types:te-path-disjointness
-    augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+                +--rw sle-policy
+                   +--rw security*               identityref
+                   +--rw isolation*              identityref
+                   +--rw max-occupancy-level?    uint8
+                   +--rw steering-constraints
+                      +--rw path-constraints
+                      +--rw service-function
+     augment /nw:networks/nw:network/nt:link:
+       +--rw (slo-sle-policy)?
+          +--:(standard)
+          |  +--rw slo-sle-template?         leafref
+          +--:(custom)
+             +--rw service-slo-sle-policy
+                +--rw description?   string
+                +--rw slo-policy
+                |  +--rw metric-bound* [metric-type]
+                |  |  +--rw metric-type          identityref
+                |  |  +--rw metric-unit          string
+                |  |  +--rw value-description?   string
+                |  |  +--rw percentile-value?    percentile
+                |  |  +--rw bound?               uint64
+                |  +--rw availability?   identityref
+                |  +--rw mtu?            uint16
+                +--rw sle-policy
+                   +--rw security*               identityref
+                   +--rw isolation*              identityref
+                   +--rw max-occupancy-level?    uint8
+                   +--rw steering-constraints
+                      +--rw path-constraints
+                      +--rw service-function
+                      +--rw disjointness?
+                              te-types:te-path-disjointness
+     augment /ietf-nss:network-slice-services/ietf-nss:slo-sle-templates
+               /ietf-nss:slo-sle-template/ietf-nss:sle-policy
+               /ietf-nss:steering-constraints:
+       +--rw disjointness?   te-types:te-path-disjointness
+     augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+               /ietf-nss:slo-sle-policy/ietf-nss:custom
+               /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
+               /ietf-nss:steering-constraints:
+       +--rw disjointness?   te-types:te-path-disjointness
+     augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+               /ietf-nss:connection-groups/ietf-nss:connection-group
+               /ietf-nss:slo-sle-policy/ietf-nss:custom
+               /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
+               /ietf-nss:steering-constraints:
+       +--rw disjointness?   te-types:te-path-disjointness
+     augment /ietf-nss:network-slice-services/ietf-nss:slice-service
 
 
 
-Liu, et al.              Expires 16 August 2024                [Page 14]
+Liu, et al.              Expires 20 August 2024                [Page 14]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
-              /ietf-nss:connection-groups/ietf-nss:connection-group
-              /ietf-nss:slo-sle-policy/ietf-nss:custom
-              /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
-              /ietf-nss:steering-constraints/ietf-nss:path-constraints:
-      +--rw topology-id?     -> /nw:networks/network/network-id
-      +--rw explicit-path* [tp-id]
-         +--rw tp-id
-                 -> /nw:networks/network/node/nt:termination-point/tp-id
-    augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-              /ietf-nss:connection-groups/ietf-nss:connection-group
-              /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
-              /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-              /ietf-nss:sle-policy/ietf-nss:steering-constraints:
-      +--rw disjointness?   te-types:te-path-disjointness
-    augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-              /ietf-nss:connection-groups/ietf-nss:connection-group
-              /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
-              /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-              /ietf-nss:sle-policy/ietf-nss:steering-constraints
-              /ietf-nss:path-constraints:
-      +--rw topology-id?     -> /nw:networks/network/network-id
-      +--rw explicit-path* [tp-id]
-         +--rw tp-id
-                 -> /nw:networks/network/node/nt:termination-point/tp-id
-    augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-              /ietf-nss:connection-groups/ietf-nss:connection-group
-              /ietf-nss:connectivity-construct/ietf-nss:type
-              /ietf-nss:a2a/ietf-nss:a2a-sdp/ietf-nss:slo-sle-policy
-              /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-              /ietf-nss:sle-policy/ietf-nss:steering-constraints:
-      +--rw disjointness?   te-types:te-path-disjointness
-    augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-              /ietf-nss:connection-groups/ietf-nss:connection-group
-              /ietf-nss:connectivity-construct/ietf-nss:type
-              /ietf-nss:a2a/ietf-nss:a2a-sdp/ietf-nss:slo-sle-policy
-              /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-              /ietf-nss:sle-policy/ietf-nss:steering-constraints
-              /ietf-nss:path-constraints:
-      +--rw topology-id?     -> /nw:networks/network/network-id
-      +--rw explicit-path* [tp-id]
-         +--rw tp-id
-                 -> /nw:networks/network/node/nt:termination-point/tp-id
+               /ietf-nss:connection-groups/ietf-nss:connection-group
+               /ietf-nss:slo-sle-policy/ietf-nss:custom
+               /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
+               /ietf-nss:steering-constraints/ietf-nss:path-constraints:
+       +--rw network-ref?    -> /nw:networks/network/network-id
+       +--rw path-element* [index]
+          +--rw index            uint32
+          +--rw is-strict-hop?   boolean
+          +--rw (type)?
+             +--:(node-hop)
+             |  +--rw node-id?   nw:node-id
+             +--:(link-hop)
+             |  +--rw link-id?   nt:link-id
+             +--:(tp-hop)
+                +--rw tp-id?     nt:tp-id
+     augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+               /ietf-nss:connection-groups/ietf-nss:connection-group
+               /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
+               /ietf-nss:custom/ietf-nss:service-slo-sle-policy
+               /ietf-nss:sle-policy/ietf-nss:steering-constraints:
+       +--rw disjointness?   te-types:te-path-disjointness
+     augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+               /ietf-nss:connection-groups/ietf-nss:connection-group
+               /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
+               /ietf-nss:custom/ietf-nss:service-slo-sle-policy
+               /ietf-nss:sle-policy/ietf-nss:steering-constraints
+               /ietf-nss:path-constraints:
+       +--rw network-ref?    -> /nw:networks/network/network-id
+       +--rw path-element* [index]
+          +--rw index            uint32
+          +--rw is-strict-hop?   boolean
+          +--rw (type)?
+             +--:(node-hop)
+             |  +--rw node-id?   nw:node-id
+             +--:(link-hop)
+             |  +--rw link-id?   nt:link-id
+             +--:(tp-hop)
+                +--rw tp-id?     nt:tp-id
+     augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+               /ietf-nss:connection-groups/ietf-nss:connection-group
+               /ietf-nss:connectivity-construct/ietf-nss:type
+               /ietf-nss:a2a/ietf-nss:a2a-sdp/ietf-nss:slo-sle-policy
+               /ietf-nss:custom/ietf-nss:service-slo-sle-policy
+               /ietf-nss:sle-policy/ietf-nss:steering-constraints:
+       +--rw disjointness?   te-types:te-path-disjointness
+     augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+               /ietf-nss:connection-groups/ietf-nss:connection-group
+               /ietf-nss:connectivity-construct/ietf-nss:type
 
-            Figure 3: Tree diagram for network slice topology
+
+
+Liu, et al.              Expires 20 August 2024                [Page 15]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
+               /ietf-nss:a2a/ietf-nss:a2a-sdp/ietf-nss:slo-sle-policy
+               /ietf-nss:custom/ietf-nss:service-slo-sle-policy
+               /ietf-nss:sle-policy/ietf-nss:steering-constraints
+               /ietf-nss:path-constraints:
+       +--rw network-ref?    -> /nw:networks/network/network-id
+       +--rw path-element* [index]
+          +--rw index            uint32
+          +--rw is-strict-hop?   boolean
+          +--rw (type)?
+             +--:(node-hop)
+             |  +--rw node-id?   nw:node-id
+             +--:(link-hop)
+             |  +--rw link-id?   nt:link-id
+             +--:(tp-hop)
+                +--rw tp-id?     nt:tp-id
+
+             Figure 3: Tree diagram for network slice topology
 
 6.  YANG Modules
-
-
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 15]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
 
    <CODE BEGINS> file "ietf-ns-topo@2023-07-07.yang"
       module ietf-ns-topo {
@@ -870,6 +890,14 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
         import ietf-network-slice-service {
           prefix "ietf-nss";
           reference
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 16]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
             "draft-ietf-teas-ietf-network-slice-nbi-yang-05:
              IETF Network Slice Service YANG Model";
         }
@@ -890,14 +918,6 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                    <mailto:aihuaguo.ietf@gmail.com>
 
            Editor: Sergio Belotti
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 16]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                    <mailto:sergio.belotti@nokia.com>
 
            Editor: Luis M. Contreras
@@ -926,6 +946,14 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
         revision 2023-07-07 {
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 17]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
           description "Initial revision";
           reference
             "RFC XXXX: IETF Network Slice Topology YANG Data Model";
@@ -947,43 +975,60 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
           }
         }
 
+        grouping underlay-path {
+          description
+            "Underlay explicit path within a customer intent
+             topology.";
+
+          uses nw:network-ref;
+
+          list path-element {
+           key "index";
+           description
+             "List of path elements.";
+           leaf index {
+             type uint32;
+             description
+               "Index of the hop within the underlay path.";
+           }
+           leaf is-strict-hop {
+                 type boolean;
+                 description
+                   "Indicate whether the hop is strict or loose";
+           }
+           choice type {
+             description
+               "Type of the hop.";
+             case node-hop {
+               leaf node-id {
+                 type nw:node-id;
 
 
-Liu, et al.              Expires 16 August 2024                [Page 17]
+
+Liu, et al.              Expires 20 August 2024                [Page 18]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
-        grouping topology-ref {
-          description
-            "Grouping for network topology reference.";
-          leaf topology-id {
-            type leafref {
-              path "/nw:networks/nw:network/nw:network-id";
-            }
-            description
-              "Relative reference to network slice topology id.";
-          }
-          uses explicit-path;
-        }
-
-        grouping explicit-path {
-          description
-            "Explicit path for a connectivity matrix entry";
-
-          list explicit-path {
-            key "tp-id";
-            description
-              "List of TPs within a network topology that form a
-               path.";
-            leaf tp-id {
-              type leafref {
-                path "/nw:networks/nw:network/nw:node"+
-                     "/nt:termination-point/nt:tp-id";
-              }
-              description
-                "Relative reference to TP id.";
-            }
+                 description
+                   "Node identifier.";
+               }
+             }
+             case link-hop {
+               leaf link-id {
+                 type nt:link-id;
+                 description
+                   "Link identifier.";
+               }
+             }
+             case tp-hop {
+               leaf tp-id {
+                 type nt:tp-id;
+                 description
+                   "Termination Point (TP) identifier.";
+               }
+             }
+           }
           }
         }
 
@@ -995,28 +1040,31 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
           description
             "Defines the Network Slice topology type.";
           container network-slice {
-            presence "Indicates Network Slice topology";
+            presence "Indicates a Network Slice topology";
             description
               "Its presence identifies the Network Slice type.";
           }
         }
 
         /* network topology augments */
+        augment "/nw:networks/nw:network" {
+          when "./nw:network-types/ns-topo:network-slice" {
+            description
+              "Augmentation parameters apply only for networks
+               of type Network Slice topology.";
+          }
+          description
+            "SLO and SLE of the topology.";
+
+          uses ietf-nss:service-slo-sle-policy;
+        }
 
 
 
-Liu, et al.              Expires 16 August 2024                [Page 18]
+Liu, et al.              Expires 20 August 2024                [Page 19]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
-
-        augment "/nw:networks/nw:network" {
-          when "./nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
-          }
-          description "Augment topology configuration and state.";
-          uses ietf-nss:service-slo-sle-policy;
-        }
 
         augment "/nw:networks/nw:network" +
                 "/ns-topo:slo-sle-policy" +
@@ -1025,18 +1073,26 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ns-topo:sle-policy" +
                 "/ns-topo:steering-constraints" {
           when "../../../nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
+            description
+              "Augmentation parameters apply only for networks
+               of type Network Slice topology.";
           }
-          description "Augment topology configuration and state.";
+          description
+            "Steering constraints for the topology.";
+
           uses ns-topo-steering-constraints;
         }
 
         /* network node augments */
         augment "/nw:networks/nw:network/nw:node" {
           when "../nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
+            description
+              "Augmentation parameters apply only for networks
+               of type Network Slice topology.";
           }
-          description "Augment node configuration and state.";
+          description
+            "SLO and SLE for nodes.";
+
           uses ietf-nss:service-slo-sle-policy;
         }
 
@@ -1047,29 +1103,34 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ns-topo:sle-policy" +
                 "/ns-topo:steering-constraints" {
           when "../../../../nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
+            description
+              "Augmentation parameters apply only for networks
+               of type Network Slice topology.";
           }
           description
-          "Augment IETF network slice services to include steering
-             constraints for nodes.";
+            "Steering constraints for nodes.";
+
           uses ns-topo-steering-constraints;
         }
 
         /* network node's termination point augments */
-        augment "/nw:networks/nw:network/nw:node" +
-                "/nt:termination-point" {
 
 
 
-Liu, et al.              Expires 16 August 2024                [Page 19]
+Liu, et al.              Expires 20 August 2024                [Page 20]
 
 Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
+        augment "/nw:networks/nw:network/nw:node" +
+                "/nt:termination-point" {
           when "../../nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
+            description
+              "Augmentation parameters apply only for networks
+               of type Network Slice topology.";
           }
-          description "Augment node configuration and state.";
+          description
+            "SLO and SLE for termination points.";
 
         uses ietf-nss:service-slo-sle-policy;
         }
@@ -1077,9 +1138,13 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
         /* network link augments */
         augment "/nw:networks/nw:network/nt:link" {
           when "../nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
+            description
+              "Augmentation parameters apply only for networks
+               of type Network Slice topology.";
           }
-          description "Augment link configuration and state.";
+          description
+            "SLO and SLE for links.";
+
           uses ietf-nss:service-slo-sle-policy;
         }
 
@@ -1090,12 +1155,14 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ns-topo:sle-policy" +
                 "/ns-topo:steering-constraints" {
           when "../../../../nw:network-types/ns-topo:network-slice" {
-            description "Augment only for Network Slice topology.";
+            description
+              "Augmentation parameters apply only for networks
+               of type Network Slice topology.";
           }
+
           description
-          "Augment IETF network slice services to include steering
-             constraints for links within a resource-based transport
-             network slice.";
+          "Steering constraints for links.";
+
           uses ns-topo-steering-constraints;
         }
 
@@ -1103,10 +1170,18 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ietf-nss:slo-sle-templates" +
                 "/ietf-nss:slo-sle-template" +
                 "/ietf-nss:sle-policy" +
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 21]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
                 "/ietf-nss:steering-constraints" {
           description
-             "Augment IETF network slice service templates with
-                      technology-specific steering constraints.";
+              "Steering constraints for network slice service
+               templates.";
 
           uses ns-topo-steering-constraints;
         }
@@ -1114,22 +1189,12 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
         augment "/ietf-nss:network-slice-services" +
                 "/ietf-nss:slice-service" +
                 "/ietf-nss:slo-sle-policy" +
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 20]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                 "/ietf-nss:custom" +
                 "/ietf-nss:service-slo-sle-policy" +
                 "/ietf-nss:sle-policy" +
                 "/ietf-nss:steering-constraints" {
           description
-            "Augment IETF network slice services to include steering
-            constraints for connectivity-based transport network
-            slices.";
+              "Steering constraints for network slice services.";
 
           uses ns-topo-steering-constraints;
         }
@@ -1145,9 +1210,9 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ietf-nss:sle-policy" +
                 "/ietf-nss:steering-constraints" {
           description
-            "Augment IETF network slice services to include steering
-            constraints for connectivity-constructs within a
-            connectivity-based transport network slice.";
+            "Steering constraints for connectivity-constructs
+             within a network slice.";
+
           uses ns-topo-steering-constraints;
         }
 
@@ -1161,23 +1226,23 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ietf-nss:sle-policy" +
                 "/ietf-nss:steering-constraints" +
                 "/ietf-nss:path-constraints" {
-          description
-            "Add toplogy id and explicit path to the connection group";
 
-          uses topology-ref;
+
+
+Liu, et al.              Expires 20 August 2024                [Page 22]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
+          description
+            "Underlay path for connection group.";
+
+          uses underlay-path;
         }
 
         augment "/ietf-nss:network-slice-services" +
                 "/ietf-nss:slice-service" +
                 "/ietf-nss:connection-groups" +
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 21]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                 "/ietf-nss:connection-group" +
                 "/ietf-nss:connectivity-construct" +
                 "/ietf-nss:slo-sle-policy" +
@@ -1186,9 +1251,9 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ietf-nss:sle-policy" +
                 "/ietf-nss:steering-constraints" {
           description
-            "Augment IETF network slice services to include steering
-            constraints for connectivity-constructs within a
-            connectivity-based transport network slice.";
+            "Steering constraints connectivity constructs
+             within a network slice.";
+
           uses ns-topo-steering-constraints;
         }
 
@@ -1204,10 +1269,36 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ietf-nss:steering-constraints" +
                 "/ietf-nss:path-constraints" {
           description
-            "Add toplogy id and explicit path to the connectivity
-                     construct";
+            "Underlay path for connection group.";
 
-          uses topology-ref;
+          uses underlay-path;
+        }
+
+        augment "/ietf-nss:network-slice-services" +
+                "/ietf-nss:slice-service" +
+                "/ietf-nss:connection-groups" +
+                "/ietf-nss:connection-group" +
+                "/ietf-nss:connectivity-construct" +
+                "/ietf-nss:type" +
+                "/ietf-nss:a2a" +
+                "/ietf-nss:a2a-sdp" +
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 23]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
+                "/ietf-nss:slo-sle-policy" +
+                "/ietf-nss:custom" +
+                "/ietf-nss:service-slo-sle-policy" +
+                "/ietf-nss:sle-policy" +
+                "/ietf-nss:steering-constraints" {
+          description
+            "Steering constraints for a2a connectivity-constructs.";
+
+          uses ns-topo-steering-constraints;
         }
 
         augment "/ietf-nss:network-slice-services" +
@@ -1222,41 +1313,12 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                 "/ietf-nss:custom" +
                 "/ietf-nss:service-slo-sle-policy" +
                 "/ietf-nss:sle-policy" +
-                "/ietf-nss:steering-constraints" {
-          description
-            "Augment IETF network slice services to include steering
-            constraints for a2a connectivity-constructs within a
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 22]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
-            connectivity-based transport network slice.";
-          uses ns-topo-steering-constraints;
-        }
-
-        augment "/ietf-nss:network-slice-services" +
-                "/ietf-nss:slice-service" +
-                "/ietf-nss:connection-groups" +
-                "/ietf-nss:connection-group" +
-                "/ietf-nss:connectivity-construct" +
-                "/ietf-nss:type" +
-                "/ietf-nss:a2a" +
-                "/ietf-nss:a2a-sdp" +
-                "/ietf-nss:slo-sle-policy" +
-                "/ietf-nss:custom" +
-                "/ietf-nss:service-slo-sle-policy" +
-                "/ietf-nss:sle-policy" +
                 "/ietf-nss:steering-constraints" +
                 "/ietf-nss:path-constraints" {
           description
-            "Add toplogy id and explicit path to a2a connectivity
-                     construct";
+            "Underlay path for a2a connectivity constructs.";
 
-          uses topology-ref;
+          uses underlay-path;
         }
       }
    <CODE ENDS>
@@ -1274,6 +1336,16 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
    conflicts.  The access to slice management functions will only be
    permitted after successful security checks.
 
+
+
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 24]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
 8.  Security Considerations
 
    The YANG module specified in this document defines a schema for data
@@ -1282,14 +1354,6 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
    is the secure transport layer, and the mandatory-to-implement secure
    transport is Secure Shell (SSH) [RFC6242].  The lowest RESTCONF layer
    is HTTPS, and the mandatory-to-implement secure transport is TLS
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 23]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
    [RFC8446].
 
    The NETCONF access control model [RFC8341] provides the means to
@@ -1330,6 +1394,14 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
       prefix: ns-topo
       reference: RFC XXXX
 
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 25]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
 10.  References
 
 10.1.  Normative References
@@ -1337,14 +1409,6 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/info/rfc3688>.
-
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 24]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
 
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
@@ -1385,6 +1449,15 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/info/rfc8341>.
 
+
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 26]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
               (NMDA)", RFC 8342, DOI 10.17487/RFC8342, March 2018,
@@ -1394,13 +1467,6 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
               2018, <https://www.rfc-editor.org/info/rfc8345>.
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 25]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
@@ -1441,6 +1507,13 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
               otn-topo-yang-17>.
 
+
+
+Liu, et al.              Expires 20 August 2024                [Page 27]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
    [I-D.ietf-ccamp-yang-otn-slicing]
               Guo, A., Contreras, L. M., Belotti, S., Rokui, R., Xu, Y.,
               Zhao, Y., and X. Liu, "Framework and Data Model for OTN
@@ -1448,15 +1521,6 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
               ietf-ccamp-yang-otn-slicing-06, 24 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
               yang-otn-slicing-06>.
-
-
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 26]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
 
    [I-D.ietf-teas-actn-vn-yang]
               Lee, Y., Dhody, D., Ceccarelli, D., Bryskin, I., and B. Y.
@@ -1498,21 +1562,19 @@ Appendix A.  Acknowledgments
 
 Appendix B.  Data Tree for the Example in Section 3
 
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 28]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
 B.1.  Native Topology
 
    This section contains an example of an instance data tree in the JSON
    encoding [RFC7951].  The example instantiates "ietf-network" for the
    topology of Network Slice Blue depicted in Figure 2.
-
-
-
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 27]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -1556,20 +1618,20 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                        "ietf-network-slice-service:service-traffic-iso\
    lation"
                      }
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 29]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
                    ]
                  }
                },
                "ietf-network-topology:termination-point": [
                  {
                    "tp-id": "3-1-1"
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 28]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                  },
                  {
                    "tp-id": "3-5-1"
@@ -1612,20 +1674,20 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                        {
                          "metric-type": "ietf-network-slice-service:se\
    rvice-slo-two-way-delay",
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 30]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
                          "metric-unit": "ms",
                          "bound": 60
                        }
                      ]
                    }
                  },
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 29]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                  "sle-policy": {
                    "isolation": [
                      {
@@ -1668,20 +1730,20 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
              {
                "link-id": "VR1,1-3-1,VR3,3-1-1",
                "source": {
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 31]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
                  "source-node": "VR1",
                  "source-tp": "1-3-1"
                },
                "destination": {
                  "dest-node": "VR3",
                  "dest-tp": "3-1-1"
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 30]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                },
                "ietf-ns-topo:service-slo-sle-policy": {
                  "slo-policy": {
@@ -1724,20 +1786,20 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                          "metric-type": "ietf-network-slice-service:se\
    rvice-slo-two-way-delay",
                          "metric-unit": "ms",
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 32]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
                          "bound": 30
                        }
                      ]
                    }
                  },
                  "sle-policy": {
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 31]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                    "isolation": [
                      {
                        "ietf-network-slice-service:service-traffic-iso\
@@ -1780,20 +1842,20 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
                  }
                }
              },
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 33]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
              {
                "link-id": "VR5,5-3-1,VR3,3-5-1",
                "source": {
                  "source-node": "VR5",
                  "source-tp": "5-3-1"
                },
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 32]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                "destination": {
                  "dest-node": "VR3",
                  "dest-tp": "3-5-1"
@@ -1836,20 +1898,20 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
    rvice-slo-two-way-delay",
                          "metric-unit": "ms",
                          "bound": 25
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 34]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
                        }
                      ]
                    }
                  },
                  "sle-policy": {
                    "isolation": [
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 33]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
                      {
                        "ietf-network-slice-service:service-traffic-iso\
    lation"
@@ -1892,20 +1954,20 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
              "sle-policy": {
                "isolation": [
                  {
+
+
+
+Liu, et al.              Expires 20 August 2024                [Page 35]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
                    "ietf-network-slice-service:service-traffic-isolati\
    on"
                  }
                ]
              }
            }
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 34]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
-
-
          }
        ]
      }
@@ -1949,17 +2011,17 @@ Authors' Addresses
    Email: Sergio.belotti@nokia.com
 
 
+
+
+Liu, et al.              Expires 20 August 2024                [Page 36]
+
+Internet-Draft      Network Slice Topology Data Model      February 2024
+
+
    Reza Rokui
    Ciena
 
    Email: rrokui@ciena.com
-
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 35]
-
-Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
    Aihua Guo
@@ -2007,10 +2069,4 @@ Internet-Draft      Network Slice Topology Data Model      February 2024
 
 
 
-
-
-
-
-
-
-Liu, et al.              Expires 16 August 2024                [Page 36]
+Liu, et al.              Expires 20 August 2024                [Page 37]
