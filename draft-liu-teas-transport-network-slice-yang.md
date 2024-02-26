@@ -166,8 +166,8 @@ author:
    - Abstract Topology:
        A topology exposed to the customer by the network slice service
 	   provider prior to the creation of network slices. The provider
-	   uses an abstract topology to expose useful information, such
-	   as available resources to the customer, which can facilitate
+	   may optionally uses an abstract topology to expose useful information,
+       such as available resources to the customer, which can facilitate
 	   the build-up of customer intent topologies by the customer.
 	   
    - NRP Topology:
