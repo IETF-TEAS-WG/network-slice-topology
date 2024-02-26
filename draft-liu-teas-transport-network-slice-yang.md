@@ -82,8 +82,8 @@ author:
    control over resource allocation timing and methods, customer intent topologies
    ensure that resources are consistently available. Moreover, the resources
    reserved via customer intent topologies can be shared across network slices created
-   at different times or between different connections within the same slice.
-   Compared to network slices with dedicated full-mesh connections between
+   at different times or between different connectivity constructs within the same slice.
+   Compared to network slices with dedicated full-mesh connectivity constructs between
    endpoints, network slices utilizing customer intent topologies can reduce overall
    resource requirements, offering significant economic benefits to the customer.
 
@@ -94,12 +94,12 @@ author:
    a shared link, we proactively reserve resources for the shared connection.
    This ensures that bandwidth is readily available whenever the customer requires
    it. In contrast, achieving equivalent bandwidth assurance through individual
-   dedicated connections would necessitate creating separate links between each
+   dedicated connectivity constructs would necessitate creating separate links between each
    spoke and the hub, which would lead to substantial bandwidth inefficiency.
    
    Customer intent topology complements connectivity-based network slicing by providing
-   customers a mechanism to to specify additional underlay service paths to gain
-   extensive control over specific or all connections within the network slice,
+   customers a mechanism to specify additional underlay service paths to gain
+   extensive control over specific or all connectivity constructs within the network slice,
    as outlined in {{?I-D.ietf-teas-ietf-network-slices}}.
 
    A customer intent topology embodies the customer’s intent and is defined within
@@ -325,8 +325,7 @@ Please remove this note.
    Network slices can be abstracted in various ways, depending on the specific
    requirements of the network slice customer. For instance, a customer might
    request a network slice with direct connectivity between pairs of Service
-   Demarcation Points (SDPs). Within this network slice, each connection could
-   be further supported by an end-to-end tunnel that follows a specific path
+   Demarcation Points (SDPs). Within this network slice, each connectivity construct could be further supported by an end-to-end tunnel that follows a specific path
    defined in a customer intent topology, which the customer provides. The 
    resources associated with each link are immediately commissioned during
    the network slice configuration process.
@@ -365,13 +364,7 @@ Please remove this note.
    negotiations between the customer and the provider. The process and the data models
    for the provider to expose abstract topologies are outside the scope of this document. 
 
-   The provider communicates the operational state of the topology, reflecting the
-   allocated resources that result from negotiations between the customer and the
-   provider. Subsequently, customers can process the requested topology and seamlessly
-   integrate it into their own network topology. Importantly, this relationship between
-   the customer and provider can be recursive. For instance, a customer who requests
-   network slices can also serve as a provider, offering network slice services to
-   its own customers further up the hierarchy.
+   The provider communicates the operational state of the customer intent topology, reflecting the allocated resources that result from negotiations between the customer and the provider. Subsequently, customers can process the requested customer intent topology and seamlessly integrate it into their own network topology. Importantly, this relationship between the customer and provider can be recursive. For instance, a customer who requests network slices can also serve as a provider, offering network slice services to its own customers further up the hierarchy.
 
    As an example, Appendix B. shows the JSON encoded data instances of
    the customer topology intent for Network Slice Blue.

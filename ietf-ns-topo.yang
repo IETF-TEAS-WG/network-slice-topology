@@ -331,7 +331,7 @@
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-         "Steering constraints connectivity constructs
+         "Steering constraints for connectivity constructs
           within a network slice.";
 
        uses ns-topo-steering-constraints;
