@@ -120,10 +120,17 @@ module: ietf-ns-topo
             /ietf-nss:slo-sle-policy/ietf-nss:custom
             /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
             /ietf-nss:steering-constraints/ietf-nss:path-constraints:
-    +--rw topology-id?     -> /nw:networks/network/network-id
-    +--rw explicit-path* [tp-id]
-       +--rw tp-id
-               -> /nw:networks/network/node/nt:termination-point/tp-id
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id
   augment /ietf-nss:network-slice-services/ietf-nss:slice-service
             /ietf-nss:connection-groups/ietf-nss:connection-group
             /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
@@ -136,10 +143,17 @@ module: ietf-ns-topo
             /ietf-nss:custom/ietf-nss:service-slo-sle-policy
             /ietf-nss:sle-policy/ietf-nss:steering-constraints
             /ietf-nss:path-constraints:
-    +--rw topology-id?     -> /nw:networks/network/network-id
-    +--rw explicit-path* [tp-id]
-       +--rw tp-id
-               -> /nw:networks/network/node/nt:termination-point/tp-id
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id
   augment /ietf-nss:network-slice-services/ietf-nss:slice-service
             /ietf-nss:connection-groups/ietf-nss:connection-group
             /ietf-nss:connectivity-construct/ietf-nss:type
@@ -154,7 +168,14 @@ module: ietf-ns-topo
             /ietf-nss:custom/ietf-nss:service-slo-sle-policy
             /ietf-nss:sle-policy/ietf-nss:steering-constraints
             /ietf-nss:path-constraints:
-    +--rw topology-id?     -> /nw:networks/network/network-id
-    +--rw explicit-path* [tp-id]
-       +--rw tp-id
-               -> /nw:networks/network/node/nt:termination-point/tp-id
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id

@@ -10,7 +10,7 @@
 <?rfc symrefs="yes"?>
 <?rfc comments="yes"?>
 
-<rfc ipr="trust200902" docName="draft-liu-teas-transport-network-slice-yang-08" category="std">
+<rfc ipr="trust200902" docName="draft-liu-teas-transport-network-slice-yang-09" category="std">
 
   <front>
     <title abbrev="Network Slice Topology Data Model">IETF Network Slice Topology YANG Data Model</title>
@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date year="2024" month="January" day="25"/>
+    <date year="2024" month="February" day="27"/>
 
     
     <workgroup>TEAS Working Group</workgroup>
@@ -79,15 +79,15 @@
     <abstract>
 
 
-<t>An IETF network slice may use a customized topology to describe intended
-   resource reservation for connectivities between slice endpoints. Customized
-   topologies enable customers to request shared resources among connections activated
-   on demand and to customize the service paths in a network slice with 
-   an extensive level of control.</t>
+<t>An IETF network slice customer may utilize intent-based topologies to
+   express resource reservation intentions within the provider’s network.
+   These customer-defined intent topologies allow customers to request
+   shared resources for future connections that can be flexibly allocated
+   and customized. Additionally, they provide an extensive level of control
+   over underlay service paths within the network slice.</t>
 
-<t>This document describes a YANG data model for managing and
-   controlling customized topologies for IETF network slices defined in
-   RFC YYYY.</t>
+<t>This document describes a YANG data model for configuring customer intent
+   topologies for network slices using IETF technologies defined in RFC YYYY.</t>
 
 <t>[RFC EDITOR NOTE: Please replace RFC YYYY with the RFC number of
    draft-ietf-teas-ietf-network-slices once it has been published.</t>
@@ -104,60 +104,73 @@
 
 <section anchor="introduction"><name>Introduction</name>
 
-<t><xref target="I-D.ietf-teas-ietf-network-slices"/> describes that an IETF network
-   slice service customer might ask for some level of control, e.g., 
-   to customize the service paths while requesting network slice services.
-   These customized controls may well be expressed by customer-defined 
-   topologies, i.e. customized topologies.</t>
+<t>Network service providers utilize topologies to convey controlled information
+   about their networks, such as bandwidth availability and connectivity, 
+   with customers, to facilitates customer service requests. Customers can also
+   define intent-based topologies to streamline their internal operations. When
+   requesting provider support for such custom topologies, they are considered
+   as customer intent topologies.</t>
 
-<t>Furthermore, by using customized topologies, customers can request advanced
-   resource reservation for all potential network slices that can be activated 
-   on demand in the future. This capability provides customers with full control
-   over when and how resources are allocated by the slices. The resources can be
-   shared by network slices created at different times as well as by connections
-   between different edge pairs within the same network slice. This could significantly
-   reduce the overall bandwidth requirements of a network slice and provide economic
-   advantages to the customer.</t>
+<t>In the context of network slicing, customer intent topologies enables customers
+   to express resource reservation preferences. These topologies allow flexible
+   configuration and activation of network slices on demand. By providing full
+   control over resource allocation timing and methods, customer intent topologies
+   ensure that resources are consistently available. Moreover, the resources
+   reserved via customer intent topologies can be shared across network slices created
+   at different times or between different connectivity constructs within the same slice.
+   Compared to network slices with dedicated full-mesh connectivity constructs between
+   endpoints, network slices utilizing customer intent topologies can reduce overall
+   resource requirements, offering significant economic benefits to the customer.</t>
 
-<t>For example, in a hub-and-spoke network slice scenario, multiple customer's 
-   spoke sites are expected to be dynamically connected to the hub site and the 
-   bandwidth is shared between the spoke sites. To create a customized topology with 
-   two virtual nodes, one representing all the spoke sites and the other representing 
-   the hub site, connected by a shared link between the two, can ensure that resources 
-   for the shared connection are reserved in advance and hence are readily 
-   available whenever needed by the customer. On the other hand, to achieve the same level
-   of bandwidth assurance with connections, it would be necessary to create separate, 
-   dedicated connections between every spoke and the hub. However, this would result 
-   in significant waste of bandwidth.</t>
+<t>Consider a hub-and-spoke network slice scenario where multiple customer spoke
+   sites dynamically connect to a central hub site, sharing available bandwidth.
+   By designing a customer intent topology with two virtual nodes - one representing
+   all the spoke sites and the other representing the hub site - connected via
+   a shared link, we proactively reserve resources for the shared connection.
+   This ensures that bandwidth is readily available whenever the customer requires
+   it. In contrast, achieving equivalent bandwidth assurance through individual
+   dedicated connectivity constructs would necessitate creating separate links between each
+   spoke and the hub, which would lead to substantial bandwidth inefficiency.</t>
 
-<t>This document defines a YANG <xref target="RFC7950"/> data model for representing,
-   managing, and controlling IETF network slices over customized
-   network topologies, where the network slices are defined
-   in <xref target="I-D.ietf-teas-ietf-network-slices"/>. The YANG model augments
-   the data model defined in <xref target="RFC8345"/> to enable a customer to 
-   express desired service-level objectives (SLOs) and service-level expectations (SLEs)
-   over various constructs within the customized topology.</t>
+<t>Customer intent topology complements connectivity-based network slicing by providing
+   customers a mechanism to specify additional underlay service paths to gain
+   extensive control over specific or all connectivity constructs within the network slice,
+   as outlined in <xref target="I-D.ietf-teas-ietf-network-slices"/>.</t>
 
-<t>The defined data model is an interface between customers and
-   providers for configurations and state retrievals, so as to support
-   network slicing as a service.  Through this model, a customer can request or 
-   negotiate with a network slicing provider to create an instance. The customer can 
-   incrementally update its requirements on individual topology elements in the slice
-   instance, e.g., adding or removing a node or link, updating desired bandwidth of 
-   a link, and retrieve the operational states of these elements. With the help of 
-   other mechanisms and data models defined in IETF, the telemetry information can 
-   be published to the customer, too.</t>
+<t>A customer intent topology embodies the customer’s intent and is defined within
+   their context. It can include pure customer information or refer to network
+   resources identifiable within the provider’s context. There is a minimum
+   level of a-prior shared knowledge between the customer and the provider,
+   and this is the same information needed to supported connectivity-based
+   network slice services as desdribed in <xref target="I-D.ietf-teas-ietf-network-slices"/>.
+   The provider’s responsibility lies in understanding and translating the
+   customer intent topology into suitable realizations within their domain.</t>
 
-<t>The YANG model defines constructs that are technology-agnostic to network slicing
-   built on network layers with different technologies such as IP/MPLS, MPLS-TP, 
-   OTN and WDM optical. Therefore, this model can serve as a common and base model
-   on which technology-specific models for network slicing, such as 
-   <xref target="I-D.ietf-ccamp-yang-otn-slicing"/>, may be built.</t>
+<t>This document introduces a YANG data model, based on <xref target="RFC7950"/>, for
+   configuring customer intent topologies. The YANG model extends the existing
+   data model from <xref target="RFC8345"/>, allowing customers to express desired
+   service-level objectives (SLOs) and service-level expectations (SLEs)
+   across different elements within the customer intent topology.</t>
 
-<t>As described in Section 3 of
-   <xref target="I-D.contreras-teas-slice-controller-models"/>, using customized topologies and 
-   control of resource reservation is optional for network slicing and complements
-   the data model defined in <xref target="I-D.ietf-teas-ietf-network-slice-nbi-yang"/>.</t>
+<t>The defined data model serves as an interface between customers and providers,
+   enabling configurations and state retrievals for network slicing as a service.
+   Customers can use this model to request or negotiate the creation of network
+   slice instances. Additionally, they can incrementally adjust requirements for
+   individual topology elements within the slice—for instance, adding or removing
+   nodes or links, updating link bandwidth—and retrieve operational states.
+   Leveraging other IETF mechanisms and data models, telemetry information can
+   also be convey to the customer.</t>
+
+<t>The YANG model encompasses constructs that are independent of specific technologies,
+   accommodating network slicing across diverse layers (including IP/MPLS, MPLS-TP,
+   OTN, and WDM optical). As a result, this model serves as a foundational framework
+   upon which technology-specific network slicing models - such as 
+   <xref target="I-D.ietf-ccamp-yang-otn-slicing"/> - can be developed.</t>
+
+<t>Section 3 of <xref target="I-D.contreras-teas-slice-controller-models"/> outlines that the use
+   of customer intent topologies and resource reservation control is optional within network
+   slicing. These features complement the data model defined in 
+   <xref target="I-D.ietf-teas-ietf-network-slice-nbi-yang"/>.</t>
 
 <t>The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) <xref target="RFC8342"/>.</t>
@@ -178,17 +191,20 @@
 <t>The following terms are defined and used in this document.</t>
 
 <t><list style="symbols">
-  <t>Customized Topology:
-  A topology defined by the customer and served as an input to the network slice 
-  service provider, i.e. to the Network Slice Controller (NSC).</t>
+  <t>Customer Intent Topology:
+  A topology defined by the customer and provided as input to the
+      network slice service provider (specifically, the Network Slice
+      Controller or NSC). It represents the customer’s desired network
+      topology.</t>
   <t>Abstract Topology:
-  A topology exposed to the customer by the network slice service provider prior to
-  the creation of network slices. The provider uses an abstract topology to expose
-  useful information, such as available resources to the customer, which can facilitate
-      the build-up of customized topologies by the customer.</t>
+  A topology exposed to the customer by the network slice service
+      provider prior to the creation of network slices. The provider
+      may optionally uses an abstract topology to expose useful information,
+  such as available resources to the customer, which can facilitate
+      the build-up of customer intent topologies by the customer.</t>
   <t>NRP Topology:
-  A topology internal to the NSC to facilitate the mapping of network slices to
-  underlying network resources.</t>
+  A topology internal to the NSC to facilitate the mapping of
+      network slices to underlying network resources.</t>
 </list></t>
 
 </section>
@@ -244,31 +260,100 @@ Please remove this note.</t>
 </section>
 <section anchor="modeling-considerations"><name>Modeling Considerations</name>
 
-<t>An IETF network slice topology is a customized topology 
+<t>An IETF network slice topology is a cusomer intent topology 
    modeled as network topology defined in <xref target="RFC8345"/>, with augmentations. 
    A new network type "network-slice" is defined in this document.<br />
    When a network topology data instance contains the network-slice 
    network type, it represents an instance of an IETF network slice 
    topology.</t>
 
-<section anchor="relationships-to-related-topology-models"><name>Relationships to Related Topology Models</name>
+<t>This data model augments the network topology model by incorporating 
+   intent-based Service-Level Objectives (SLOs) and Service-Level
+   Expectations (SLEs). These apply to various components within the
+   customer intent topology, including nodes, links, and termination points (TPs).</t>
 
-<t>There are several related YANG data models that have been defined in
-   IETF.  Some of these are:</t>
+<section anchor="relationship-with-traffic-engineering-te-based-topology"><name>Relationship with Traffic Engineering (TE)-based Topology</name>
 
-<t>Network Topology Model:
-      Defined in <xref target="RFC8345"/>.</t>
+<t>The model defined in this document can be combined through multi-inheritance
+   with other topology data models, such as Traffic Engineering (TE) topologies
+   described in <xref target="RFC8795"/> or Optical Transport Network (OTN) topologies
+   described in <xref target="I-D.ietf-ccamp-otn-topo-yang"/>. This flexibility allows
+   the creation of technology-specific customer intent topologies tailored to
+   specific network requirements.</t>
 
-<t>Network Slicing Model:
-      Defined in <xref target="I-D.ietf-teas-ietf-network-slice-nbi-yang"/>.</t>
+</section>
+<section anchor="relationship-with-service-attachment-point-sap-topology"><name>Relationship with Service Attachment Point (SAP) Topology</name>
 
-<t>OTN Slicing:
-      Defined in <xref target="I-D.ietf-ccamp-yang-otn-slicing"/>.</t>
+<t><xref target="RFC9408"/> introduces a YANG data model that represents an abstract
+   view of the provider network topology. This model includes a list of
+   Service Attachment Points (SAPs), where customer services can be
+   connected. The SAP topology is made visible to customers by the provider
+   before configuring network slice services. In contrast, the customer
+   intent topology described in this document captures a customer’s
+   intentions, while the provider acts as the recipient of these intents.
+   As a result, these two models serve distinct purposes.</t>
 
-<t><xref target="fig-model-relationship"/> shows the relationships among these models.  The box of
-   dotted lines denotes the model defined in this document.</t>
+<t>In certain scenarios, customers can leverage the SAP topology to
+   construct customer intent topologies to aid in the realization
+   of their intended network configurations. For instance, within a node
+   of a customer intent topology, the Link Termination Point (LTP)
+   identifiers may explicitly reference their supporting Termination
+   Points (TPs), which correspond to the SAPs exposed in the provider’s
+   SAP model. However, the specifics of this mechanism fall beyond the
+   scope of this document.</t>
 
-<figure title="Model Relationships" anchor="fig-model-relationship"><artwork><![CDATA[
+</section>
+<section anchor="relationship-with-actn-virtual-network-vn"><name>Relationship with ACTN Virtual Network (VN)</name>
+
+<t><xref target="RFC8453"/> and <xref target="I-D.ietf-teas-actn-vn-yang"/> introduce the concept of a Virtual
+   Network (VN), which can be presented to customers. These VNs are constructed from
+   abstractions of the underlying networks, specifically those that are 
+   traffic-engineering (TE) capable. While VNs share similarities with IETF network slicing,
+   they operate under the assumption of TE-capable networks.</t>
+
+<t>Two distinct types of VNs are defined:</t>
+
+<t><list style="symbols">
+  <t>Type 1 VN: Modeled as a single abstract node with edge-to-edge connectivity 
+between customer endpoints.</t>
+  <t>Type 2 VN: Modeled as a single abstract node with an underlay topology, allowing
+configuration of intended underlay paths for connections within the single abstract
+node.</t>
+</list></t>
+
+<t>The topologies for VNs, including both the single-node abstract topology and the
+   underlay topology, can either be mutually agreed upon between the Customer Network
+   Controller (CNC) and the Multi-Domain Service Coordinator (MDSC) prior to VN creation,
+   or they can be created as part of VN instantiation by the customer.</t>
+
+<t>In the context of network slicing, <xref target="I-D.ietf-teas-ietf-network-slices"/> defines
+   an IETF network slice as a collection of connectivity constructs between pairs of
+   Service Demarcation Points (SDPs). This concept closely resembles the Type 1 VN,
+   which is implemented as a single abstract node.</t>
+
+<t><xref target="I-D.ietf-teas-ietf-network-slice-nbi-yang"/> further elaborates on network slices
+   by incorporating references to a customer intent topology based on <xref target="RFC8345"/>. 
+   This approach aligns with the ACTN Type 2 VN, although without specifying the 
+   explicit use of such a topology.</t>
+
+<t>Consequently, the data model defined in this document serves as a complementary
+   option to the data model outlined in <xref target="I-D.ietf-teas-ietf-network-slice-nbi-yang"/>.
+   It empowers customers to define a customized intent topology specifically tailored
+   for their network slices.</t>
+
+</section>
+<section anchor="data-model-relationship"><name>Data Model Relationship</name>
+
+<t>The data model presented in this document builds upon the generic network
+   topology model defined in <xref target="RFC8345"/>. Other data models, including OTN
+   Slicing (as defined in <xref target="I-D.ietf-ccamp-yang-otn-slicing"/>), can leverage
+   this extended model.</t>
+
+<t>The relationship of the related data models is illustrated in <xref target="fig-model-relationship"/>. 
+   Within this diagram, the box outlined with dotted lines specifically represents
+   the data model defined in this document.</t>
+
+<figure title="Model Relationship" anchor="fig-model-relationship"><artwork><![CDATA[
      +----------+                 +----------+
      | Network  |                 | Network  |
      | Slice    |                 | Topology +
@@ -283,35 +368,38 @@ Please remove this note.</t>
      | Slicing  | augments        : Slice    :
      | Model    >-----------------: Topology :
      |          |                 : Model    :
-     +----------+                 ''''''''''''
+     +----------+                 :..........:
 ]]></artwork></figure>
 
 </section>
 </section>
 <section anchor="model-applicability"><name>Model Applicability</name>
 
-<t>There are many technologies to achieve network slicing.  The data
-   model defined in this document can be used to configure resource-based
-   network slices, where the resources for network slices are reserved
-   and represented in the form of a customized topology, which can then be mapped
-   to a network resource partition (NRP) according to the scenarios defined
-   in <xref target="I-D.ietf-teas-ietf-network-slices"/>.</t>
+<t>Network slicing can be achieved through various technologies. The data
+   model defined in this document serves as a means for configuring
+   resource reservation-based network slices. In this approach, resources for
+   network slices are reserved and represented using a customer intent topology.
+   This topology can then be mapped to a network resource partition (NRP)
+   and realized based on the scenarios outlined in 
+   <xref target="I-D.ietf-teas-ietf-network-slices"/>.</t>
 
-<t>Network slices may be abstracted differently depending on the requirement of 
-   the network slice customer. A customer may request a network slice with
-   direct connectivity between pairs of service demarcation points (SDPs).
-   Each connection within the network slice may be further supported by an 
-   end-to-end tunnel that traverse a specific path in a given customized topology
-   supplied by the customer. The resources associated with a link are immediately
-   commissioned by the realization at the time of network slice configuration.</t>
+<t>Network slices can be abstracted in various ways, depending on the specific
+   requirements of the network slice customer. For instance, a customer might
+   request a network slice with direct connectivity between pairs of Service
+   Demarcation Points (SDPs). Within this network slice, each connectivity construct could be further supported by an end-to-end tunnel that follows a specific path
+   defined in a customer intent topology, which the customer provides. The 
+   resources associated with each link are immediately commissioned during
+   the network slice configuration process.</t>
 
-<t>Alternatively, a customer can request resources to be reserved for
-   potential network slices through a customized topology, and use the resources
-   to build network slices in the future. The customized topology represents resources that
-   are reserved but not commissioned at the time of request. By doing so, customers can share 
-   resources between multiple endpoints and use them on demand.</t>
+<t>Alternatively, a customer can request resources to be reserved for potential
+   network slices through a customer intent topology. These reserved resources
+   are not immediately commissioned at the time of the request. Instead, they
+   serve as a pool of allocated resources that the customer can utilize to build
+   network slices in the future. By adopting this approach, customers gain the
+   flexibility to share resources across multiple endpoints and activate them
+   on demand.</t>
 
-<t>In the example shown in <xref target="fig-ns-topo-example"/>, two customized topology intents named as
+<t>In the example shown in <xref target="fig-ns-topo-example"/>, two topology intents named as
    Network Slice Blue and Network Slice Red, are created
    by separate customers and delivered to the network slice service provider.
    The provider maps the two intents to corresponding network resource partitions (NRPs)
@@ -324,24 +412,20 @@ Please remove this note.</t>
    Depending on the requirements and the implementations, they may share 
    certain resources such as processors, ASICs, and switch fabric.</t>
 
-<t>A network slice customer can configure customized topologies without any prior knowledge
-   of the provider's network and resource availability. However, this could potentially make 
-   it difficult for the provider to understand and realize the topology. Alternatively, the 
-   provider may choose to describe the available resources and capabilities as an abstract 
-   topology and expose it to the customer prior to network slice requests. This can facilitate 
-   the customer with building customized topologies and avoid unnecessary negotiations between 
-   the customer and provider.</t>
+<t>A network slice customer has the capability to configure customer intent topologies
+   without needing any prior knowledge of the provider’s network or resource
+   availability. However, this approach could potentially create challenges for
+   the provider in understanding and realizing the intended topology.</t>
 
-<t>The process and the data models for the provider to expose abstract topologies are outside
-   the scope of this document.</t>
+<t>Alternatively, the provider can choose to describe the available resources and
+   capabilities in the form of an abstract topology, which is then exposed to the
+   customer before network slice requests. By doing so, the provider empowers the
+   customer to build their customized intent topologies based on this pre-exposed
+   information. This approach streamlines the process, minimizing unnecessary
+   negotiations between the customer and the provider. The process and the data models
+   for the provider to expose abstract topologies are outside the scope of this document.</t>
 
-<t>The provider reports the operational state of the topology, which represents the allocated
-   resources agreed upon through negotiations between the customer and the provider.
-   Customers can subquently process the requested topology and integrate it into their own topology.
-   It's important to note that this relationship between the customer and provider can be recursive.
-   For example, a customer for network slices can be a provider of its own to offer
-   network slice services using customized topologies to its own customers further up
-   the hierarchy.</t>
+<t>The provider communicates the operational state of the customer intent topology, reflecting the allocated resources that result from negotiations between the customer and the provider. Subsequently, customers can process the requested customer intent topology and seamlessly integrate it into their own network topology. Importantly, this relationship between the customer and provider can be recursive. For instance, a customer who requests network slices can also serve as a provider, offering network slice services to its own customers further up the hierarchy.</t>
 
 <t>As an example, Appendix B. shows the JSON encoded data instances of
    the customer topology intent for Network Slice Blue.</t>
@@ -403,15 +487,18 @@ Please remove this note.</t>
 
 </section>
 <section anchor="yang-model-overview"><name>YANG Model Overview</name>
-<t>The following constructs and attributes are defined within the YANG model:</t>
+
+<t>Within the YANG model, the following constructs and attributes are defined:</t>
 
 <t><list style="symbols">
-  <t>Network topology, which represent set of shared, reserved resources organized as a virtual 
- topology between all of the endpoints. A customer could use such network topology
- to define detailed connectivity path traversing the topology, and allow sharing of 
- resources between its multiple endpoint pairs.</t>
-  <t>Service-level objectives (SLOs) associated with different objects, including node, link, 
-termination point of the topology.</t>
+  <t>Network Topology: This represents a set of shared and reserved resources,
+   organized as a virtual topology connecting all endpoints. Customers can utilize
+   this network topology to define detailed connectivity paths traversing the
+   topology. Additionally, it enables resource sharing between different endpoints.</t>
+  <t>Service-Level Objectives (SLOs): These objectives are associated with
+   various objects within the topology, including nodes, links, and termination
+   points. SLOs provide guidelines for achieving specific performance or quality
+   targets.</t>
 </list></t>
 
 </section>
@@ -540,10 +627,17 @@ module: ietf-ns-topo
             /ietf-nss:slo-sle-policy/ietf-nss:custom
             /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
             /ietf-nss:steering-constraints/ietf-nss:path-constraints:
-    +--rw topology-id?     -> /nw:networks/network/network-id
-    +--rw explicit-path* [tp-id]
-       +--rw tp-id
-               -> /nw:networks/network/node/nt:termination-point/tp-id
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id
   augment /ietf-nss:network-slice-services/ietf-nss:slice-service
             /ietf-nss:connection-groups/ietf-nss:connection-group
             /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
@@ -556,10 +650,17 @@ module: ietf-ns-topo
             /ietf-nss:custom/ietf-nss:service-slo-sle-policy
             /ietf-nss:sle-policy/ietf-nss:steering-constraints
             /ietf-nss:path-constraints:
-    +--rw topology-id?     -> /nw:networks/network/network-id
-    +--rw explicit-path* [tp-id]
-       +--rw tp-id
-               -> /nw:networks/network/node/nt:termination-point/tp-id
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id
   augment /ietf-nss:network-slice-services/ietf-nss:slice-service
             /ietf-nss:connection-groups/ietf-nss:connection-group
             /ietf-nss:connectivity-construct/ietf-nss:type
@@ -574,10 +675,17 @@ module: ietf-ns-topo
             /ietf-nss:custom/ietf-nss:service-slo-sle-policy
             /ietf-nss:sle-policy/ietf-nss:steering-constraints
             /ietf-nss:path-constraints:
-    +--rw topology-id?     -> /nw:networks/network/network-id
-    +--rw explicit-path* [tp-id]
-       +--rw tp-id
-               -> /nw:networks/network/node/nt:termination-point/tp-id
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id
 ]]></artwork></figure>
 
 </section>
@@ -681,36 +789,52 @@ module: ietf-ns-topo
        }
      }
 
-     grouping topology-ref {
+     grouping underlay-path {
        description
-         "Grouping for network topology reference.";
-       leaf topology-id {
-         type leafref {
-           path "/nw:networks/nw:network/nw:network-id";
-         }
-         description
-           "Relative reference to network slice topology id.";
-       }
-       uses explicit-path;
-     }
+         "Underlay explicit path within a customer intent
+          topology.";
+                 
+       uses nw:network-ref;
 
-     grouping explicit-path {
-       description
-         "Explicit path for a connectivity matrix entry";
-
-       list explicit-path {
-         key "tp-id";
-         description
-           "List of TPs within a network topology that form a
-            path.";
-         leaf tp-id {
-           type leafref {
-             path "/nw:networks/nw:network/nw:node"+
-                  "/nt:termination-point/nt:tp-id";
-           }
-           description
-             "Relative reference to TP id.";
-         }
+       list path-element {
+        key "index";
+        description
+          "List of path elements.";
+        leaf index {
+          type uint32;
+          description
+            "Index of the hop within the underlay path.";
+        }
+        leaf is-strict-hop {
+              type boolean;
+              description
+                "Indicate whether the hop is strict or loose";
+        }
+        choice type {
+          description
+            "Type of the hop.";
+          case node-hop {
+            leaf node-id {
+              type nw:node-id;
+              description
+                "Node identifier.";
+            }
+          }
+          case link-hop {
+            leaf link-id {
+              type nt:link-id;
+              description
+                "Link identifier.";
+            }
+          }
+          case tp-hop {
+            leaf tp-id {
+              type nt:tp-id;
+              description
+                "Termination Point (TP) identifier.";
+            }
+          }
+        }
        }
      }
 
@@ -722,7 +846,7 @@ module: ietf-ns-topo
        description
          "Defines the Network Slice topology type.";
        container network-slice {
-         presence "Indicates Network Slice topology";
+         presence "Indicates a Network Slice topology";
          description
            "Its presence identifies the Network Slice type.";
        }
@@ -731,9 +855,13 @@ module: ietf-ns-topo
      /* network topology augments */
      augment "/nw:networks/nw:network" {
        when "./nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment topology configuration and state.";
+       description
+         "SLO and SLE of the topology.";
+
        uses ietf-nss:service-slo-sle-policy;
      }
 
@@ -744,18 +872,26 @@ module: ietf-ns-topo
              "/ns-topo:sle-policy" +
              "/ns-topo:steering-constraints" {
        when "../../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment topology configuration and state.";
+       description
+         "Steering constraints for the topology.";
+
        uses ns-topo-steering-constraints;
      }
 
      /* network node augments */
      augment "/nw:networks/nw:network/nw:node" {
        when "../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment node configuration and state.";
+       description
+         "SLO and SLE for nodes.";
+
        uses ietf-nss:service-slo-sle-policy;
      }
 
@@ -766,11 +902,13 @@ module: ietf-ns-topo
              "/ns-topo:sle-policy" +
              "/ns-topo:steering-constraints" {
        when "../../../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
        description
-       "Augment IETF network slice services to include steering
-          constraints for nodes.";
+         "Steering constraints for nodes.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -778,9 +916,12 @@ module: ietf-ns-topo
      augment "/nw:networks/nw:network/nw:node" +
              "/nt:termination-point" {
        when "../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment node configuration and state.";
+       description
+         "SLO and SLE for termination points.";
      
      uses ietf-nss:service-slo-sle-policy;
      }
@@ -788,9 +929,13 @@ module: ietf-ns-topo
      /* network link augments */
      augment "/nw:networks/nw:network/nt:link" {
        when "../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
-       description "Augment link configuration and state.";
+       description
+         "SLO and SLE for links.";
+
        uses ietf-nss:service-slo-sle-policy;
      }
 
@@ -801,12 +946,14 @@ module: ietf-ns-topo
              "/ns-topo:sle-policy" +
              "/ns-topo:steering-constraints" {
        when "../../../../nw:network-types/ns-topo:network-slice" {
-         description "Augment only for Network Slice topology.";
+         description
+           "Augmentation parameters apply only for networks
+            of type Network Slice topology.";
        }
+
        description
-       "Augment IETF network slice services to include steering
-          constraints for links within a resource-based transport
-          network slice.";
+       "Steering constraints for links.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -816,8 +963,8 @@ module: ietf-ns-topo
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-          "Augment IETF network slice service templates with
-                   technology-specific steering constraints.";
+           "Steering constraints for network slice service
+            templates.";
   
        uses ns-topo-steering-constraints;
      }
@@ -830,9 +977,7 @@ module: ietf-ns-topo
              "/ietf-nss:sle-policy" + 
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for connectivity-based transport network
-         slices.";
+           "Steering constraints for network slice services.";
           
        uses ns-topo-steering-constraints;
      }
@@ -848,9 +993,9 @@ module: ietf-ns-topo
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for connectivity-constructs within a
-         connectivity-based transport network slice.";
+         "Steering constraints for connectivity-constructs
+          within a network slice.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -865,9 +1010,9 @@ module: ietf-ns-topo
              "/ietf-nss:steering-constraints" +
              "/ietf-nss:path-constraints" {
        description
-         "Add toplogy id and explicit path to the connection group";
+         "Underlay path for connection group.";
 
-       uses topology-ref;
+       uses underlay-path;
      }
 
      augment "/ietf-nss:network-slice-services" +
@@ -881,9 +1026,9 @@ module: ietf-ns-topo
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for connectivity-constructs within a
-         connectivity-based transport network slice.";
+         "Steering constraints for connectivity constructs
+          within a network slice.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -899,10 +1044,9 @@ module: ietf-ns-topo
              "/ietf-nss:steering-constraints" +
              "/ietf-nss:path-constraints" {
        description
-         "Add toplogy id and explicit path to the connectivity
-                  construct";
+         "Underlay path for connection group.";
 
-       uses topology-ref;
+       uses underlay-path;
      }
 
      augment "/ietf-nss:network-slice-services" +
@@ -919,9 +1063,8 @@ module: ietf-ns-topo
              "/ietf-nss:sle-policy" +
              "/ietf-nss:steering-constraints" {
        description
-         "Augment IETF network slice services to include steering
-         constraints for a2a connectivity-constructs within a
-         connectivity-based transport network slice.";
+         "Steering constraints for a2a connectivity-constructs.";
+
        uses ns-topo-steering-constraints;
      }
 
@@ -940,10 +1083,9 @@ module: ietf-ns-topo
              "/ietf-nss:steering-constraints" +
              "/ietf-nss:path-constraints" {
        description
-         "Add toplogy id and explicit path to a2a connectivity
-                  construct";
-
-       uses topology-ref;
+         "Underlay path for a2a connectivity constructs.";
+ 
+       uses underlay-path;
      }
    }
    <CODE ENDS>
@@ -1121,6 +1263,40 @@ module: ietf-ns-topo
   <seriesInfo name='DOI' value='10.17487/RFC8795'/>
 </reference>
 
+<reference anchor='RFC9408' target='https://www.rfc-editor.org/info/rfc9408'>
+  <front>
+    <title>A YANG Network Data Model for Service Attachment Points (SAPs)</title>
+    <author fullname='M. Boucadair' initials='M.' role='editor' surname='Boucadair'/>
+    <author fullname='O. Gonzalez de Dios' initials='O.' surname='Gonzalez de Dios'/>
+    <author fullname='S. Barguil' initials='S.' surname='Barguil'/>
+    <author fullname='Q. Wu' initials='Q.' surname='Wu'/>
+    <author fullname='V. Lopez' initials='V.' surname='Lopez'/>
+    <date month='June' year='2023'/>
+    <abstract>
+      <t>This document defines a YANG data model for representing an abstract view of the provider network topology that contains the points from which its services can be attached (e.g., basic connectivity, VPN, network slices). Also, the model can be used to retrieve the points where the services are actually being delivered to customers (including peer networks).</t>
+      <t>This document augments the 'ietf-network' data model defined in RFC 8345 by adding the concept of Service Attachment Points (SAPs). The SAPs are the network reference points to which network services, such as Layer 3 Virtual Private Network (L3VPN) or Layer 2 Virtual Private Network (L2VPN), can be attached. One or multiple services can be bound to the same SAP. Both User-to-Network Interface (UNI) and Network-to-Network Interface (NNI) are supported in the SAP data model.</t>
+    </abstract>
+  </front>
+  <seriesInfo name='RFC' value='9408'/>
+  <seriesInfo name='DOI' value='10.17487/RFC9408'/>
+</reference>
+
+<reference anchor='RFC8453' target='https://www.rfc-editor.org/info/rfc8453'>
+  <front>
+    <title>Framework for Abstraction and Control of TE Networks (ACTN)</title>
+    <author fullname='D. Ceccarelli' initials='D.' role='editor' surname='Ceccarelli'/>
+    <author fullname='Y. Lee' initials='Y.' role='editor' surname='Lee'/>
+    <date month='August' year='2018'/>
+    <abstract>
+      <t>Traffic Engineered (TE) networks have a variety of mechanisms to facilitate the separation of the data plane and control plane. They also have a range of management and provisioning protocols to configure and activate network resources. These mechanisms represent key technologies for enabling flexible and dynamic networking. The term "Traffic Engineered network" refers to a network that uses any connection-oriented technology under the control of a distributed or centralized control plane to support dynamic provisioning of end-to- end connectivity.</t>
+      <t>Abstraction of network resources is a technique that can be applied to a single network domain or across multiple domains to create a single virtualized network that is under the control of a network operator or the customer of the operator that actually owns the network resources.</t>
+      <t>This document provides a framework for Abstraction and Control of TE Networks (ACTN) to support virtual network services and connectivity services.</t>
+    </abstract>
+  </front>
+  <seriesInfo name='RFC' value='8453'/>
+  <seriesInfo name='DOI' value='10.17487/RFC8453'/>
+</reference>
+
 <reference anchor='RFC6241' target='https://www.rfc-editor.org/info/rfc6241'>
   <front>
     <title>Network Configuration Protocol (NETCONF)</title>
@@ -1295,7 +1471,7 @@ module: ietf-ns-topo
 </reference>
 
 
-<reference anchor='I-D.ietf-ccamp-yang-otn-slicing' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-yang-otn-slicing-05'>
+<reference anchor='I-D.ietf-ccamp-yang-otn-slicing' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-yang-otn-slicing-06'>
    <front>
       <title>Framework and Data Model for OTN Network Slicing</title>
       <author fullname='Aihua Guo' initials='A.' surname='Guo'>
@@ -1319,7 +1495,7 @@ module: ietf-ns-topo
       <author fullname='Xufeng Liu' initials='X.' surname='Liu'>
          <organization>Alef Edge</organization>
       </author>
-      <date day='7' month='July' year='2023'/>
+      <date day='24' month='January' year='2024'/>
       <abstract>
 	 <t>   The requirement of slicing network resources with desired quality of
    service is emerging at every network technology, including the
@@ -1337,7 +1513,7 @@ module: ietf-ns-topo
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-yang-otn-slicing-05'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-yang-otn-slicing-06'/>
    
 </reference>
 
@@ -1387,9 +1563,9 @@ module: ietf-ns-topo
 </reference>
 
 
-<reference anchor='I-D.ietf-teas-ietf-network-slice-nbi-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-08'>
+<reference anchor='I-D.ietf-teas-ietf-network-slice-nbi-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-09'>
    <front>
-      <title>A YANG Data Model for the IETF Network Slice Service</title>
+      <title>A YANG Data Model for the RFC AAAA Network Slice Service</title>
       <author fullname='Bo Wu' initials='B.' surname='Wu'>
          <organization>Huawei Technologies</organization>
       </author>
@@ -1405,22 +1581,22 @@ module: ietf-ns-topo
       <author fullname='John Mullooly' initials='J.' surname='Mullooly'>
          <organization>Cisco Systems, Inc</organization>
       </author>
-      <date day='23' month='October' year='2023'/>
+      <date day='17' month='February' year='2024'/>
       <abstract>
-	 <t>   This document defines a YANG data model for the IETF Network Slice
-   Service.  The model can be used in the IETF Network Slice Service
-   interface between a customer and a provider that offers IETF Network
-   Slice Services.
+	 <t>   This document defines a YANG data model for RFC AAAA Network Slice
+   Service.  The model can be used in the Network Slice Service
+   interface between a customer and a provider that offers RFC AAAA
+   Network Slice Services.
 
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ietf-network-slice-nbi-yang-08'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ietf-network-slice-nbi-yang-09'/>
    
 </reference>
 
 
-<reference anchor='I-D.ietf-teas-rfc8776-update' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-07'>
+<reference anchor='I-D.ietf-teas-rfc8776-update' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-10'>
    <front>
       <title>Common YANG Data Types for Traffic Engineering</title>
       <author fullname='Italo Busi' initials='I.' surname='Busi'>
@@ -1438,18 +1614,89 @@ module: ietf-ns-topo
       <author fullname='Igor Bryskin' initials='I.' surname='Bryskin'>
          <organization>Individual</organization>
       </author>
-      <date day='15' month='September' year='2023'/>
+      <date day='22' month='February' year='2024'/>
       <abstract>
-	 <t>   This document defines a collection of common data types and groupings
-   in YANG data modeling language.  These derived common types and
-   groupings are intended to be imported by modules that model Traffic
-   Engineering (TE) configuration and state capabilities.  This document
-   obsoletes RFC 8776.
+	 <t>   This document defines a collection of common data types, identities,
+   and groupings in YANG data modeling language.  These derived common
+   types and groupings are intended to be imported by modules that model
+   Traffic Engineering (TE) configuration and state capabilities.  This
+   document obsoletes RFC 8776.
 
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-rfc8776-update-07'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-rfc8776-update-10'/>
+   
+</reference>
+
+
+<reference anchor='I-D.ietf-ccamp-otn-topo-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-17'>
+   <front>
+      <title>A YANG Data Model for Optical Transport Network Topology</title>
+      <author fullname='Haomian Zheng' initials='H.' surname='Zheng'>
+         <organization>Huawei Technologies</organization>
+      </author>
+      <author fullname='Italo Busi' initials='I.' surname='Busi'>
+         <organization>Huawei Technologies</organization>
+      </author>
+      <author fullname='Xufeng Liu' initials='X.' surname='Liu'>
+         <organization>IBM Corporation</organization>
+      </author>
+      <author fullname='Sergio Belotti' initials='S.' surname='Belotti'>
+         <organization>Nokia</organization>
+      </author>
+      <author fullname='Oscar Gonzalez de Dios' initials='O. G.' surname='de Dios'>
+         <organization>Telefonica</organization>
+      </author>
+      <date day='10' month='July' year='2023'/>
+      <abstract>
+	 <t>   This document describes a YANG data model to describe the topologies
+   of an Optical Transport Network (OTN).  It is independent of control
+   plane protocols and captures topological and resource-related
+   information pertaining to OTN.  This model enables clients, which
+   interact with a transport domain controller, for OTN topology-related
+   operations such as obtaining the relevant topology resource
+   information.
+
+
+	 </t>
+      </abstract>
+   </front>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-otn-topo-yang-17'/>
+   
+</reference>
+
+
+<reference anchor='I-D.ietf-teas-actn-vn-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-vn-yang-23'>
+   <front>
+      <title>A YANG Data Model for Virtual Network (VN) Operations</title>
+      <author fullname='Young Lee' initials='Y.' surname='Lee'>
+         <organization>Samsung Electronics</organization>
+      </author>
+      <author fullname='Dhruv Dhody' initials='D.' surname='Dhody'>
+         <organization>Huawei</organization>
+      </author>
+      <author fullname='Daniele Ceccarelli' initials='D.' surname='Ceccarelli'>
+         <organization>Cisco</organization>
+      </author>
+      <author fullname='Igor Bryskin' initials='I.' surname='Bryskin'>
+         <organization>Individual</organization>
+      </author>
+      <author fullname='Bin Yeong Yoon' initials='B. Y.' surname='Yoon'>
+         <organization>ETRI</organization>
+      </author>
+      <date day='30' month='January' year='2024'/>
+      <abstract>
+	 <t>   A Virtual Network (VN) is a network provided by a service provider to
+   a customer for the customer to use in any way it wants.  This
+   document provides a YANG data model generally applicable to any mode
+   of VN operations.  This includes VN operations as per Abstraction and
+   Control of TE Networks (ACTN) framework.
+
+	 </t>
+      </abstract>
+   </front>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-actn-vn-yang-23'/>
    
 </reference>
 
@@ -1466,9 +1713,10 @@ module: ietf-ns-topo
    insights.</t>
 
 </section>
-<section anchor="data-tree-for-the-example-in-section-31"><name>Data Tree for the Example in Section 3.1</name>
+<section anchor="data-tree-for-the-example-in-section-3"><name>Data Tree for the Example in Section 3</name>
 
 <section anchor="native-topology"><name>Native Topology</name>
+
 <t>This section contains an example of an instance data tree in the JSON
    encoding <xref target="RFC7951"/>.  The example instantiates "ietf-network" for the
    topology of Network Slice Blue depicted in <xref target="fig-ns-topo-example"/>.</t>
@@ -1823,209 +2071,250 @@ on"
   </back>
 
 <!-- ##markdown-source:
-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
+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
 
 -->
 
