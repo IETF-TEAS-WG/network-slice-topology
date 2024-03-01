@@ -53,7 +53,7 @@ author:
 --- abstract
 
    An IETF network slice customer may utilize intent-based topologies to
-   express resource reservation intentions within the provider’s network.
+   express resource reservation intentions within the provider's network.
    These customer-defined intent topologies allow customers to request
    shared resources for future connections that can be flexibly allocated
    and customized. Additionally, they provide an extensive level of control
@@ -102,13 +102,13 @@ author:
    extensive control over specific or all connectivity constructs within the network slice,
    as outlined in {{?I-D.ietf-teas-ietf-network-slices}}.
 
-   A customer intent topology embodies the customer’s intent and is defined within
+   A customer intent topology embodies the customer's intent and is defined within
    their context. It can include pure customer information or refer to network
-   resources identifiable within the provider’s context. There is a minimum
+   resources identifiable within the provider's context. There is a minimum
    level of a-prior shared knowledge between the customer and the provider,
    and this is the same information needed to supported connectivity-based
    network slice services as desdribed in {{?I-D.ietf-teas-ietf-network-slices}}.
-   The provider’s responsibility lies in understanding and translating the
+   The provider's responsibility lies in understanding and translating the
    customer intent topology into suitable realizations within their domain.
 
    This document introduces a YANG data model, based on {{!RFC7950}}, for
@@ -121,8 +121,8 @@ author:
    enabling configurations and state retrievals for network slicing as a service.
    Customers can use this model to request or negotiate the creation of network
    slice instances. Additionally, they can incrementally adjust requirements for
-   individual topology elements within the slice—for instance, adding or removing
-   nodes or links, updating link bandwidth—and retrieve operational states.
+   individual topology elements within the slice - for instance, adding or removing
+   nodes or links, updating link bandwidth - and retrieve operational states.
    Leveraging other IETF mechanisms and data models, telemetry information can
    also be convey to the customer.
 
@@ -160,7 +160,7 @@ author:
    - Customer Intent Topology:
        A topology defined by the customer and provided as input to the
 	   network slice service provider (specifically, the Network Slice
-	   Controller or NSC). It represents the customer’s desired network
+	   Controller or NSC). It represents the customer's desired network
 	   topology.
 	   
    - Abstract Topology:
@@ -233,7 +233,7 @@ Please remove this note.
    Service Attachment Points (SAPs), where customer services can be
    connected. The SAP topology is made visible to customers by the provider
    before configuring network slice services. In contrast, the customer
-   intent topology described in this document captures a customer’s
+   intent topology described in this document captures a customer's
    intentions, while the provider acts as the recipient of these intents.
    As a result, these two models serve distinct purposes.
    
@@ -242,7 +242,7 @@ Please remove this note.
    of their intended network configurations. For instance, within a node
    of a customer intent topology, the Link Termination Point (LTP)
    identifiers may explicitly reference their supporting Termination
-   Points (TPs), which correspond to the SAPs exposed in the provider’s
+   Points (TPs), which correspond to the SAPs exposed in the provider's
    SAP model. However, the specifics of this mechanism fall beyond the
    scope of this document.
 
@@ -352,7 +352,7 @@ Please remove this note.
    certain resources such as processors, ASICs, and switch fabric.
 
    A network slice customer has the capability to configure customer intent topologies
-   without needing any prior knowledge of the provider’s network or resource
+   without needing any prior knowledge of the provider's network or resource
    availability. However, this approach could potentially create challenges for
    the provider in understanding and realizing the intended topology.
 
