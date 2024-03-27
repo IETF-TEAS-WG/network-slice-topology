@@ -1,4 +1,4 @@
-   module ietf-ns-intent-topo {
+   module ietf-ns-topo {
      yang-version 1.1;
      namespace
        "urn:ietf:params:xml:ns:yang:ietf-ns-topo";
@@ -15,25 +15,18 @@
         "RFC 8345: A YANG Data Model for Network Topologies";
      }
 
-     import ietf-te-types {
-       prefix "te-types";
-       reference
-         "draft-ietf-teas-rfc8776-update-04: 
-          Common YANG Data Types for Traffic Engineering";
-     }
-
      import ietf-network-slice-service {
        prefix "ietf-nss";
        reference
-         "draft-ietf-teas-ietf-network-slice-nbi-yang-05:
+         "draft-ietf-teas-ietf-network-slice-nbi-yang-10:
           IETF Network Slice Service YANG Model";
      }
  
      organization
        "IETF TEAS Working Group";
      contact
-       "WG Web: <http://tools.ietf.org/wg/ccamp/>
-        WG List: <mailto:ccamp@ietf.org>
+       "WG Web: <http://tools.ietf.org/wg/teas/>
+        WG List: <mailto:teas@ietf.org>
 
         Editor: Xufeng Liu
                 <mailto:xufeng.liu.ietf@gmail.com>
@@ -71,7 +64,7 @@
         the RFC itself for full legal notices.";
 
 
-     revision 2024-03-21 {
+     revision 2024-03-27 {
        description "Initial revision";
        reference
          "RFC XXXX: IETF Network Slice Topology YANG Data Model";
@@ -99,7 +92,7 @@
             of type Network Slice topology.";
        }
        description
-         "SLO and SLE of the topology.";
+         "SLO and SLE for topology.";
 
        uses ietf-nss:service-slo-sle-policy;
      }

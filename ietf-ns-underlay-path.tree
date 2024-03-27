@@ -1,0 +1,51 @@
+module: ietf-ns-underlay-path
+
+  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+            /ietf-nss:connection-groups/ietf-nss:connection-group
+            /ietf-nss:slo-sle-policy/ietf-nss:custom
+            /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
+            /ietf-nss:path-constraints:
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id
+  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+            /ietf-nss:connection-groups/ietf-nss:connection-group
+            /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
+            /ietf-nss:custom/ietf-nss:service-slo-sle-policy
+            /ietf-nss:sle-policy/ietf-nss:path-constraints:
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id
+  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+            /ietf-nss:connection-groups/ietf-nss:connection-group
+            /ietf-nss:connectivity-construct/ietf-nss:type
+            /ietf-nss:a2a/ietf-nss:a2a-sdp/ietf-nss:slo-sle-policy
+            /ietf-nss:custom/ietf-nss:service-slo-sle-policy
+            /ietf-nss:sle-policy/ietf-nss:path-constraints:
+    +--rw network-ref?    -> /nw:networks/network/network-id
+    +--rw path-element* [index]
+       +--rw index            uint32
+       +--rw is-strict-hop?   boolean
+       +--rw (type)?
+          +--:(node-hop)
+          |  +--rw node-id?   nw:node-id
+          +--:(link-hop)
+          |  +--rw link-id?   nt:link-id
+          +--:(tp-hop)
+             +--rw tp-id?     nt:tp-id

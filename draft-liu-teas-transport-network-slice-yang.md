@@ -189,13 +189,14 @@ author:
    | nt       | ietf-network-topology        | {{!RFC8345}}      |
    | nw       | ietf-network-topology        | {{!RFC8345}}      |
    | tet      | ietf-te-topology             | {{!RFC8795}}      |
+   | ns-path  | ietf-ns-underlay-path        | \[RFCXXXX]        |
    | ns-topo  | ietf-ns-topo                 | \[RFCXXXX]        |
    | te-types | ietf-te-types                | \[RFCYYYY]        |
    | ietf-nss | ietf-network-slice-service   | \[RFCZZZZ]        |
 {: #tab-prefixes title="Prefixes and Corresponding YANG Modules"}
 
 RFC Editor Note:
-Please replace XXXX with the RFC number assigned to this document.
+Please replace WWWW and XXXX with the RFC number assigned to this document.
 Please replace YYYY with the RFC number assigned to {{?I-D.ietf-teas-rfc8776-update}}.
 Please replace ZZZZ with the RFC number assigned to {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
 Please remove this note.
@@ -442,33 +443,41 @@ Please remove this note.
 
 # YANG Model Overview
 
-   Within the YANG model, the following constructs and attributes are defined:
+   The YANG data model in this draft consists of two modules for flexible use
+   and augmentation:
+   - The first YANG module defines a customer intent topology, with SLO and SLE
+   associated with the topological constructs.
+   - The second YANG module extends the YANG model defined in 
+   {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} by adding underlay paths to
+   the connectivity constructs.
 
-   - Network Topology: This represents a set of shared and reserved resources,
-   organized as a virtual topology connecting all endpoints. Customers can utilize
-   this network topology to define detailed connectivity paths traversing the
-   topology. Additionally, it enables resource sharing between different endpoints.
-   
-   - Service-Level Objectives (SLOs): These objectives are associated with
-   various objects within the topology, including nodes, links, and termination
-   points. SLOs provide guidelines for achieving specific performance or quality
-   targets.
-   
 # Model Tree Structure
 
 ~~~~
 {::include ./ietf-ns-topo.tree}
 ~~~~
 {: #fig-ietf-ns-topo-tree title="Tree diagram for network slice topology"}
+
+~~~~
+{::include ./ietf-ns-underlay-path.tree}
+~~~~
+{: #fig-ietf-ns-underlay-path-tree title="Tree diagram for underlay path"}
    
 # YANG Modules
 
 ~~~~
-   <CODE BEGINS> file "ietf-ns-topo@2023-07-07.yang"
+   <CODE BEGINS> file "ietf-ns-topo@2024-3-27.yang"
 {::include ./ietf-ns-topo.yang}
    <CODE ENDS>
 ~~~~
 {: #fig-ietf-ns-topo-yang title="YANG model for network slice topology"}   
+
+~~~~
+   <CODE BEGINS> file "ietf-ns-underlay-path@2024-3-27.yang"
+{::include ./ietf-ns-underlay-path.yang}
+   <CODE ENDS>
+~~~~
+{: #fig-ietf-ns-underlay-path title="YANG model for underlay path"}   
   
 # Manageability Considerations
 
@@ -524,13 +533,26 @@ Please remove this note.
    XML: N/A; the requested URI is an XML namespace.
 ~~~~
 
-   This document registers a YANG module in the YANG Module Names
+~~~~
+   URI: urn:ietf:params:xml:ns:yang:ietf-ns-underlay-path
+   Registrant Contact: The IESG
+   XML: N/A; the requested URI is an XML namespace.
+~~~~
+
+   This document registers two YANG modules in the YANG Module Names
    registry {{!RFC6020}}.
 
 ~~~~
    name: ietf-ns-topo
    namespace: urn:ietf:params:xml:ns:yang:ietf-ns-topo
    prefix: ns-topo
+   reference: RFC XXXX
+~~~~
+
+~~~~
+   name: ietf-ns-underlay-path
+   namespace: urn:ietf:params:xml:ns:yang:ietf-ns-underlay-path
+   prefix: ns-path
    reference: RFC XXXX
 ~~~~
 
