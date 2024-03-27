@@ -1,4 +1,4 @@
-   module ietf-ns-topo {
+   module ietf-ns-intent-topo {
      yang-version 1.1;
      namespace
        "urn:ietf:params:xml:ns:yang:ietf-ns-topo";
@@ -30,7 +30,7 @@
      }
  
      organization
-       "IETF CCAMP Working Group";
+       "IETF TEAS Working Group";
      contact
        "WG Web: <http://tools.ietf.org/wg/ccamp/>
         WG List: <mailto:ccamp@ietf.org>
@@ -52,8 +52,7 @@
 
      description
        "This module defines a base YANG data model for configuring
-        generic network slices in optical transport networks, e.g.,
-        Optical Transport Network (OTN).
+        customer intent topologies for RFC9543 network slices.
 
         The model fully conforms to the Network Management Datastore
         Architecture (NMDA).
@@ -72,75 +71,10 @@
         the RFC itself for full legal notices.";
 
 
-     revision 2023-07-07 {
+     revision 2024-03-21 {
        description "Initial revision";
        reference
          "RFC XXXX: IETF Network Slice Topology YANG Data Model";
-     }
-
-     /*
-      * Groupings
-      */   
-     grouping ns-topo-steering-constraints {
-       description
-         "Policy grouping for specifying steering constraints for
-          Transport Network Slices.";
-
-       leaf disjointness {
-         type te-types:te-path-disjointness;
-         description
-           "Indicate the level of disjointness for slice
-            resources.";
-       }
-     }
-
-     grouping underlay-path {
-       description
-         "Underlay explicit path within a customer intent
-          topology.";
-		 
-       uses nw:network-ref;
-
-       list path-element {
-        key "index";
-        description
-          "List of path elements.";
-        leaf index {
-          type uint32;
-          description
-            "Index of the hop within the underlay path.";
-        }
-        leaf is-strict-hop {
-	      type boolean;
-	      description
-	        "Indicate whether the hop is strict or loose";
-        }
-        choice type {
-          description
-            "Type of the hop.";
-          case node-hop {
-            leaf node-id {
-              type nw:node-id;
-              description
-                "Node identifier.";
-            }
-          }
-          case link-hop {
-            leaf link-id {
-              type nt:link-id;
-              description
-                "Link identifier.";
-            }
-          }
-          case tp-hop {
-            leaf tp-id {
-              type nt:tp-id;
-              description
-                "Termination Point (TP) identifier.";
-            }
-          }
-        }
-       }
      }
 
      /*
@@ -170,23 +104,6 @@
        uses ietf-nss:service-slo-sle-policy;
      }
 
-     augment "/nw:networks/nw:network" +
-             "/ns-topo:slo-sle-policy" +
-             "/ns-topo:custom" +
-             "/ns-topo:service-slo-sle-policy" +
-             "/ns-topo:sle-policy" +
-             "/ns-topo:steering-constraints" {
-       when "../../../nw:network-types/ns-topo:network-slice" {
-         description
-           "Augmentation parameters apply only for networks
-            of type Network Slice topology.";
-       }
-       description
-         "Steering constraints for the topology.";
-
-       uses ns-topo-steering-constraints;
-     }
-
      /* network node augments */
      augment "/nw:networks/nw:network/nw:node" {
        when "../nw:network-types/ns-topo:network-slice" {
@@ -198,23 +115,6 @@
          "SLO and SLE for nodes.";
 
        uses ietf-nss:service-slo-sle-policy;
-     }
-
-     augment "/nw:networks/nw:network/nw:node" +
-             "/ns-topo:slo-sle-policy" + 
-             "/ns-topo:custom" + 
-             "/ns-topo:service-slo-sle-policy" +
-             "/ns-topo:sle-policy" +
-             "/ns-topo:steering-constraints" {
-       when "../../../../nw:network-types/ns-topo:network-slice" {
-         description
-           "Augmentation parameters apply only for networks
-            of type Network Slice topology.";
-       }
-       description
-         "Steering constraints for nodes.";
-
-       uses ns-topo-steering-constraints;
      }
 
      /* network node's termination point augments */
@@ -242,154 +142,5 @@
          "SLO and SLE for links.";
 
        uses ietf-nss:service-slo-sle-policy;
-     }
-
-     augment "/nw:networks/nw:network/nt:link" +
-             "/ns-topo:slo-sle-policy" + 
-             "/ns-topo:custom" + 
-             "/ns-topo:service-slo-sle-policy" + 
-             "/ns-topo:sle-policy" +
-             "/ns-topo:steering-constraints" {
-       when "../../../../nw:network-types/ns-topo:network-slice" {
-         description
-           "Augmentation parameters apply only for networks
-            of type Network Slice topology.";
-       }
-
-       description
-       "Steering constraints for links.";
-
-       uses ns-topo-steering-constraints;
-     }
-
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slo-sle-templates" +
-             "/ietf-nss:slo-sle-template" + 
-             "/ietf-nss:sle-policy" +
-             "/ietf-nss:steering-constraints" {
-       description
-           "Steering constraints for network slice service
-            templates.";
-  
-       uses ns-topo-steering-constraints;
-     }
-
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slice-service" +
-             "/ietf-nss:slo-sle-policy" + 
-             "/ietf-nss:custom" + 
-             "/ietf-nss:service-slo-sle-policy" + 
-             "/ietf-nss:sle-policy" + 
-             "/ietf-nss:steering-constraints" {
-       description
-           "Steering constraints for network slice services.";
-          
-       uses ns-topo-steering-constraints;
-     }
-
-     /* connectivity construct augments */
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slice-service" +
-             "/ietf-nss:connection-groups" +
-             "/ietf-nss:connection-group" +
-             "/ietf-nss:slo-sle-policy" + 
-             "/ietf-nss:custom" + 
-             "/ietf-nss:service-slo-sle-policy" + 
-             "/ietf-nss:sle-policy" +
-             "/ietf-nss:steering-constraints" {
-       description
-         "Steering constraints for connectivity-constructs
-          within a network slice.";
-
-       uses ns-topo-steering-constraints;
-     }
-
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slice-service" +
-             "/ietf-nss:connection-groups" +
-             "/ietf-nss:connection-group" +
-             "/ietf-nss:slo-sle-policy" + 
-             "/ietf-nss:custom" + 
-             "/ietf-nss:service-slo-sle-policy" + 
-             "/ietf-nss:sle-policy" +
-             "/ietf-nss:steering-constraints" +
-             "/ietf-nss:path-constraints" {
-       description
-         "Underlay path for connection group.";
-
-       uses underlay-path;
-     }
-
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slice-service" +
-             "/ietf-nss:connection-groups" +
-             "/ietf-nss:connection-group" +
-             "/ietf-nss:connectivity-construct" +
-             "/ietf-nss:slo-sle-policy" + 
-             "/ietf-nss:custom" + 
-             "/ietf-nss:service-slo-sle-policy" + 
-             "/ietf-nss:sle-policy" +
-             "/ietf-nss:steering-constraints" {
-       description
-         "Steering constraints for connectivity constructs
-          within a network slice.";
-
-       uses ns-topo-steering-constraints;
-     }
-
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slice-service" +
-             "/ietf-nss:connection-groups" +
-             "/ietf-nss:connection-group" +
-             "/ietf-nss:connectivity-construct" +
-             "/ietf-nss:slo-sle-policy" + 
-             "/ietf-nss:custom" + 
-             "/ietf-nss:service-slo-sle-policy" + 
-             "/ietf-nss:sle-policy" +
-             "/ietf-nss:steering-constraints" +
-             "/ietf-nss:path-constraints" {
-       description
-         "Underlay path for connection group.";
-
-       uses underlay-path;
-     }
-
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slice-service" +
-             "/ietf-nss:connection-groups" +
-             "/ietf-nss:connection-group" +
-             "/ietf-nss:connectivity-construct" +
-             "/ietf-nss:type" +
-             "/ietf-nss:a2a" +
-             "/ietf-nss:a2a-sdp" +
-             "/ietf-nss:slo-sle-policy" + 
-             "/ietf-nss:custom" + 
-             "/ietf-nss:service-slo-sle-policy" + 
-             "/ietf-nss:sle-policy" +
-             "/ietf-nss:steering-constraints" {
-       description
-         "Steering constraints for a2a connectivity-constructs.";
-
-       uses ns-topo-steering-constraints;
-     }
-
-     augment "/ietf-nss:network-slice-services" +
-             "/ietf-nss:slice-service" +
-             "/ietf-nss:connection-groups" +
-             "/ietf-nss:connection-group" +
-             "/ietf-nss:connectivity-construct" +
-             "/ietf-nss:type" +
-             "/ietf-nss:a2a" +
-             "/ietf-nss:a2a-sdp" +
-             "/ietf-nss:slo-sle-policy" + 
-             "/ietf-nss:custom" + 
-             "/ietf-nss:service-slo-sle-policy" + 
-             "/ietf-nss:sle-policy" +
-             "/ietf-nss:steering-constraints" +
-             "/ietf-nss:path-constraints" {
-       description
-         "Underlay path for a2a connectivity constructs.";
- 
-       uses underlay-path;
      }
    }

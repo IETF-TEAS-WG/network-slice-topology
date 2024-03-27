@@ -60,10 +60,7 @@ author:
    over underlay service paths within the network slice.
    
    This document describes a YANG data model for configuring customer intent
-   topologies for network slices using IETF technologies defined in RFC YYYY. 
-   
-   [RFC EDITOR NOTE: Please replace RFC YYYY with the RFC number of
-   draft-ietf-teas-ietf-network-slices once it has been published.
+   topologies for network slices using IETF technologies defined in {{!RFC9543}}. 
 
 --- middle
 
@@ -100,14 +97,14 @@ author:
    Customer intent topology complements connectivity-based network slicing by providing
    customers a mechanism to specify additional underlay service paths to gain
    extensive control over specific or all connectivity constructs within the network slice,
-   as outlined in {{?I-D.ietf-teas-ietf-network-slices}}.
+   as outlined in {{!RFC9543}}.
 
    A customer intent topology embodies the customer's intent and is defined within
    their context. It can include pure customer information or refer to network
    resources identifiable within the provider's context. There is a minimum
    level of a-prior shared knowledge between the customer and the provider,
    and this is the same information needed to supported connectivity-based
-   network slice services as desdribed in {{?I-D.ietf-teas-ietf-network-slices}}.
+   network slice services as desdribed in {{!RFC9543}}.
    The provider's responsibility lies in understanding and translating the
    customer intent topology into suitable realizations within their domain.
 
@@ -143,7 +140,7 @@ author:
 ## Terminologies and Notations
 
    The following terminologies for describing network slices are defined in 
-   {{?I-D.ietf-teas-ietf-network-slices}} and are not redefined herein.
+   {{!RFC9543}} and are not redefined herein.
    
    - Network Slice (NS)
    
@@ -267,7 +264,7 @@ Please remove this note.
    Controller (CNC) and the Multi-Domain Service Coordinator (MDSC) prior to VN creation,
    or they can be created as part of VN instantiation by the customer.   
    
-   In the context of network slicing, {{?I-D.ietf-teas-ietf-network-slices}} defines
+   In the context of network slicing, {{!RFC9543}} defines
    an IETF network slice as a collection of connectivity constructs between pairs of
    Service Demarcation Points (SDPs). This concept closely resembles the Type 1 VN,
    which is implemented as a single abstract node.
@@ -281,7 +278,25 @@ Please remove this note.
    option to the data model outlined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
    It empowers customers to define a customized intent topology specifically tailored
    for their network slices.
-      
+
+### Consideration on Reusing ACTN VN for Network Slicing
+
+   The ACTN VN model provides a self-consistent method for expressing connectivity intent (Type 1 VN)
+   and optional path constraints (Type 2 VN) using TE metrics and TE objective functions defined in
+   {{!RFC8795}}. Type 2 VN path constraints rely on Type 1 VN for expressing connectivity intent.
+   
+   On the other hand, network slice services provide connectivity intent equivalent to Type 1 VN,
+   using SLO and SLE attributes in a technology-agnostic manner not tied to TE technologies. This
+   distinction is detailed in Appendix D of {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
+   
+   Reusing the Type 2 VN for defining customer intent topologies alongside the network slice service
+   model would result in duplicated configurations of connectivity intent and would bind the network
+   slice solution to TE technologies. 
+   
+   The proposed models in this draft aim to deliver a solution equivalent to Type 2 VN within the
+   context of network slicing. This complements the existing solution outlined in
+   {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, while ensuring consistency.
+
 ## Data Model Relationship
 
    The data model presented in this document builds upon the generic network
@@ -319,13 +334,13 @@ Please remove this note.
    resource reservation-based network slices. In this approach, resources for
    network slices are reserved and represented using a customer intent topology.
    This topology can then be mapped to a network resource partition (NRP)
-   and realized based on the scenarios outlined in 
-   {{?I-D.ietf-teas-ietf-network-slices}}.
+   and realized based on the scenarios outlined in {{!RFC9543}}.
    
    Network slices can be abstracted in various ways, depending on the specific
    requirements of the network slice customer. For instance, a customer might
    request a network slice with direct connectivity between pairs of Service
-   Demarcation Points (SDPs). Within this network slice, each connectivity construct could be further supported by an end-to-end tunnel that follows a specific path
+   Demarcation Points (SDPs). Within this network slice, each connectivity construct
+   could be further supported by an end-to-end tunnel that follows a specific path
    defined in a customer intent topology, which the customer provides. The 
    resources associated with each link are immediately commissioned during
    the network slice configuration process.
