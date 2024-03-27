@@ -196,7 +196,7 @@ author:
 {: #tab-prefixes title="Prefixes and Corresponding YANG Modules"}
 
 RFC Editor Note:
-Please replace WWWW and XXXX with the RFC number assigned to this document.
+Please replace XXXX with the RFC number assigned to this document.
 Please replace YYYY with the RFC number assigned to {{?I-D.ietf-teas-rfc8776-update}}.
 Please replace ZZZZ with the RFC number assigned to {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
 Please remove this note.

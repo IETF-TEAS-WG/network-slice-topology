@@ -306,12 +306,11 @@ Internet-Draft      Network Slice Topology Data Model         March 2024
 
               Table 1: Prefixes and Corresponding YANG Modules
 
-   RFC Editor Note: Please replace WWWW and XXXX with the RFC number
-   assigned to this document.  Please replace YYYY with the RFC number
-   assigned to [I-D.ietf-teas-rfc8776-update].  Please replace ZZZZ with
-   the RFC number assigned to
-   [I-D.ietf-teas-ietf-network-slice-nbi-yang].  Please remove this
-   note.
+   RFC Editor Note: Please replace XXXX with the RFC number assigned to
+   this document.  Please replace YYYY with the RFC number assigned to
+   [I-D.ietf-teas-rfc8776-update].  Please replace ZZZZ with the RFC
+   number assigned to [I-D.ietf-teas-ietf-network-slice-nbi-yang].
+   Please remove this note.
 
 2.  Modeling Considerations
 
@@ -326,6 +325,7 @@ Internet-Draft      Network Slice Topology Data Model         March 2024
    Expectations (SLEs).  These apply to various components within the
    customer intent topology, including nodes, links, and termination
    points (TPs).
+
 
 
 
