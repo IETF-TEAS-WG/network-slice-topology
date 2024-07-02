@@ -65,7 +65,7 @@
         the RFC itself for full legal notices.";
 
 
-     revision 2024-03-27 {
+     revision 2024-07-02 {
        description "Initial revision";
        reference
          "RFC XXXX: IETF Network Slice Topology YANG Data Model";
