@@ -4,7 +4,7 @@ coding: utf-8
 title: IETF Network Slice Topology YANG Data Model
 
 abbrev: Network Slice Topology Data Model
-docname: draft-liu-teas-transport-network-slice-yang-09
+docname: draft-liu-teas-transport-network-slice-yang-10
 workgroup: TEAS Working Group
 category: std
 ipr: trust200902
@@ -136,6 +136,22 @@ author:
    
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) {{!RFC8342}}.
+
+## Use Case Applicability
+
+   In Traffic Engineering (TE)-enabled networks like Layer-0/1 transport (OTN, MW, DWDM), intent topology is useful for routing IETF network slices across varied paths with TE constraints. Thus, most of the use cases for which this model target are transport oriented. Nonetheless, it’s also relevant to non-transport networks like IP/MPLS, where customers may specify topology intents to inform the slice’s realization. These intents help build the logical view of the desired IETF Network Slice service (and its constituent parts), aiding providers in fulfilling slice requests and defining the service instantiation.
+
+### Use Case 1 : Multi-tenancy in Network Wholesaling
+
+   A typical use case in which the topology intent is essential is the wholesale multi-tenant case. Here, customer C may acquire a network slice from provider P and resell sub-slices to other customers/tenants. The creation of these sub-slices within C’s slice necessitates specifying a topology intent—reflecting the topology of C’s purchased slice—as a key input parameter.
+
+### Use Case 2 : 
+
+   The current expression of slice requests leveraging on {{?I-D.draft-ietf-teas-ietf-network-slice-nbi-yang}} allows the customer to request distinct connectivity constructs as part of the same Network Resource Partition (NRP). The topology provided by the customer could imply different NRPs, instead.
+
+   As an another example, from realization perspective even on the same NRP, a slice requests leveraging on {{?I-D.draft-ietf-teas-ietf-network-slice-nbi-yang}} without topology differentiation could imply the realization of all the connectivity constructs on the same manner. For instance, implementing all of them within the same VRF in a L3VPN. The usage of the topological views can help the provider to infer differentiated realization of some of the connectivity constructs, for instance, by implementing them on different VRFs. This can have operational advantages (e.g., adding new nodes / SDPs could affect / imply limit the necessary VRF reconfiguration only to the one including affected connectivity constructs).
+
+   Finally, by using customer topology it can be easier for the slice provider to infer different technologies for sets of connectivity constructs of every topology segment (e.g., IP/MPLS, optical, microwave, etc).
 
 ## Terminologies and Notations
 

@@ -10,7 +10,7 @@
 <?rfc symrefs="yes"?>
 <?rfc comments="yes"?>
 
-<rfc ipr="trust200902" docName="draft-liu-teas-transport-network-slice-yang-09" category="std">
+<rfc ipr="trust200902" docName="draft-liu-teas-transport-network-slice-yang-10" category="std">
 
   <front>
     <title abbrev="Network Slice Topology Data Model">IETF Network Slice Topology YANG Data Model</title>
@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date year="2024" month="March" day="28"/>
+    <date year="2024" month="July" day="03"/>
 
     
     <workgroup>TEAS Working Group</workgroup>
@@ -80,7 +80,7 @@
 
 
 <t>An IETF network slice customer may utilize intent-based topologies to
-   express resource reservation intentions within the provider’s network.
+   express resource reservation intentions within the provider's network.
    These customer-defined intent topologies allow customers to request
    shared resources for future connections that can be flexibly allocated
    and customized. Additionally, they provide an extensive level of control
@@ -99,7 +99,7 @@
   <middle>
 
 
-<section anchor="introduction" title="Introduction">
+<section anchor="introduction"><name>Introduction</name>
 
 <t>Network service providers utilize topologies to convey controlled information
    about their networks, such as bandwidth availability and connectivity, 
@@ -134,13 +134,13 @@
    extensive control over specific or all connectivity constructs within the network slice,
    as outlined in <xref target="RFC9543"/>.</t>
 
-<t>A customer intent topology embodies the customer’s intent and is defined within
+<t>A customer intent topology embodies the customer's intent and is defined within
    their context. It can include pure customer information or refer to network
-   resources identifiable within the provider’s context. There is a minimum
+   resources identifiable within the provider's context. There is a minimum
    level of a-prior shared knowledge between the customer and the provider,
    and this is the same information needed to supported connectivity-based
    network slice services as desdribed in <xref target="RFC9543"/>.
-   The provider’s responsibility lies in understanding and translating the
+   The provider's responsibility lies in understanding and translating the
    customer intent topology into suitable realizations within their domain.</t>
 
 <t>This document introduces a YANG data model, based on <xref target="RFC7950"/>, for
@@ -172,7 +172,26 @@
 <t>The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) <xref target="RFC8342"/>.</t>
 
-<section anchor="terminologies-and-notations" title="Terminologies and Notations">
+<section anchor="use-case-applicability"><name>Use Case Applicability</name>
+
+<t>In Traffic Engineering (TE)-enabled networks like Layer-0/1 transport (OTN, MW, DWDM), intent topology is useful for routing IETF network slices across varied paths with TE constraints. Thus, most of the use cases for which this model target are transport oriented. Nonetheless, it’s also relevant to non-transport networks like IP/MPLS, where customers may specify topology intents to inform the slice’s realization. These intents help build the logical view of the desired IETF Network Slice service (and its constituent parts), aiding providers in fulfilling slice requests and defining the service instantiation.</t>
+
+<section anchor="use-case-1-multi-tenancy-in-network-wholesaling"><name>Use Case 1 : Multi-tenancy in Network Wholesaling</name>
+
+<t>A typical use case in which the topology intent is essential is the wholesale multi-tenant case. Here, customer C may acquire a network slice from provider P and resell sub-slices to other customers/tenants. The creation of these sub-slices within C’s slice necessitates specifying a topology intent—reflecting the topology of C’s purchased slice—as a key input parameter.</t>
+
+</section>
+<section anchor="use-case-2-"><name>Use Case 2 :</name>
+
+<t>The current expression of slice requests leveraging on <xref target="I-D.draft-ietf-teas-ietf-network-slice-nbi-yang"/> allows the customer to request distinct connectivity constructs as part of the same Network Resource Partition (NRP). The topology provided by the customer could imply different NRPs, instead.</t>
+
+<t>As an another example, from realization perspective even on the same NRP, a slice requests leveraging on <xref target="I-D.draft-ietf-teas-ietf-network-slice-nbi-yang"/> without topology differentiation could imply the realization of all the connectivity constructs on the same manner. For instance, implementing all of them within the same VRF in a L3VPN. The usage of the topological views can help the provider to infer differentiated realization of some of the connectivity constructs, for instance, by implementing them on different VRFs. This can have operational advantages (e.g., adding new nodes / SDPs could affect / imply limit the necessary VRF reconfiguration only to the one including affected connectivity constructs).</t>
+
+<t>Finally, by using customer topology it can be easier for the slice provider to infer different technologies for sets of connectivity constructs of every topology segment (e.g., IP/MPLS, optical, microwave, etc).</t>
+
+</section>
+</section>
+<section anchor="terminologies-and-notations"><name>Terminologies and Notations</name>
 
 <t>The following terminologies for describing network slices are defined in 
    <xref target="RFC9543"/> and are not redefined herein.</t>
@@ -191,7 +210,7 @@
   <t>Customer Intent Topology:
   A topology defined by the customer and provided as input to the
       network slice service provider (specifically, the Network Slice
-      Controller or NSC). It represents the customer’s desired network
+      Controller or NSC). It represents the customer's desired network
       topology.</t>
   <t>Abstract Topology:
   A topology exposed to the customer by the network slice service
@@ -205,13 +224,13 @@
 </list></t>
 
 </section>
-<section anchor="tree-diagram" title="Tree Diagram">
+<section anchor="tree-diagram"><name>Tree Diagram</name>
 
 <t>Tree diagrams used in this document follow the notation defined in
    <xref target="RFC8340"/>.</t>
 
 </section>
-<section anchor="prefixes-in-data-node-names" title="Prefixes in Data Node Names">
+<section anchor="prefixes-in-data-node-names"><name>Prefixes in Data Node Names</name>
 
 <t>In this document, names of data nodes and other data model objects
    are prefixed using the standard prefix associated with the
@@ -258,11 +277,11 @@ Please remove this note.</t>
 
 </section>
 </section>
-<section anchor="modeling-considerations" title="Modeling Considerations">
+<section anchor="modeling-considerations"><name>Modeling Considerations</name>
 
 <t>An IETF network slice topology is a cusomer intent topology 
    modeled as network topology defined in <xref target="RFC8345"/>, with augmentations. 
-   A new network type “network-slice” is defined in this document.<vspace />
+   A new network type "network-slice" is defined in this document.<br />
    When a network topology data instance contains the network-slice 
    network type, it represents an instance of an IETF network slice 
    topology.</t>
@@ -272,7 +291,7 @@ Please remove this note.</t>
    Expectations (SLEs). These apply to various components within the
    customer intent topology, including nodes, links, and termination points (TPs).</t>
 
-<section anchor="relationship-with-traffic-engineering-te-based-topology" title="Relationship with Traffic Engineering (TE)-based Topology">
+<section anchor="relationship-with-traffic-engineering-te-based-topology"><name>Relationship with Traffic Engineering (TE)-based Topology</name>
 
 <t>The model defined in this document can be combined through multi-inheritance
    with other topology data models, such as Traffic Engineering (TE) topologies
@@ -282,14 +301,14 @@ Please remove this note.</t>
    specific network requirements.</t>
 
 </section>
-<section anchor="relationship-with-service-attachment-point-sap-topology" title="Relationship with Service Attachment Point (SAP) Topology">
+<section anchor="relationship-with-service-attachment-point-sap-topology"><name>Relationship with Service Attachment Point (SAP) Topology</name>
 
 <t><xref target="RFC9408"/> introduces a YANG data model that represents an abstract
    view of the provider network topology. This model includes a list of
    Service Attachment Points (SAPs), where customer services can be
    connected. The SAP topology is made visible to customers by the provider
    before configuring network slice services. In contrast, the customer
-   intent topology described in this document captures a customer’s
+   intent topology described in this document captures a customer's
    intentions, while the provider acts as the recipient of these intents.
    As a result, these two models serve distinct purposes.</t>
 
@@ -298,12 +317,12 @@ Please remove this note.</t>
    of their intended network configurations. For instance, within a node
    of a customer intent topology, the Link Termination Point (LTP)
    identifiers may explicitly reference their supporting Termination
-   Points (TPs), which correspond to the SAPs exposed in the provider’s
+   Points (TPs), which correspond to the SAPs exposed in the provider's
    SAP model. However, the specifics of this mechanism fall beyond the
    scope of this document.</t>
 
 </section>
-<section anchor="relationship-with-actn-virtual-network-vn" title="Relationship with ACTN Virtual Network (VN)">
+<section anchor="relationship-with-actn-virtual-network-vn"><name>Relationship with ACTN Virtual Network (VN)</name>
 
 <t><xref target="RFC8453"/> and <xref target="I-D.ietf-teas-actn-vn-yang"/> introduce the concept of a Virtual
    Network (VN), which can be presented to customers. These VNs are constructed from
@@ -341,7 +360,7 @@ node.</t>
    It empowers customers to define a customized intent topology specifically tailored
    for their network slices.</t>
 
-<section anchor="consideration-on-reusing-actn-vn-for-network-slicing" title="Consideration on Reusing ACTN VN for Network Slicing">
+<section anchor="consideration-on-reusing-actn-vn-for-network-slicing"><name>Consideration on Reusing ACTN VN for Network Slicing</name>
 
 <t>The ACTN VN model provides a self-consistent method for expressing connectivity intent (Type 1 VN)
    and optional path constraints (Type 2 VN) using TE metrics and TE objective functions defined in
@@ -361,7 +380,7 @@ node.</t>
 
 </section>
 </section>
-<section anchor="data-model-relationship" title="Data Model Relationship">
+<section anchor="data-model-relationship"><name>Data Model Relationship</name>
 
 <t>The data model presented in this document builds upon the generic network
    topology model defined in <xref target="RFC8345"/>. Other data models, including OTN
@@ -392,7 +411,7 @@ node.</t>
 
 </section>
 </section>
-<section anchor="model-applicability" title="Model Applicability">
+<section anchor="model-applicability"><name>Model Applicability</name>
 
 <t>Network slicing can be achieved through various technologies. The data
    model defined in this document serves as a means for configuring
@@ -427,12 +446,12 @@ node.</t>
    routers VR1 and VR2 are created over physical router R1, and two virtual
    routers VR3 and VR4 are created over physical router R2, respectively.  Each of the
    virtual routers,as a partition of the physical router, takes a portion 
-   of the resources such as ports and memory in the physical router.<vspace />
+   of the resources such as ports and memory in the physical router.<br />
    Depending on the requirements and the implementations, they may share 
    certain resources such as processors, ASICs, and switch fabric.</t>
 
 <t>A network slice customer has the capability to configure customer intent topologies
-   without needing any prior knowledge of the provider’s network or resource
+   without needing any prior knowledge of the provider's network or resource
    availability. However, this approach could potentially create challenges for
    the provider in understanding and realizing the intended topology.</t>
 
@@ -505,7 +524,7 @@ node.</t>
 ]]></artwork></figure>
 
 </section>
-<section anchor="yang-model-overview" title="YANG Model Overview">
+<section anchor="yang-model-overview"><name>YANG Model Overview</name>
 
 <t>The YANG data model in this draft consists of two modules for flexible use
    and augmentation:
@@ -516,7 +535,7 @@ node.</t>
    the connectivity constructs.</t>
 
 </section>
-<section anchor="model-tree-structure" title="Model Tree Structure">
+<section anchor="model-tree-structure"><name>Model Tree Structure</name>
 
 <figure title="Tree diagram for network slice topology" anchor="fig-ietf-ns-topo-tree"><artwork><![CDATA[
 module: ietf-ns-topo
@@ -680,7 +699,7 @@ module: ietf-ns-underlay-path
 ]]></artwork></figure>
 
 </section>
-<section anchor="yang-modules" title="YANG Modules">
+<section anchor="yang-modules"><name>YANG Modules</name>
 
 <figure title="YANG model for network slice topology" anchor="fig-ietf-ns-topo-yang"><artwork><![CDATA[
    <CODE BEGINS> file "ietf-ns-topo@2024-3-27.yang"
@@ -750,7 +769,7 @@ module: ietf-ns-underlay-path
         the RFC itself for full legal notices.";
 
 
-     revision 2024-03-27 {
+     revision 2024-07-02 {
        description "Initial revision";
        reference
          "RFC XXXX: IETF Network Slice Topology YANG Data Model";
@@ -895,7 +914,7 @@ module: ietf-ns-underlay-path
         the RFC itself for full legal notices.";
 
 
-     revision 2024-03-27 {
+     revision 2024-07-02 {
        description "Initial revision";
        reference
          "RFC XXXX: IETF Network Slice Topology YANG Data Model";
@@ -1010,7 +1029,7 @@ module: ietf-ns-underlay-path
 ]]></artwork></figure>
 
 </section>
-<section anchor="manageability-considerations" title="Manageability Considerations">
+<section anchor="manageability-considerations"><name>Manageability Considerations</name>
 
 <t>To ensure the security and controllability of physical resource
    isolation, slice-based independent operation and management are
@@ -1023,7 +1042,7 @@ module: ietf-ns-underlay-path
    checks.</t>
 
 </section>
-<section anchor="security-considerations" title="Security Considerations">
+<section anchor="security-considerations"><name>Security Considerations</name>
 
 <t>The YANG module specified in this document defines a schema for data
    that is designed to be accessed via network management protocols such
@@ -1055,10 +1074,10 @@ module: ietf-ns-underlay-path
    in this document.</t>
 
 </section>
-<section anchor="iana-considerations" title="IANA Considerations">
+<section anchor="iana-considerations"><name>IANA Considerations</name>
 
-<t>It is proposed to IANA to assign new URIs from the “IETF XML
-   Registry” <xref target="RFC3688"/> as follows:</t>
+<t>It is proposed to IANA to assign new URIs from the "IETF XML
+   Registry" <xref target="RFC3688"/> as follows:</t>
 
 <figure><artwork><![CDATA[
    URI: urn:ietf:params:xml:ns:yang:ietf-ns-topo
@@ -1465,7 +1484,7 @@ module: ietf-ns-underlay-path
 </reference>
 
 
-<reference anchor='I-D.ietf-teas-ietf-network-slice-nbi-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-10'>
+<reference anchor='I-D.ietf-teas-ietf-network-slice-nbi-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-13'>
    <front>
       <title>A YANG Data Model for the RFC 9543 Network Slice Service</title>
       <author fullname='Bo Wu' initials='B.' surname='Wu'>
@@ -1483,7 +1502,7 @@ module: ietf-ns-underlay-path
       <author fullname='John Mullooly' initials='J.' surname='Mullooly'>
          <organization>Cisco Systems, Inc</organization>
       </author>
-      <date day='16' month='March' year='2024'/>
+      <date day='9' month='May' year='2024'/>
       <abstract>
 	 <t>   This document defines a YANG data model for RFC 9543 Network Slice
    Service.  The model can be used in the Network Slice Service
@@ -1493,12 +1512,45 @@ module: ietf-ns-underlay-path
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ietf-network-slice-nbi-yang-10'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ietf-network-slice-nbi-yang-13'/>
    
 </reference>
 
 
-<reference anchor='I-D.ietf-teas-rfc8776-update' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-10'>
+<reference anchor='I-D.draft-ietf-teas-ietf-network-slice-nbi-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-13'>
+   <front>
+      <title>A YANG Data Model for the RFC 9543 Network Slice Service</title>
+      <author fullname='Bo Wu' initials='B.' surname='Wu'>
+         <organization>Huawei Technologies</organization>
+      </author>
+      <author fullname='Dhruv Dhody' initials='D.' surname='Dhody'>
+         <organization>Huawei Technologies</organization>
+      </author>
+      <author fullname='Reza Rokui' initials='R.' surname='Rokui'>
+         <organization>Ciena</organization>
+      </author>
+      <author fullname='Tarek Saad' initials='T.' surname='Saad'>
+         <organization>Cisco Systems, Inc</organization>
+      </author>
+      <author fullname='John Mullooly' initials='J.' surname='Mullooly'>
+         <organization>Cisco Systems, Inc</organization>
+      </author>
+      <date day='9' month='May' year='2024'/>
+      <abstract>
+	 <t>   This document defines a YANG data model for RFC 9543 Network Slice
+   Service.  The model can be used in the Network Slice Service
+   interface between a customer and a provider that offers RFC 9543
+   Network Slice Services.
+
+	 </t>
+      </abstract>
+   </front>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ietf-network-slice-nbi-yang-13'/>
+   
+</reference>
+
+
+<reference anchor='I-D.ietf-teas-rfc8776-update' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-11'>
    <front>
       <title>Common YANG Data Types for Traffic Engineering</title>
       <author fullname='Italo Busi' initials='I.' surname='Busi'>
@@ -1516,7 +1568,7 @@ module: ietf-ns-underlay-path
       <author fullname='Igor Bryskin' initials='I.' surname='Bryskin'>
          <organization>Individual</organization>
       </author>
-      <date day='22' month='February' year='2024'/>
+      <date day='27' month='May' year='2024'/>
       <abstract>
 	 <t>   This document defines a collection of common data types, identities,
    and groupings in YANG data modeling language.  These derived common
@@ -1527,12 +1579,12 @@ module: ietf-ns-underlay-path
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-rfc8776-update-10'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-rfc8776-update-11'/>
    
 </reference>
 
 
-<reference anchor='I-D.ietf-ccamp-otn-topo-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-17'>
+<reference anchor='I-D.ietf-ccamp-otn-topo-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-19'>
    <front>
       <title>A YANG Data Model for Optical Transport Network Topology</title>
       <author fullname='Haomian Zheng' initials='H.' surname='Zheng'>
@@ -1550,26 +1602,23 @@ module: ietf-ns-underlay-path
       <author fullname='Oscar Gonzalez de Dios' initials='O. G.' surname='de Dios'>
          <organization>Telefonica</organization>
       </author>
-      <date day='10' month='July' year='2023'/>
+      <date day='25' month='June' year='2024'/>
       <abstract>
-	 <t>   This document describes a YANG data model to describe the topologies
-   of an Optical Transport Network (OTN).  It is independent of control
-   plane protocols and captures topological and resource-related
-   information pertaining to OTN.  This model enables clients, which
-   interact with a transport domain controller, for OTN topology-related
-   operations such as obtaining the relevant topology resource
-   information.
+	 <t>   This document defines a YANG data model for representing, retrieving,
+   and manipulating Optical Transport Network (OTN) topologies.  It is
+   independent of control plane protocols and captures topological and
+   resource-related information pertaining to OTN.
 
 
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-otn-topo-yang-17'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-otn-topo-yang-19'/>
    
 </reference>
 
 
-<reference anchor='I-D.ietf-teas-actn-vn-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-vn-yang-24'>
+<reference anchor='I-D.ietf-teas-actn-vn-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-vn-yang-29'>
    <front>
       <title>A YANG Data Model for Virtual Network (VN) Operations</title>
       <author fullname='Young Lee' initials='Y.' surname='Lee'>
@@ -1587,18 +1636,19 @@ module: ietf-ns-underlay-path
       <author fullname='Bin Yeong Yoon' initials='B. Y.' surname='Yoon'>
          <organization>ETRI</organization>
       </author>
-      <date day='16' month='March' year='2024'/>
+      <date day='22' month='June' year='2024'/>
       <abstract>
 	 <t>   A Virtual Network (VN) is a network provided by a service provider to
-   a customer for the customer to use in any way it wants.  This
-   document provides a YANG data model generally applicable to any mode
-   of VN operations.  This includes VN operations as per Abstraction and
-   Control of TE Networks (ACTN) framework.
+   a customer for the customer to use in any way it wants as though it
+   was a physical network.  This document provides a YANG data model
+   generally applicable to any mode of VN operations.  This includes VN
+   operations as per the Abstraction and Control of TE Networks (ACTN)
+   framework.
 
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-actn-vn-yang-24'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-actn-vn-yang-29'/>
    
 </reference>
 
@@ -1608,19 +1658,19 @@ module: ietf-ns-underlay-path
     </references>
 
 
-<section anchor="acknowledgments" title="Acknowledgments">
+<section anchor="acknowledgments"><name>Acknowledgments</name>
 
 <t>The authors would like to thank Danielle Ceccarelli, Bo Wu,
    Mohamed Boucadair, and Vishnu Beeram for providing valuable
    insights.</t>
 
 </section>
-<section anchor="data-tree-for-the-example-in-section-3" title="Data Tree for the Example in Section 3">
+<section anchor="data-tree-for-the-example-in-section-3"><name>Data Tree for the Example in Section 3</name>
 
-<section anchor="native-topology" title="Native Topology">
+<section anchor="native-topology"><name>Native Topology</name>
 
 <t>This section contains an example of an instance data tree in the JSON
-   encoding <xref target="RFC7951"/>.  The example instantiates “ietf-network” for the
+   encoding <xref target="RFC7951"/>.  The example instantiates "ietf-network" for the
    topology of Network Slice Blue depicted in <xref target="fig-ns-topo-example"/>.</t>
 
 <figure><artwork><![CDATA[
@@ -1973,247 +2023,267 @@ on"
   </back>
 
 <!-- ##markdown-source:
-H4sIAEWJBGYAA+19aXMbR5Lod0boP9TSEc+kjYYk6rCNGR8USXu0IVFakSPN
-vrG90QAKQI8a3dg+SGEt7m/fvOrqAySl8drPD/hgU0BVVlZW3pVVFUXRnZ1J
-Pk2y+UjV1Sz68s7OnZ0qqVI9Uk9Pzr9Xp7q6zIu36ixNJlqd56s8zedr9e+H
-pz+o47iK1fN8qlPsFY/Hhb4Y9fXwG0/zSRYvYYhpEc+qKE3qqNJxGVVFnJWr
-vKiijIFEJQKJ1nE2j+59dWcHv5sXeb0aqfOTwzP1Bv4NuKsf8DuYSVzpeV6s
-R6qspnd2klUxUlVRl9XBvXtf3TtALMsqzqb/Ead5BsOvdXlnZ5WM1N+rfDJQ
-JYxc6FkJf62X/MckXy51VpU/0QzrapEXozs7SkX4H6V4Fn+rZxqQeJbU/G1e
-ADUPUz1TJ9O55u/0Mk7SkXpHTYcw42Giq9l3c/x6CKO0gP6rns3UeQxj10Xs
-wX2eTIq8zGdVAPcf0BpmVl0H9SmQRz0p1iWQzQP6NJsmF8m0jtMAavIfY276
-3Tpe5HknxGd1UqrnQ3WUZ0C8Ii49sOcaiJBnySQOwKbQZZnMa404Sq9lXSRp
-mn9X2S6do/1bkqk3Ppn/UseXOgnAjwHQ8LL+bkE/dYI508U8ydUTneZVlXjg
-TvO3SYgsNx2Ouel3GTbohPlK/1esXuVvax/eUaKzEF5RYJPvJvhDJ5zDBBBX
-P9S5B+b7uqoL3ZxojC3ndX7tolfA7+pJXSabCZdgu+EY2gW0u7MTRZGKxyWI
-56TCf0OXw4z1gwiqIkFVE5C1fKkLtYzXoE+SNPkvrZKsAhGKxnGpp6pifZDo
-Ev4kSPrdqtBlqeA/eV0AEPhDFxdxleSZ9IW/SnWZVAtY/Wqh1arIgVt18Wlp
-xh8SqPMFdLVIRFM9SzIYk4H4Q8fAape2IaICo/5nrUuWqnIRF9DPYFSqGUjN
-jNYANEKW6QmjVC3iSk3iTI21mqX6XTJO1wQbFdGUQIG2kXGAFNOhOpxOE+wM
-rdYDnMzazAaaAi0A0zK50CrVFzpV+UyRhOQsl/kFkLbOYOYp0BephERfxdUi
-IE+wJkwZIQ+IKujeGlWamupyUiRjpAar8ylq6CVqaJovDDwDIS1Qv9p1ZVIS
-NI+c2DwYtFTARNCPWKTSk0Vmmro1Ub/88i+vvj/66tHDB1dXQ2X4bJlMp6nG
-f30CagmmPq2J2sJ3xrrYyQsrlJbdAg7DWVwAjYWKKY0M6C5jhokrNM7rCumW
-2EmgBagnCxWXagwLeJlMK/jHBQhJDMolqda8rMIJF/DFgCmMi+DYaoAIzOIJ
-dgGGKB0ZDfbCdCWoT8uLyE9xWrJwMLk2iBBYukLHyxRb8RywbQH8pfIVKFZi
-1KF6s9A8WxkRF8eQDua6QqNLy0jzZjy9gYRTY+b/EnsZ/i6bzOF183jvKbMm
-rgMwOTK2zzCAzmADHAW6cpx6BCyFAzcrD/hpBohmwI9D0Q0tHSBiy1basDx3
-xzWOcX35nw2UAQJ8OQXVmYFYPzFijISd1Wlq4CHXsdxaFEVBIMwqWWIHHGmp
-wbmYlpvIwOoyK1ENkepxCsquTIl9UAsxt6Z6CE5XoREDWkTXR9gByQVMdZHE
-mxZAlJwoxhhdkLJJjgkwolV7oF+SGVG/wlkitQqAUF1qnXk/+TJEEwB3bVIF
-2qwEG+arsqN8uSIsYPkbGJD4TfU0If1L6xDB0IveYQQhIex0lcPMYQmauow0
-S4cebFIIsKphgZHYsbCAx5j/WSeFJm9yAMwEBECIZTLPkhkgDNA0YAZ2YgJo
-ZSD3Fck3SY0MOxQleCQyCJp7UY8jYJ8I3Oa3Dc2vygnITQF+zuUCqK2WdVol
-q9Sz0tSJLV6C+mm6BocBcAHbZEiGKABnANYwJRyNmg6IE4h1DZ85TcnLBBIB
-FgZnh636KLfmNQOsgQOLChxQlYEFKlUE0oVEQ/FGDyCbM1+lKTMFTZexRunB
-73L4TxF0oa8NzgBS5sTszvAMS4MCfTtQl2RQSOg10ECko+EI0PjcyzkDQ2dh
-WULFO3D2I0EtFU8TXzhxZTKN2sFfZsMrLKJJNUTtSbokLqsBSN8i0Rc4PWx2
-EadIT89OlRgxgNIDmBAWzWHk0Lt3AtIrfXmdToGZYMYlmS6WbeJXDcKH3yDB
-rAApDUgxI9HCmCUB2gNRFwnYFIaZAgXIatVjjMSqBBbcIxGwPcgCuMaTtWc7
-jvp4B9xT4GcSqWAuYigbFkaNPSXN+tkaXXB8wEuJMwhMCL2VniQzWCjrrfW5
-XdB4Hkss5by3QPEzMBBr4B3k3xvovECOB8bQgp+SdjpPxifvlzK9HEOUT0zp
-+AzcZ2mH65U454wxYRtLPoWYbWBE9neTbJLW4LKuyCN2g1rPCudK1tfT0oE+
-hKGnKKSzhOWg07m3w56TAktonZIsWdYU5DgnOY5WoOcKI5Zvs/wSXL25tvwZ
-iJfhTjPSwHrqFcpvUjq7408p03qqhXvJYWpIEHMdwWroYeaYEtcQdNsUve6u
-ReQIxicAUGuFul68zhRXEPoRL1Imw3gPlDlJY6P0Au5uMQP8G+cAko2kB8kG
-6xY3gyxY9WkOcWFmuCuMHhJxzbvCh4Fi+cvNDL/46tG9q6sBas/Az9psUmnZ
-GTZHJSRfU14d8NpKaxX8yKUAx5VH/fLBw0c4Kjl6/lCl7zmikTLOrCxUJHw1
-/gctLUxx7+zZi3KfKB22ASjQRogHrU7KfWYm9pCco6ONnvI4vW+BmBVc1Kat
-YHoTJctELBVzmFxApOEY3lNtgLSNkgbi6sDKE0V8h5eblqTvC10VYGQgDmkF
-d8RyuOpCiWGgo9kRqtHVRn5hXF14rQjYPAfFX2kmAlmWwL/mtSDRSTJkc3Lg
-OyJnUUXsVZHXEk//AYgEzpblOmcGPb3YsSw8ckQTN+MPyBTAzEmvLfMLw3rs
-rcC3ZA8Hql5NWQrx355pi4i4QlbtYjNAhigusdIzdAbiOY1E7gxF0NY28RI5
-LsDAjKZQFetAVwFlxF8qc3TcJQzu8SebcpahYQU/Qpe+fSJ/BgMNIKRegSQi
-z8KqWfvmB/qiUyeYQM2FJC0uMkICcwaGAeOK/LPHxoXSBy/vPn/57Gyg8L/R
-+UsG+uL8dEB0eHP8HAhZocO6D/yBPAkiDV7uwGc+T1BgSUF1GrrPCtDwlt9q
-ULTiqth5rCM7tybuTH5YVpMoICC//PLt0+iY8nHRZBIvV5y6zqssko5XV+iH
-cjQ1RRUCnDA163DGvqR6gGQVWDZDyilyTojbdEYRMSIAVrwDWSdcZpBCThvN
-NgUuzJcd4bNxYoCSSGWimYhJU1BhYibCnoE4k/vrnDNCxlNdXg6oRTWaJP0V
-bgFk44RoaQxlyLcecBJi31KhjgO5sMHUqYf78ziL54wj7k8AjYC9DwtwsIEH
-KN23d/r8+HDfWZQDcbc++USd6wKcEZ+Mp7mYAk+uZrkxP1XQHrWLpOCasiHx
-fJtMzlvg5AQ0ynLUdqYpuklJ5lEoamzH7J2e7ff/apR4f4szcX5fikHZAMuy
-KA561DnqK8N2L+OiIuUObV+93A9XOKRgSBskQ10ykYJlD2hgA4inzP1mU2pk
-DC24ztYkGNAQLbS8RrGjUxT4JFvVlTCVhaP6nD+XbdszOsUaspByASyPisAv
-SEfywW2Q23LoxZ0JJNR8Wv6FczIidSj5/c3EAX8n5xxkSBwhVufUg9EsGdhh
-N3DaToBIwjBwiQNQuMdgFBOY/rokKbQbFQ5p9vYAb2wzq1PfUg4sSKPIXXDu
-YpXGdE1Mi3rc5XdDWkPzcZ2k06heXaOAG4zWuTogFZsXxmZ9jZY7Owqzz/Tt
-Ml6tyLeY9XMszZaj3bWvmSw1rP4rtFbHSTwHO2oUHn415a/KbsEUcWZ2EX3p
-qTpP04G2vefUPQz4EiLK5B2HQLSdfAoaX52CFTcK92ljsAHtgJW4AGQi2FtD
-SWbvyrMb7O1zygU1zIoHm8pOBjmGGHHFxVR+w0xLPkkok8JZLBN45QUHbuTE
-kIFKlhIwwmB1igl14LRykV9mHAdCKBbJiKUL6N/LlOlPgvOcuqvW5z3oUsl1
-u+8YRmQ/3p9dn66fBYZC0ysDkXEmt6Zar4CaDTx47R5/9dV9sFI+HpjdqXwY
-+O/bwsgq2yhwEqwcNGBwDNiAcfnxMCqZioFR6Vb3EAaEwC08yghzSA6PMjJJ
-JvnBwPjx7wDib/D5qbG2CAPH9WHwvxufTTAQd1oFby7tVbEw/h0+LRgyeNmk
-KTtvxgZaGP8XPj6MX0bqE18EFJWgfL1rJR5F9qgtViwO5e4VCgzAVScQI6Kh
-zCsNavJlCt4kZZFTjI1x9lZSFTbP6uUYTXuJiWpj1kIvogEDZ38tjJZDW8wm
-X37xxeOIokNNAt6AixS5PdzrHGU7CESsEpGDztWswbkaB2lp9hMC57V7h98Z
-nJKz+p0ZJgJAepV9JQOj5WTZJJhJ1hAJ4npOEb1sXkpyM9OXDhAwqNoNZr7r
-ZzBb7qBYUtwHBbzb+KAhMME+RT5xkpW+T8ODqCC9h1gMVBL4Y5SSEDiYmeyk
-or+Bvg4CGsTZGSUhRICIQ5rbjNH4g8kBA8NhtiQ7vB1j8dqjZ5SzetGZ1wra
-EIiTdm7LBHngRqTkV13g/lLNwV6eNTIpG7OQA+XifDLLA5NCoXwmxUqyjUu7
-cmrv/CUgIL7HK50yYotkxTxzXsS4d6BOsjlwAG+u7Z2f7AsJjPMUhhateLQR
-OnKcDpMbUwOzoUI7aWC/wIVIaKXd5j/7FSFfmVSN8TD7UG1u9ZoKDV9M2I6A
-invBiQ8ExjVzNorYe3F+eh2sZpoCMxTYw6gO5kTeHJeKB/TaSrMnEHjsXfmS
-Df4uiFaa8waubBk1cix+9q5/wU0oelhV8WRB6/USOQVY9fDlvr/gfvT88N6X
-QL9N2Wuzte5LtCt+AkgXCSginLYXmLSEUyhochK0XYKDpQkmQWeS7umeQUlT
-KPcHsnHbLBsx2/Eml857mhwpQcdARy9jcJEvkhJrHKgexuZpJewIQquxnuVc
-SWDz891bGY0tST9+8dSPr+899msK2YoTRrEXx3pAcNEp4Ep1SPIYk5JxKVUN
-k2SVSEKyIh3FvSWv2kgOUinIZW6yeLzLO6UdBQgcV3WB0WKjfGWiCzQKdlfd
-K9XgBUk5d8tYBusgjG5zqRulI1dxImQKNmdMKs9V+WRTb5MzTOUP1fdB9lqU
-MkdABlL/rjyv6DNMYZ97mljk69m5pGjMFh5SAKNxiLIxGVjR1rkJRxhf2TJD
-jvIgEpSXnn63kbX19UxAixJh0w+trUKWJ6A5rehQ/SW/1LbkxSiYksmHUmE3
-e2e4IzvW65z3BFkhTfKVtm09X7BHEx0enZ+q11K+YLXw69N98aREdT98ZBJ3
-LT8OWDmLLjLRvk49mZqpiV5VvGIyDMH1h/JTEmOKXlF5sdto2dSY79enrmKI
-GBKLZQquHLW6jsy+qLl2OgDNmZfHglZ5qd0WAdsJtnORbto5EHkuTXpDUo3o
-0M6tKpNlkoJwVYmp5mk5T1gqZqzQWvZRBEFCFcsflitjms5PIhnMIm43PUD+
-rchzwAMdDGnEJxhJ40ido8d5H34fsd/Mjm2sMDsA0G3WCQWMUccNaDCqEW1E
-B5v+knxp7tW5EqShP+jBbQaNM1ep4KTZbIHKwGGdG8zaahPbl6sbpA7UFrz6
-u2QhCgIZEfF3lRpFokBd3+8b5xLvMLCIptHO38WebHZMDlleJ+R3jbHKCeUD
-twLnhcYZ4b6OXwZgk8H+RoCfrT46Pdq3NQLPydU7pp1wa7CP8ryYogqDKe09
-Pz6D9jad+frU+kbMp1wxtLbOJFfJ4Tqu4qJinhNNjbuiuCLNjKCxQi7HtbmS
-MtgpYE6WxFZnNEIsNcHZTwxDXFMwB6gnRdn0Y471Mi4mnqlAR+b4JYcNSWkV
-2SQFXSHlVUuq68QJWQFjsrE6w3IMs420ifmHVtXeJkJWs7ogvgGVPsbwiYs6
-w3QoO0bNIMuVlkqFXF+xRaMUguPcoRfuQSyFJWcguikE+qVLApBZsRoAhRiU
-LIYf2AJrlqVKyaQneWtfTDBtwePmLMUcfqxp+L3EHXmsFR1s2J8LXTV/K9Vt
-78UFR1Wcizf22k+tBnVLt9/re1opDeHlJTlafg2HVEcb6mOFfYv+oZWS0IPA
-Si1f0qxdF0P/SZgWwSV8pTkZzAb/lCD4ezekYa3uM62YCOKrcOFEOotcta6U
-/hI0qUqR2gwngjKrPSskUmaCmWyzN0s5Q5bVWDwqwzz7ksU+P8HBCnSFsCv8
-0xa5gCxkouW7s/EUeQ4dQ7bHK1CogUwWyRtMyfOxX2ReGSe4Z9NBT/BhT0x0
-kciriQQOaSgVpsLZsxec8nh2ouIKyDGuK95ViP1YNp5nObgHE3BtYZiCtlrB
-MSGXCijnVzuwguNAW1wKOr2CtESeY94/XGHVRPJOHXv7+7ff9TZcaJXmgSE1
-Ldw1dcp49G2ObH3Nhh1zLVdtcuCEU5jWqF5M8ahfO9Q0Gl5lIQMZJ2JS21U+
-ZZ7WRne0KBtmbGDpOQSQ0M3qKDxJCJHTkvVCijUlKGoGcgdbENma2apeq2pt
-mCs59evQ3EietvsAk2QiXSoiFplhPTFZmwjEHaUMghFP9XjK10UCLXVO+5Ml
-e0g4l7kGNnd5mCBJ2TYNoT170dhPC/y8F+en7ChI8cxe3DgIdH3VzP4giLEl
-AsBq63fiunLkF3JL4cdqEsvQd0EtHZV8JmlaoyarDE7A3FxcE/lQrO1+YxgH
-Kco7nmxIx/k7xwN8IiGvKi4xB/kL7JHLMtnE2g3sME3yzs5/w0fc7s/djt3n
-zW2b4Edp/96aLfiz+fF/tO25qEN1t7eHfD34T55yYu3zFlrvhXeVD999ZRp5
-7XE7BBnNtiegn/uAvfbyvT/fZpOOabwPmtrEe/MfwRe3h05Y/dyD+JA+P9N/
-LWFAdoKG3mr+2S3UKFgolDH4s4n3yK3iqE34b1qbvyO3sK59/xzVyAEb3YQx
-R0P7GRl2xp3Abskze4JtxYfbf1QiIOODnUUjxYnr5rlBIY9EY3yWwkvtmw2N
-pnVnwfQs442c5KWOs7J5mpKAdFXcdRxbkExr5QcKg/A8SrAj5ZWP2aNdXODn
-7AB7D/0hi3eUxZ20iMlEEM2wiIS9oLhVHEIxbbOSixHARCaWVZl4iOJ+k0vd
-dLZBiUI/DedoVlDCQO5qlu8yXoMF4jJVKnjJgkygLIFXJCzGofs4czOb6tFu
-mcwXlQWHFc5xAwibABho0jju1oylTRxN0DbE0r7lCQ+K0DGcnthd3BvyxLQN
-fN1JhvGaDiBnU0pZoatWAxjZDeGaHYpdzGYNev+ys2QFYVNCWUpr/aIxExKx
-fAViUbaKa2hqVFRNJcjLpZ7ir3RSbblMIMDIqULeiVjHegZ5LxgeDzh5HHaY
-UhEVn/4KlplP9/ECB2VhY0/QUM5XOe1ZSIa2WVglSmaD7EmG1sIMj2uais/e
-6UvlL564dP4OoY16BNzIeMq18+x9074HaapVnvNJGnN63Z+mKSgOyOHOW7Mj
-2TVhyRXy0Xk6JRtPMV6l6CVQaS6ux+NU1h/3dyDx0MpCNJthEq4gtycbbQLV
-P7xLkQ7ntt2JXb9gDL34GN16vyILjZBU00TyM3rnuGsUFN3hYFhkhsmpQE2x
-rX2S1nwcLvz6lYZ1oBS8d2h2vHbH68LzGxLQuMLLzTWm7bNEqLQ5YMEJGLzp
-fLxfVNOvzkvS53K6xRQbpmuyTqzbTUi6AcaAE9Vy0tPf10qkWhDX2JCAllDY
-0T83BpK7WJe0+T3VshtJ2fwLb28EBK1C6r1+dZ8AvX514NObT+ZZONxavbov
-1Qe9wB4IsIc3AHZAhnql5TQpIHmCOozFUnaSec9I4A9YEq0FNXvMIWDgwfit
-ZpktqJ23M+jRyVQbYKtSjpgvczon0gXWVMgcN21mYCZNWtwmZWNZWEpx4x4g
-iyhbG9kx7cCJVW+OdyQcnj09kqqPEjQ9NJjFYwhD3anGnjtGFrL3Sxs8VkUY
-Hd97vMpURJgsKh7r42N0a8niu+ODjV1+d98InwPiabFm9m6HCLYf/Qwvm19r
-IlB5EwepyQL+pbO559EFW92dZ/5CsbNbOM1Ub8OoBXBRj08WOW3d5XaTnvfR
-OsqgYVReWEPxxNPxebGUgqfWDs7AZfPJiQyryBmkrSTnEoRwzd09GXisPOd8
-S2MuNkXcAmkslGR7e5PFVIzt3NME+VRHgqwoPls4Pmxk7909HKXBC1l8wAdW
-eZ3Qo8IvTcbcnIQj/Xqjo6q2HB7B2F+9VIaf2Xa0cRXwzbVJJFoASbBJwZ79
-b+UlmBwHgfdRZ5QS5Hm3TrYZIep3DQs9o60n4eReF0TSkHTE80NId1aPvU2P
-sHjDkNTzmPS0f1eHT4LCekOflB2BORmtpOLjtcxq6E20K4OeUjF4bPZe6GIA
-L87tnU0gtuR4TuoCz5tviE8uF/bsZfvCDrlpJvADzZlod0VFTxIeJolXVOAU
-HSlNXFGvCH0IrgsIYxZOGZV8zRH5UwOXEX8yJN+L6f+vZy9O6RDi1KTp7DFQ
-s+UY0Kbhj7W2ZdgLIxS8nJl3r4BNc+w918VcT/ddjqK/jQXT4fC1Pi3vz08d
-tT+fB/kS71+fN5NawYdL9sFJwVJ+/vd78HuksJ9+6Ot79wbjtnsZaH0tfw5a
-/xz8+WNjQoThfYfsgcswhammRg5Kmj+kntchtBFSA6EOnM3nIgBz0fnnzw5I
-7ziq418hvr1AeNqvXz3y1hqcXEM+cFHfdwAJUb3Norue19F406dr0cFFd1g/
-aKcVuz6m+eObLPr1n3DRO2T+qXhXVjNsavOxmmGzbgiGLw0VP/5zg1HdqU/X
-+Mh5U44UwQFP/3yno40FZilAaR5TRnfMkZ0/UpuaIwzvBhiW4X8ehcsZYH6D
-ycnHEcQI181ow5+77s8NqrpD4poNLQr33/sIXSceHz/eQTDewx6DcQOIvZ8f
-G2A+cG0et9amJUrIHwfIGg/xP49b495g5AY/qv9deTMhepc0UEQXnmvgTp1y
-1QZ1U6K3qHbT5t5qiUvym0jS1/Qh1+Jr8wm8i87P75Ttxc25DSG9j4wb7rQ1
-kpxmm61R12QYzVZyBjm83SvFR8rMqTw8ZnSBkYK+bN4x0nVXAxVvSKUD78Vw
-cT4e7uPLV+WaRnunBSUHvWNivOEY8YUBSVFW9kITPC8rNZCbNyjoUIkrDeJh
-2kd8beSM0uRKI4ceAiXe5DcNMPDvLvKuWvm4qzBo04bvpWkU7sqJAykU7Srl
-9M8A8rntM/qhLrQLlBj5UXC2dAcAC+XV3exyZOqqvb+9P/ko6WhH2K+wR/h4
-Mv9yPTC/716Z5tBRR7ACyWS9/+2O4+zRnjmfvW++fW/6mW6VBhaH1fzWigST
-1HwfFXoWgGR22fdkTQDKabkQn1AkuSUn1ahGD0cF6sNydTVEUF1g7CS4ci8a
-4x02n6m/yz+Rvj+1ejQ70XlJ++FzG9Xam21vzzpLKtegC32/00UMbll0gzn7
-nVa6wAsmE6Aj9afVcV/2dyRSfKvCTw2S/fhhDw39NO2311BCyFDVwQgI/sFB
-9wJ284FrgPkaGOyz8MdeHGzHpMw5P/TZLTsu43dRPpnUqzibrPnKsm9lDl/2
-dEH9EXlVnV1mJpQBWzja35SveAJUe4xWoxWx67c9bc3HHFMfwR+E9DQp/4Gb
-f6DoyxvqKFB+W/WyVS89HbfqZatePla93M2qkXeYPaLyhK3O2eqcno5bnbPV
-OR+uc6oRVsht1ctWvfR03KqXrXrpVi/NtKCf8okqzA9JYtC/46/98o9NqPGd
-XN1ppOCasyCfZO4RG4UpL1N04H4Pvg/m7dq4k+sRPRpX9v/UAyFUVl53UnJ9
-nTo1nQ+0k+tdgyZDdWXPgINJyKJvGtbAmAJpl0y9zgRYrrwGfYj3OL/7ydPe
-KDj4nY9WKL1GuiLUUJMqWuQrRGOc56mOs7DVHjLb/rehJRjtoVeM/XwTYXUH
-/ZiQhhIH2szAg4A2rhcC/SgQ2Bx2QKhWzf4Wa/gpEQ2JrvuKe/9eGTR4f8Am
-d/sYuA8IcfN1DNwrIm0O3zLwloH/SQyMS9DTNT6Ig39E5XS15Xzvs+X8aZ9X
-E3ggm92bYGeNjxoqf6sT9yiD0sI/H704PlFPTn54enr2jZrhae5d35v67uDe
-wcPoQXTwxRC38XbNoULcJgwucf2FJ0mHocnPyzN1f3j/T/w13Wy8ip1s7tZF
-NkIAIzxAsSxH75bpKCtH2H/kA94VCHKN8a77mr/ny4qDi1wNLl6nSwNGuctQ
-7KrsmiO7I3XYfCw4qM9028oG3FUvEu6K3TY21a+GTT864eW2LZyMUtiEmdrl
-J5BvtOEb3b838vi+431mcxOP24b3qMp/5MU8zmTb3nIOgWq/qGw6032ok8o2
-f/ODeqPHI/XnRVWtRnfvVqBDStq0HgL4u5fzuziVu99YZKHDs6SsoAe+NFvl
-I/z9O9Phmx3bkO/v9Z9UbsU0BkTvU8od4NwLuL3gOh+/7QBln+fthdTzLG8H
-rPAZ4l6AZc8TxB0QW68x9wK9+SPM31jF4GUpLC+Yay7DMgs8RnHdq7IWtQ23
-lWAXOQvcPBftJu9ucsUXH9d9L350vvZhgXS8+uENcZSv1gUe9VV7k30FCvwB
-i985vi7ujhqAkvajens/It9cRc+H26PGWN4+xOM5qSLIpT306Y37SuN9MnRD
-jXmStKa7LZV5TDSjm1XiYk0ncEquY7H9gXzmnBNQiO6doJvJ8CjOCrcl6GaK
-VV2UdUyUp4NYtntZ0/VAhpBI+AzPCtE7HHJLMlWv8FmcV/oiKbXr/uTsGESY
-+5SaCvPplT/70M3D4cSQw5HzU0fAZ3oep1zRVtJJDz72jwdFcu5xLKdTXJ89
-VEolaiUEprXTS4J+hKd49gP+AWoYA2uOvfjFO4m7qw0tCd4j/ieYkGOeSu7s
-Tiq820mei4aFTQn/LK+IY1GOuEuheUKKXIF76As4++FJGWjmLKFHEk2PzcbE
-YDfqMg62PLdhAZum7u5nAvEzdchRgzmGQfc0mx/vmtbhpdz20gnTwEQeuzct
-FtrtJIU3y2NRM75sn4W3kyOgoaOVYdUirD5yAym5Jwe+A5JP5TxT3APeAe5B
-EU1qVTqYVhF0Ih3iehW4QW0i2yNItyW0R1d8dlTtDlukvyuuYBgc7vp06pvv
-oVeMp8gB1XRmlq8Kz7N07ScLQ7uEMoe8003tNm36GMO/2IvOwHkQTDN6Juaa
-gK8lEJb6fEPlB7E49GyvwB9+CUhl/HPp/2nZvh7+Y9bk89BH2u3csu9auj/+
-6rWv4bewdm6/mqpDnfGNHrdfPM4P/H8oUPRIwgcLFP7HS1KcnB6ffbNx54ce
-/pHUiFe3vGnfRyl143xIkIe5SWIkfCHn18iQBCN0pErk622q5HedKrn3aJsq
-2aZK/nCpEncZvySk++5dzfn+U5Naac2teaHBNtGyTbRsEy2/WaKFbAiQ22VX
-lHGW5/KT6nR9+tzGvxolYS+Ep172HZhGztXTDx0uqvsETqfnaQONnEdKbxz5
-G5aer/1Wr8Hc406lB77b/959xm8lMebmpXYfrVTHM9n2/MWfAfrdvPnpT6HH
-y6eED0AQ8VjkK/+Zi0DZ+mNfNbDw91UDbCxGstPapGofWgY1ykVheEMXqxgU
-QVJ4PHp7Hm9w6sRtsshNiilAqpcWdDO2I0XIBBM0VWYTuDFJooLs+nbP3+0K
-34oE9Mire2moyZZXO91/E65mu7kLV9lf7sHV7j/fCld6MekDceWN7S5MaSe7
-F0/69VZYdjzpdP5y/9Z4279sxrKl1m6QP3ah/jWVKR2Jmu5alU0NWwUrt2m8
-GQM/3oaWqh8sqd6NTbqj+M1d/Ga9rZr1Kdfm2v8aOJvhe0Bsmlq5iMBONUze
-H2S1u6uWtvyx5Y8P5Q/U5pt+jw/ia37G8rctByIHAjF6bz1Ay3YDblS3yJOG
-fnl3rrRRRKb4ghG6gIFiZXOBaedLzOc5PwcitzPKmQiKSCfybpnpj96yvdfV
-v5/UHogYyAEevugSnWe8go9SBubmRr4s1sXwcaH9C9P56ne+ON9vZofgqzDo
-sttGjni9sg9fECh8BmQq78nEk0lew4LzSz0UM9Ot1nI3bHDnfYA3dDSXYb74
-P8+9p3jcK490lb2a13EBwbfWcmGqvcvToa7iZY6Xi6bmHnYIjmJ78S1M+yJP
-HC6UAIGmlVxhLpjgJcYWgEcg98LSZQIxK+0fjLWXHohnFd3JTmAgrrVrzfeZ
-LvTkrbm348xwQTfHeLeMYFwtt7Z3PVfgElElDLCM+SEh89YB3btJzxi5V8jH
-ZqLwz4vEXXfvzXRV5FU+yVO+8VduUlGnJ+dHL06/l/v9Hx88vM9PGb86OfN/
-+PLew3v4zArNIs0v8c510xVEyLwwWzpp0PjUpLyCTC0GNlOEl33jO31rvNbe
-3los3XiKtiuAPGNwZwsNC7R3dvaXfYftQRMpi3eA1V/Oz1+e3RCBcPDzZ2dy
-CQy/F/rwMb1/YFfUEEHYTGRftIx9jgeJah8bIwzoEQq5EQZYl8NGAUJ31uPt
-bJM6jQs7hL8qoCb5uTVmiVWh7R3LU0xcYcKJb473Lg3uAmS4gu+rNtqmtIrM
-PLLK0wXq4MW0wF/1cgxiAUO4IKL1/IbP7eYVUr7mGZ/oBozu0lXL9Bc+pEl/
-qb1kqIcDybTCYtQ6vKrYPHAQ12m1z4tfah8NvPF6zA+pohAiQUBVJ3Q1F0z9
-ok4zmCYMJdcHqzJfusuNdXaRFHnGeQ2l3gCq2ifMnh7OAT1QkVXEOPL9eZwl
-DDEx2Ud8IIvfVqjEC8NrXhfxBZFSz+naMIKiZzNMOXoPHrqhh6qhWPxk4pfm
-FtbgTXJaLLxNNpbnV/jB6Uqe/x1jkbW9LTrIgpu7lVuvHNH3Z7n/lkE8JcDe
-xLs4oLUs8txB59JctyxPK+aGWl6lNrf3ym3jJIOImBEpWTVUjXNdDfA/snoD
-ZZ5rySubIt7vWs7fC/0/UU8PTw+7jQzTxT7IholibIuKokRrAfS8VH999bTk
-G5txWN49+9vzZwTglZ5jzh3cQZ7Ig8df4uPscWneGxkF+8gAaqRuWuPuD4Br
-dcT7ciNSpE9Pzn6gBoDJSJ3ePfxT495nGArnBoIDLdw+8tBg8yFYBW7ir42e
-kmS7NfMFjUWK/DL3ZcWyhHeeQZ0iSLEXvEbGDN47uCdGyVIAxw+vCLNfE1q3
-XDTeEx4p/zubgh/ZfYGOpQgRadP7lhi1AXio2e82ohZFkRrHk7csSocT87KA
-vB5mLbvZseKXEtPkrYhunL1Vx+DCgjei1ZGeTEDI0zQZqCe5elOzp/w8X9Dz
-I0/yegLaMRHn53VSLrJaPdHaHGRhpwB3EvDMuGeUStoVo0VFNGnDgo7BmHvk
-T+RqQE8HPZC3CFvXUDreK4394e0r/+ZveSjAXOvNio9O4Qgz4hXgbKTwGnDE
-mfkPVN1964Zpi5Z5PBm4edevCtg1UxCzKfsyMHrH1bwQUSST4Pm/1vsv5q0g
-Xt+vw486fXF+MlKf/vgpPfUHngdoYkQd7TGVVXzx1YFqdPp6Zwfj2wBrW/G0
-O5Lgd9fMZ6T+LtGrSwebH6NkCr/vCrKRe+YgGuMVA7ZAZ9DuyXW3oyDHHJxZ
-ahRPhS29lLAPG4vrHL4hzraFIP361X0Pr/bwPemGUSsrvrvxVwRrQr0Gbt04
-NrDpSkVZ3Mxz9zDCjzsyRgewq9Z3jcso1FWYQ7nqJEyjzqejYrE9vw5y0O4B
-rsD96F50v4lvY+jrIDzogBD8259pAHsTZzzYcoZt8VtwBqzqR3LGg+jRr8IZ
-j7acYVv8FpzxqFPib8MZjzq1Tj9n2L9/8ixN9+SoPnij/ZEdXrE/A9KAg0GT
-pzjV18k29Eskhq7Dhrk21apHx3Yv1AdwcL6Rg/2bkJqGvrNRD6f38brrTRsZ
-o2uY/8cdNzFoEV2Clz3V4Gu3CNgEj5crIfhl2d/UTODxvc4WbWFqi1O71dVA
-tYn+h1MbN9TCnuQMBlZ2mpIz1fg0uqFAi2fx583CQy22ovMbiM6DrehcN8+P
-Fx0WHDChA3zBhN2sX9P4tIx1U4JuJ7BNvzwU2A6vcSuwW4Ftdvt/TGBFTAdW
-dD9CYDvkJxDYG0jQbQT2WgN7rXrYyutm8Ft5/V3K6yOS10eDR7+6vLayHB9n
-YJvpjVBgO4LvrcD+igL7aCuw18zznyGwIqYDK7ofIbAd8hMI7A0k6J/rEV+r
-H7YCuxn8VmB/lwL7sXnT6wV1m/z5X5Scg63kXDfPLlq0f7lFClXE6ONSqNc5
-jFsp2kqR/fwepGiD/bF/t3f6bsOfm8i0kURdFL0VaRDyjztt0mzY3XTkMI34
-/9joaufKlrrRGRQui9bTr3dncVpqvJn4fwCko5q6z88AAA==
+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
+S42Vif8vo/DGBRXZAAA=
 
 -->
 
