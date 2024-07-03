@@ -59,7 +59,7 @@ author:
    and customized. Additionally, they provide an extensive level of control
    over underlay service paths within the network slice.
    
-   This document describes a YANG data model for expressing topology intent
+   This document describes a YANG data model for expressing customer intent
    topologies which can be used to enhance the RFC 9543 Network Slice Services
    in specific use cases, such as Network wholesale scenarios, where both topology
    and connectivity intents need to be expressed.
@@ -101,14 +101,12 @@ author:
    extensive control over specific or all connectivity constructs within the network slice,
    as outlined in {{!RFC9543}}.
 
-   A customer intent topology embodies the customer's intent and is defined within
-   their context. It can include pure customer information or refer to network
+   A customer intent topology is defined within the customer's context. It can include pure customer information or may also refer to network
    resources identifiable within the provider's context. There is a minimum
    level of a-prior shared knowledge between the customer and the provider,
    and this is the same information needed to supported connectivity-based
    network slice services as desdribed in {{!RFC9543}}.
-   The provider's responsibility lies in understanding and translating the
-   customer intent topology into suitable realizations within their domain.
+   The provider's responsibility lies in understanding the customer intent topology request and translating that into suitable realization within their domain.
 
    This document introduces a YANG data model, based on {{!RFC7950}}, for
    configuring customer intent topologies. The YANG model extends the existing
@@ -141,11 +139,11 @@ author:
 
 ## Use Case Applicability
 
-   In Traffic Engineering (TE)-enabled networks like Layer-0/1 transport (OTN, MW, DWDM), intent topology is useful for routing RFC 9543 network slices across varied paths with TE constraints. Thus, most of the use cases for which this model target are transport oriented. Nonetheless, it’s also relevant to non-transport networks like IP/MPLS, where customers may specify topology intents to inform the slice’s realization. These intents help build the logical view of the desired RFC 9543 Network Slice service (and its constituent parts), aiding providers in fulfilling slice requests and defining the service instantiation.
+   In Traffic Engineering (TE)-enabled networks like Layer-0/1 transport (OTN, MW, DWDM), customer intent topology is useful for routing RFC 9543 network slices across varied paths with TE constraints. Thus, most of the use cases for which this model target are transport oriented. Nonetheless, it’s also relevant to non-transport networks like IP/MPLS, where customers may use intent topologies to influence the realization of network slices. These intents help build the logical view of the desired RFC 9543 Network Slice service (and its constituent parts), aiding providers in fulfilling slice requests and defining the service instantiation.
 
 ### Use Case 1 : Multi-tenancy in Network Wholesaling
 
-   A typical use case in which the topology intent is essential is the wholesale multi-tenant case. Here, customer C may acquire a network slice from provider P and resell sub-slices to other customers/tenants. The creation of these sub-slices within C’s slice necessitates specifying a topology intent—reflecting the topology of C’s purchased slice—as a key input parameter.
+   A typical use case in which the customer intent topology is essential is the wholesale multi-tenant case. Here, customer C may acquire a network slice from provider P and resell sub-slices to other customers/tenants. The creation of these sub-slices within C’s slice necessitates specifying a topology intent—reflecting the topology of C’s purchased slice—as a key input parameter.
 
 ### Use Case 2 : 
 
@@ -153,7 +151,7 @@ author:
 
    As an another example, from realization perspective even on the same NRP, a slice requests leveraging on {{?I-D.draft-ietf-teas-ietf-network-slice-nbi-yang}} without topology differentiation could imply the realization of all the connectivity constructs on the same manner. For instance, implementing all of them within the same VRF in a L3VPN. The usage of the topological views can help the provider to infer differentiated realization of some of the connectivity constructs, for instance, by implementing them on different VRFs. This can have operational advantages (e.g., adding new nodes / SDPs could affect / imply limit the necessary VRF reconfiguration only to the one including affected connectivity constructs).
 
-   Finally, by using customer topology it can be easier for the slice provider to infer different technologies for sets of connectivity constructs of every topology segment (e.g., IP/MPLS, optical, microwave, etc).
+   Finally, by using customer intent topology it can be easier for the slice provider to infer different technologies for sets of connectivity constructs of every topology segment (e.g., IP/MPLS, optical, microwave, etc).
 
 ## Terminologies and Notations
 
