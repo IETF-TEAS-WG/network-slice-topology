@@ -46,7 +46,7 @@
      description
        "This module defines a base YANG data model for configuring
         the underlay path of connectivity intent over a customer
-		intent topology for RFC9543 network slices.
+        intent topology for RFC9543 network slices.
 
         The model fully conforms to the Network Management Datastore
         Architecture (NMDA).
@@ -78,50 +78,56 @@
        description
          "Underlay explicit path within a customer intent
           topology.";
-		 
-       uses nw:network-ref;
+ 
+       container underlay-path {
+         description
+           "Defines an underlay explicit path within specific
+            customer intent topology.";
+ 
+         uses nw:network-ref;
 
-       list path-element {
-        key "index";
-        description
-          "List of path elements.";
-        leaf index {
-          type uint32;
+         list path-element {
+          key "index";
           description
-            "Index of the hop within the underlay path.";
-        }
-        leaf is-strict-hop {
-	      type boolean;
-	      description
-	        "Indicate whether the hop is strict or loose";
-        }
-        choice type {
-          description
-            "Type of the hop.";
-          case node-hop {
-            leaf node-id {
-              type nw:node-id;
-              description
-                "Node identifier.";
+            "List of path elements.";
+          leaf index {
+            type uint32;
+            description
+              "Index of the hop within the underlay path.";
+          }
+          leaf is-strict-hop {
+            type boolean;
+            description
+              "Indicate whether the hop is strict or loose";
+          }
+          choice type {
+            description
+              "Type of the hop.";
+            case node-hop {
+              leaf node-id {
+                type nw:node-id;
+                description
+                  "Node identifier.";
+              }
+            }
+            case link-hop {
+              leaf link-id {
+                type nt:link-id;
+                description
+                  "Link identifier.";
+              }
+            }
+            case tp-hop {
+              leaf tp-id {
+                type nt:tp-id;
+                description
+                  "Termination Point (TP) identifier.";
+              }
             }
           }
-          case link-hop {
-            leaf link-id {
-              type nt:link-id;
-              description
-                "Link identifier.";
-            }
-          }
-          case tp-hop {
-            leaf tp-id {
-              type nt:tp-id;
-              description
-                "Termination Point (TP) identifier.";
-            }
-          }
-        }
+         }
        }
-     }
+     } 
 
      /*
       * Augmented data nodes
@@ -152,7 +158,7 @@
              "/ietf-nss:sle-policy" +
              "/ietf-nss:path-constraints" {
        description
-         "Underlay path for connection group.";
+         "Underlay path for connectivity construct.";
 
        uses underlay-path;
      }
