@@ -23,7 +23,8 @@ module: ietf-network
         |  |  |  +--rw nt:tp-ref         leafref
         |  |  +--rw (ns-topo:slo-sle-policy)?
         |  |     +--:(ns-topo:standard)
-        |  |     |  +--rw ns-topo:slo-sle-template?         leafref
+        |  |     |  +--rw ns-topo:slo-sle-template?
+        |  |     |          slice-template-ref
         |  |     +--:(ns-topo:custom)
         |  |        +--rw ns-topo:service-slo-sle-policy
         |  |           +--rw ns-topo:description?   string
@@ -40,19 +41,22 @@ module: ietf-network
         |  |           |  |  +--rw ns-topo:bound?
         |  |           |  |          uint64
         |  |           |  +--rw ns-topo:availability?   identityref
-        |  |           |  +--rw ns-topo:mtu?            uint16
+        |  |           |  +--rw ns-topo:mtu?            uint32
         |  |           +--rw ns-topo:sle-policy
         |  |              +--rw ns-topo:security*
         |  |              |       identityref
         |  |              +--rw ns-topo:isolation*
         |  |              |       identityref
-        |  |              +--rw ns-topo:max-occupancy-level?    uint8
-        |  |              +--rw ns-topo:steering-constraints
-        |  |                 +--rw ns-topo:path-constraints
-        |  |                 +--rw ns-topo:service-function
+        |  |              +--rw ns-topo:max-occupancy-level?   uint8
+        |  |              +--rw ns-topo:path-constraints
+        |  |                 +--rw ns-topo:service-functions
+        |  |                 +--rw ns-topo:diversity
+        |  |                    +--rw ns-topo:diversity-type?
+        |  |                            te-types:te-path-disjointness
         |  +--rw (ns-topo:slo-sle-policy)?
         |     +--:(ns-topo:standard)
-        |     |  +--rw ns-topo:slo-sle-template?         leafref
+        |     |  +--rw ns-topo:slo-sle-template?
+        |     |          slice-template-ref
         |     +--:(ns-topo:custom)
         |        +--rw ns-topo:service-slo-sle-policy
         |           +--rw ns-topo:description?   string
@@ -66,18 +70,18 @@ module: ietf-network
         |           |  |  |       percentile
         |           |  |  +--rw ns-topo:bound?               uint64
         |           |  +--rw ns-topo:availability?   identityref
-        |           |  +--rw ns-topo:mtu?            uint16
+        |           |  +--rw ns-topo:mtu?            uint32
         |           +--rw ns-topo:sle-policy
         |              +--rw ns-topo:security*
         |              |       identityref
         |              +--rw ns-topo:isolation*
         |              |       identityref
-        |              +--rw ns-topo:max-occupancy-level?    uint8
-        |              +--rw ns-topo:steering-constraints
-        |                 +--rw ns-topo:path-constraints
-        |                 +--rw ns-topo:service-function
-        |                 +--rw ns-topo:disjointness?
-        |                         te-types:te-path-disjointness
+        |              +--rw ns-topo:max-occupancy-level?   uint8
+        |              +--rw ns-topo:path-constraints
+        |                 +--rw ns-topo:service-functions
+        |                 +--rw ns-topo:diversity
+        |                    +--rw ns-topo:diversity-type?
+        |                            te-types:te-path-disjointness
         +--rw nt:link* [link-id]
         |  +--rw nt:link-id                              link-id
         |  +--rw nt:source
@@ -92,7 +96,8 @@ module: ietf-network
         |  |  +--rw nt:link-ref       leafref
         |  +--rw (ns-topo:slo-sle-policy)?
         |     +--:(ns-topo:standard)
-        |     |  +--rw ns-topo:slo-sle-template?         leafref
+        |     |  +--rw ns-topo:slo-sle-template?
+        |     |          slice-template-ref
         |     +--:(ns-topo:custom)
         |        +--rw ns-topo:service-slo-sle-policy
         |           +--rw ns-topo:description?   string
@@ -106,21 +111,22 @@ module: ietf-network
         |           |  |  |       percentile
         |           |  |  +--rw ns-topo:bound?               uint64
         |           |  +--rw ns-topo:availability?   identityref
-        |           |  +--rw ns-topo:mtu?            uint16
+        |           |  +--rw ns-topo:mtu?            uint32
         |           +--rw ns-topo:sle-policy
         |              +--rw ns-topo:security*
         |              |       identityref
         |              +--rw ns-topo:isolation*
         |              |       identityref
-        |              +--rw ns-topo:max-occupancy-level?    uint8
-        |              +--rw ns-topo:steering-constraints
-        |                 +--rw ns-topo:path-constraints
-        |                 +--rw ns-topo:service-function
-        |                 +--rw ns-topo:disjointness?
-        |                         te-types:te-path-disjointness
+        |              +--rw ns-topo:max-occupancy-level?   uint8
+        |              +--rw ns-topo:path-constraints
+        |                 +--rw ns-topo:service-functions
+        |                 +--rw ns-topo:diversity
+        |                    +--rw ns-topo:diversity-type?
+        |                            te-types:te-path-disjointness
         +--rw (ns-topo:slo-sle-policy)?
            +--:(ns-topo:standard)
-           |  +--rw ns-topo:slo-sle-template?         leafref
+           |  +--rw ns-topo:slo-sle-template?
+           |          slice-template-ref
            +--:(ns-topo:custom)
               +--rw ns-topo:service-slo-sle-policy
                  +--rw ns-topo:description?   string
@@ -132,16 +138,16 @@ module: ietf-network
                  |  |  +--rw ns-topo:percentile-value?    percentile
                  |  |  +--rw ns-topo:bound?               uint64
                  |  +--rw ns-topo:availability?   identityref
-                 |  +--rw ns-topo:mtu?            uint16
+                 |  +--rw ns-topo:mtu?            uint32
                  +--rw ns-topo:sle-policy
-                    +--rw ns-topo:security*               identityref
-                    +--rw ns-topo:isolation*              identityref
-                    +--rw ns-topo:max-occupancy-level?    uint8
-                    +--rw ns-topo:steering-constraints
-                       +--rw ns-topo:path-constraints
-                       +--rw ns-topo:service-function
-                       +--rw ns-topo:disjointness?
-                               te-types:te-path-disjointness
+                    +--rw ns-topo:security*              identityref
+                    +--rw ns-topo:isolation*             identityref
+                    +--rw ns-topo:max-occupancy-level?   uint8
+                    +--rw ns-topo:path-constraints
+                       +--rw ns-topo:service-functions
+                       +--rw ns-topo:diversity
+                          +--rw ns-topo:diversity-type?
+                                  te-types:te-path-disjointness
 
 module: ietf-network-slice-service
   +--rw network-slice-services
@@ -149,7 +155,7 @@ module: ietf-network-slice-service
      |  +--rw slo-sle-template* [id]
      |     +--rw id              string
      |     +--rw description?    string
-     |     +--rw template-ref?   leafref
+     |     +--rw template-ref?   slice-template-ref
      |     +--rw slo-policy
      |     |  +--rw metric-bound* [metric-type]
      |     |  |  +--rw metric-type          identityref
@@ -158,16 +164,16 @@ module: ietf-network-slice-service
      |     |  |  +--rw percentile-value?    percentile
      |     |  |  +--rw bound?               uint64
      |     |  +--rw availability?   identityref
-     |     |  +--rw mtu?            uint16
+     |     |  +--rw mtu?            uint32
      |     +--rw sle-policy
-     |        +--rw security*               identityref
-     |        +--rw isolation*              identityref
-     |        +--rw max-occupancy-level?    uint8
-     |        +--rw steering-constraints
-     |           +--rw path-constraints
-     |           +--rw service-function
-     |           +--rw ns-topo:disjointness?
-     |                   te-types:te-path-disjointness
+     |        +--rw security*              identityref
+     |        +--rw isolation*             identityref
+     |        +--rw max-occupancy-level?   uint8
+     |        +--rw path-constraints
+     |           +--rw service-functions
+     |           +--rw diversity
+     |              +--rw diversity-type?
+     |                      te-types:te-path-disjointness
      +--rw slice-service* [id]
         +--rw id                              string
         +--rw description?                    string
@@ -177,7 +183,7 @@ module: ietf-network-slice-service
         |     +--rw value*      string
         +--rw (slo-sle-policy)?
         |  +--:(standard)
-        |  |  +--rw slo-sle-template?         leafref
+        |  |  +--rw slo-sle-template?         slice-template-ref
         |  +--:(custom)
         |     +--rw service-slo-sle-policy
         |        +--rw description?   string
@@ -189,16 +195,16 @@ module: ietf-network-slice-service
         |        |  |  +--rw percentile-value?    percentile
         |        |  |  +--rw bound?               uint64
         |        |  +--rw availability?   identityref
-        |        |  +--rw mtu?            uint16
+        |        |  +--rw mtu?            uint32
         |        +--rw sle-policy
-        |           +--rw security*               identityref
-        |           +--rw isolation*              identityref
-        |           +--rw max-occupancy-level?    uint8
-        |           +--rw steering-constraints
-        |              +--rw path-constraints
-        |              +--rw service-function
-        |              +--rw ns-topo:disjointness?
-        |                      te-types:te-path-disjointness
+        |           +--rw security*              identityref
+        |           +--rw isolation*             identityref
+        |           +--rw max-occupancy-level?   uint8
+        |           +--rw path-constraints
+        |              +--rw service-functions
+        |              +--rw diversity
+        |                 +--rw diversity-type?
+        |                         te-types:te-path-disjointness
         +--rw compute-only?                   empty
         +--rw status
         |  +--rw admin-status
@@ -211,10 +217,30 @@ module: ietf-network-slice-service
         |  +--rw sdp* [id]
         |     +--rw id                        string
         |     +--rw description?              string
-        |     +--rw location
-        |     |  +--rw altitude?    int64
-        |     |  +--rw latitude?    decimal64
-        |     |  +--rw longitude?   decimal64
+        |     +--rw geo-location
+        |     |  +--rw reference-frame
+        |     |  |  +--rw alternate-system?    string
+        |     |  |  |       {alternate-systems}?
+        |     |  |  +--rw astronomical-body?   string
+        |     |  |  +--rw geodetic-system
+        |     |  |     +--rw geodetic-datum?    string
+        |     |  |     +--rw coord-accuracy?    decimal64
+        |     |  |     +--rw height-accuracy?   decimal64
+        |     |  +--rw (location)?
+        |     |  |  +--:(ellipsoid)
+        |     |  |  |  +--rw latitude?    decimal64
+        |     |  |  |  +--rw longitude?   decimal64
+        |     |  |  |  +--rw height?      decimal64
+        |     |  |  +--:(cartesian)
+        |     |  |     +--rw x?           decimal64
+        |     |  |     +--rw y?           decimal64
+        |     |  |     +--rw z?           decimal64
+        |     |  +--rw velocity
+        |     |  |  +--rw v-north?   decimal64
+        |     |  |  +--rw v-east?    decimal64
+        |     |  |  +--rw v-up?      decimal64
+        |     |  +--rw timestamp?         yang:date-and-time
+        |     |  +--rw valid-until?       yang:date-and-time
         |     +--rw node-id?                  string
         |     +--rw sdp-ip-address*           inet:ip-address
         |     +--rw tp-ref?                   leafref
@@ -231,59 +257,98 @@ module: ietf-network-slice-service
         |     +--rw incoming-qos-policy
         |     |  +--rw qos-policy-name?   string
         |     |  +--rw rate-limits
-        |     |     +--rw cir?   uint64
-        |     |     +--rw cbs?   uint64
-        |     |     +--rw eir?   uint64
-        |     |     +--rw ebs?   uint64
-        |     |     +--rw pir?   uint64
-        |     |     +--rw pbs?   uint64
+        |     |     +--rw cir?       uint64
+        |     |     +--rw cbs?       uint64
+        |     |     +--rw eir?       uint64
+        |     |     +--rw ebs?       uint64
+        |     |     +--rw pir?       uint64
+        |     |     +--rw pbs?       uint64
+        |     |     +--rw classes
+        |     |        +--rw cos* [cos-id]
+        |     |           +--rw cos-id    uint8
+        |     |           +--rw cir?      uint64
+        |     |           +--rw cbs?      uint64
+        |     |           +--rw eir?      uint64
+        |     |           +--rw ebs?      uint64
+        |     |           +--rw pir?      uint64
+        |     |           +--rw pbs?      uint64
         |     +--rw outgoing-qos-policy
         |     |  +--rw qos-policy-name?   string
         |     |  +--rw rate-limits
-        |     |     +--rw cir?   uint64
-        |     |     +--rw cbs?   uint64
-        |     |     +--rw eir?   uint64
-        |     |     +--rw ebs?   uint64
-        |     |     +--rw pir?   uint64
-        |     |     +--rw pbs?   uint64
+        |     |     +--rw cir?       uint64
+        |     |     +--rw cbs?       uint64
+        |     |     +--rw eir?       uint64
+        |     |     +--rw ebs?       uint64
+        |     |     +--rw pir?       uint64
+        |     |     +--rw pbs?       uint64
+        |     |     +--rw classes
+        |     |        +--rw cos* [cos-id]
+        |     |           +--rw cos-id    uint8
+        |     |           +--rw cir?      uint64
+        |     |           +--rw cbs?      uint64
+        |     |           +--rw eir?      uint64
+        |     |           +--rw ebs?      uint64
+        |     |           +--rw pir?      uint64
+        |     |           +--rw pbs?      uint64
         |     +--rw sdp-peering
         |     |  +--rw peer-sap-id*   string
         |     |  +--rw protocols
-        |     +--rw ac-svc-name*              string
+        |     +--rw ac-svc-ref*
+        |     |       ac-svc:attachment-circuit-reference
+        |     +--rw ce-mode?                  boolean
         |     +--rw attachment-circuits
         |     |  +--rw attachment-circuit* [id]
         |     |     +--rw id                       string
-        |     |     +--rw ac-svc-name?             string
         |     |     +--rw description?             string
+        |     |     +--rw ac-svc-ref?
+        |     |     |       ac-svc:attachment-circuit-reference
         |     |     +--rw ac-node-id?              string
         |     |     +--rw ac-tp-id?                string
         |     |     +--rw ac-ipv4-address?         inet:ipv4-address
         |     |     +--rw ac-ipv4-prefix-length?   uint8
         |     |     +--rw ac-ipv6-address?         inet:ipv6-address
         |     |     +--rw ac-ipv6-prefix-length?   uint8
-        |     |     +--rw mtu?                     uint16
+        |     |     +--rw mtu?                     uint32
         |     |     +--rw ac-tags
-        |     |     |  +--rw ac-tags* [tag-type]
+        |     |     |  +--rw ac-tag* [tag-type]
         |     |     |     +--rw tag-type    identityref
         |     |     |     +--rw value*      string
         |     |     +--rw incoming-qos-policy
         |     |     |  +--rw qos-policy-name?   string
         |     |     |  +--rw rate-limits
-        |     |     |     +--rw cir?   uint64
-        |     |     |     +--rw cbs?   uint64
-        |     |     |     +--rw eir?   uint64
-        |     |     |     +--rw ebs?   uint64
-        |     |     |     +--rw pir?   uint64
-        |     |     |     +--rw pbs?   uint64
+        |     |     |     +--rw cir?       uint64
+        |     |     |     +--rw cbs?       uint64
+        |     |     |     +--rw eir?       uint64
+        |     |     |     +--rw ebs?       uint64
+        |     |     |     +--rw pir?       uint64
+        |     |     |     +--rw pbs?       uint64
+        |     |     |     +--rw classes
+        |     |     |        +--rw cos* [cos-id]
+        |     |     |           +--rw cos-id    uint8
+        |     |     |           +--rw cir?      uint64
+        |     |     |           +--rw cbs?      uint64
+        |     |     |           +--rw eir?      uint64
+        |     |     |           +--rw ebs?      uint64
+        |     |     |           +--rw pir?      uint64
+        |     |     |           +--rw pbs?      uint64
         |     |     +--rw outgoing-qos-policy
         |     |     |  +--rw qos-policy-name?   string
         |     |     |  +--rw rate-limits
-        |     |     |     +--rw cir?   uint64
-        |     |     |     +--rw cbs?   uint64
-        |     |     |     +--rw eir?   uint64
-        |     |     |     +--rw ebs?   uint64
-        |     |     |     +--rw pir?   uint64
-        |     |     |     +--rw pbs?   uint64
+        |     |     |     +--rw cir?       uint64
+        |     |     |     +--rw cbs?       uint64
+        |     |     |     +--rw eir?       uint64
+        |     |     |     +--rw ebs?       uint64
+        |     |     |     +--rw pir?       uint64
+        |     |     |     +--rw pbs?       uint64
+        |     |     |     +--rw classes
+        |     |     |        +--rw cos* [cos-id]
+        |     |     |           +--rw cos-id    uint8
+        |     |     |           +--rw cir?      uint64
+        |     |     |           +--rw cbs?      uint64
+        |     |     |           +--rw eir?      uint64
+        |     |     |           +--rw ebs?      uint64
+        |     |     |           +--rw pir?      uint64
+        |     |     |           +--rw pbs?      uint64
         |     |     +--rw sdp-peering
         |     |     |  +--rw peer-sap-id?   string
         |     |     |  +--rw protocols
@@ -302,17 +367,18 @@ module: ietf-network-slice-service
         |     |     +--ro status?        identityref
         |     |     +--ro last-change?   yang:date-and-time
         |     +--ro sdp-monitoring
-        |        +--ro incoming-bw-value?     te-types:te-bandwidth
-        |        +--ro incoming-bw-percent    decimal64
-        |        +--ro outgoing-bw-value?     te-types:te-bandwidth
-        |        +--ro outgoing-bw-percent    decimal64
+        |        +--ro incoming-bw-value?     yang:gauge64
+        |        +--ro incoming-bw-percent?   percentage
+        |        +--ro outgoing-bw-value?     yang:gauge64
+        |        +--ro outgoing-bw-percent?   percentage
         +--rw connection-groups
         |  +--rw connection-group* [id]
         |     +--rw id                                 string
         |     +--rw connectivity-type?                 identityref
         |     +--rw (slo-sle-policy)?
         |     |  +--:(standard)
-        |     |  |  +--rw slo-sle-template?            leafref
+        |     |  |  +--rw slo-sle-template?
+        |     |  |          slice-template-ref
         |     |  +--:(custom)
         |     |     +--rw service-slo-sle-policy
         |     |        +--rw description?   string
@@ -324,22 +390,19 @@ module: ietf-network-slice-service
         |     |        |  |  +--rw percentile-value?    percentile
         |     |        |  |  +--rw bound?               uint64
         |     |        |  +--rw availability?   identityref
-        |     |        |  +--rw mtu?            uint16
+        |     |        |  +--rw mtu?            uint32
         |     |        +--rw sle-policy
-        |     |           +--rw security*               identityref
-        |     |           +--rw isolation*              identityref
-        |     |           +--rw max-occupancy-level?    uint8
-        |     |           +--rw steering-constraints
-        |     |              +--rw path-constraints
-        |     |              |  +--rw ns-topo:topology-id?     leafref
-        |     |              |  +--rw ns-topo:explicit-path* [tp-id]
-        |     |              |     +--rw ns-topo:tp-id    leafref
-        |     |              +--rw service-function
-        |     |              +--rw ns-topo:disjointness?
-        |     |                      te-types:te-path-disjointness
+        |     |           +--rw security*              identityref
+        |     |           +--rw isolation*             identityref
+        |     |           +--rw max-occupancy-level?   uint8
+        |     |           +--rw path-constraints
+        |     |              +--rw service-functions
+        |     |              +--rw diversity
+        |     |                 +--rw diversity-type?
+        |     |                         te-types:te-path-disjointness
         |     +--rw service-slo-sle-policy-override?   identityref
         |     +--rw connectivity-construct* [id]
-        |     |  +--rw id                                   uint32
+        |     |  +--rw id                                   string
         |     |  +--rw (type)?
         |     |  |  +--:(p2p)
         |     |  |  |  +--rw p2p-sender-sdp?
@@ -357,7 +420,8 @@ module: ietf-network-slice-service
         |     |  |        |       -> ../../../../../sdps/sdp/id
         |     |  |        +--rw (slo-sle-policy)?
         |     |  |           +--:(standard)
-        |     |  |           |  +--rw slo-sle-template?         leafref
+        |     |  |           |  +--rw slo-sle-template?
+        |     |  |           |          slice-template-ref
         |     |  |           +--:(custom)
         |     |  |              +--rw service-slo-sle-policy
         |     |  |                 +--rw description?   string
@@ -376,7 +440,7 @@ module: ietf-network-slice-service
         |     |  |                 |  |          uint64
         |     |  |                 |  +--rw availability?
         |     |  |                 |  |       identityref
-        |     |  |                 |  +--rw mtu?            uint16
+        |     |  |                 |  +--rw mtu?            uint32
         |     |  |                 +--rw sle-policy
         |     |  |                    +--rw security*
         |     |  |                    |       identityref
@@ -384,18 +448,15 @@ module: ietf-network-slice-service
         |     |  |                    |       identityref
         |     |  |                    +--rw max-occupancy-level?
         |     |  |                    |       uint8
-        |     |  |                    +--rw steering-constraints
-        |     |  |                       +--rw path-constraints
-        |     |  |                       |  +--rw ns-topo:topology-id?     leafref
-        |     |  |                       |  +--rw ns-topo:explicit-path*
-        |     |  |                       |          [tp-id]
-        |     |  |                       |     +--rw ns-topo:tp-id    leafref
-        |     |  |                       +--rw service-function
-        |     |  |                       +--rw ns-topo:disjointness?
-        |     |  |                               te-types:te-path-disjointness
+        |     |  |                    +--rw path-constraints
+        |     |  |                       +--rw service-functions
+        |     |  |                       +--rw diversity
+        |     |  |                          +--rw diversity-type?
+        |     |  |                                  te-types:te-path-disjointness
         |     |  +--rw (slo-sle-policy)?
         |     |  |  +--:(standard)
-        |     |  |  |  +--rw slo-sle-template?              leafref
+        |     |  |  |  +--rw slo-sle-template?
+        |     |  |  |          slice-template-ref
         |     |  |  +--:(custom)
         |     |  |     +--rw service-slo-sle-policy
         |     |  |        +--rw description?   string
@@ -408,22 +469,16 @@ module: ietf-network-slice-service
         |     |  |        |  |  +--rw percentile-value?    percentile
         |     |  |        |  |  +--rw bound?               uint64
         |     |  |        |  +--rw availability?   identityref
-        |     |  |        |  +--rw mtu?            uint16
+        |     |  |        |  +--rw mtu?            uint32
         |     |  |        +--rw sle-policy
-        |     |  |           +--rw security*
-        |     |  |           |       identityref
-        |     |  |           +--rw isolation*
-        |     |  |           |       identityref
-        |     |  |           +--rw max-occupancy-level?    uint8
-        |     |  |           +--rw steering-constraints
-        |     |  |              +--rw path-constraints
-        |     |  |              |  +--rw ns-topo:topology-id?     leafref
-        |     |  |              |  +--rw ns-topo:explicit-path*
-        |     |  |              |          [tp-id]
-        |     |  |              |     +--rw ns-topo:tp-id    leafref
-        |     |  |              +--rw service-function
-        |     |  |              +--rw ns-topo:disjointness?
-        |     |  |                      te-types:te-path-disjointness
+        |     |  |           +--rw security*              identityref
+        |     |  |           +--rw isolation*             identityref
+        |     |  |           +--rw max-occupancy-level?   uint8
+        |     |  |           +--rw path-constraints
+        |     |  |              +--rw service-functions
+        |     |  |              +--rw diversity
+        |     |  |                 +--rw diversity-type?
+        |     |  |                         te-types:te-path-disjointness
         |     |  +--rw service-slo-sle-policy-override?
         |     |  |       identityref
         |     |  +--rw status
@@ -434,22 +489,22 @@ module: ietf-network-slice-service
         |     |  |     +--ro status?        identityref
         |     |  |     +--ro last-change?   yang:date-and-time
         |     |  +--ro connectivity-construct-monitoring
-        |     |     +--ro one-way-min-delay?         uint32
-        |     |     +--ro one-way-max-delay?         uint32
-        |     |     +--ro one-way-delay-variation?   uint32
-        |     |     +--ro one-way-packet-loss?       decimal64
-        |     |     +--ro two-way-min-delay?         uint32
-        |     |     +--ro two-way-max-delay?         uint32
-        |     |     +--ro two-way-delay-variation?   uint32
-        |     |     +--ro two-way-packet-loss?       decimal64
+        |     |     +--ro one-way-min-delay?         yang:gauge64
+        |     |     +--ro one-way-max-delay?         yang:gauge64
+        |     |     +--ro one-way-delay-variation?   yang:gauge64
+        |     |     +--ro one-way-packet-loss?       percentage
+        |     |     +--ro two-way-min-delay?         yang:gauge64
+        |     |     +--ro two-way-max-delay?         yang:gauge64
+        |     |     +--ro two-way-delay-variation?   yang:gauge64
+        |     |     +--ro two-way-packet-loss?       percentage
         |     +--ro connection-group-monitoring
-        |        +--ro one-way-min-delay?         uint32
-        |        +--ro one-way-max-delay?         uint32
-        |        +--ro one-way-delay-variation?   uint32
-        |        +--ro one-way-packet-loss?       decimal64
-        |        +--ro two-way-min-delay?         uint32
-        |        +--ro two-way-max-delay?         uint32
-        |        +--ro two-way-delay-variation?   uint32
-        |        +--ro two-way-packet-loss?       decimal64
-        +--rw custom-topology-ref
+        |        +--ro one-way-min-delay?         yang:gauge64
+        |        +--ro one-way-max-delay?         yang:gauge64
+        |        +--ro one-way-delay-variation?   yang:gauge64
+        |        +--ro one-way-packet-loss?       percentage
+        |        +--ro two-way-min-delay?         yang:gauge64
+        |        +--ro two-way-max-delay?         yang:gauge64
+        |        +--ro two-way-delay-variation?   yang:gauge64
+        |        +--ro two-way-packet-loss?       percentage
+        +--rw custom-topology
            +--rw network-ref?   -> /nw:networks/network/network-id

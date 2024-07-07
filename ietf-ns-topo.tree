@@ -5,7 +5,7 @@ module: ietf-ns-topo
   augment /nw:networks/nw:network:
     +--rw (slo-sle-policy)?
        +--:(standard)
-       |  +--rw slo-sle-template?         leafref
+       |  +--rw slo-sle-template?         slice-template-ref
        +--:(custom)
           +--rw service-slo-sle-policy
              +--rw description?   string
@@ -17,20 +17,20 @@ module: ietf-ns-topo
              |  |  +--rw percentile-value?    percentile
              |  |  +--rw bound?               uint64
              |  +--rw availability?   identityref
-             |  +--rw mtu?            uint16
+             |  +--rw mtu?            uint32
              +--rw sle-policy
-                +--rw security*               identityref
-                +--rw isolation*              identityref
-                +--rw max-occupancy-level?    uint8
-                +--rw steering-constraints
-                   +--rw path-constraints
-                   +--rw service-function
-                   +--rw disjointness?
-                           te-types:te-path-disjointness
+                +--rw security*              identityref
+                +--rw isolation*             identityref
+                +--rw max-occupancy-level?   uint8
+                +--rw path-constraints
+                   +--rw service-functions
+                   +--rw diversity
+                      +--rw diversity-type?
+                              te-types:te-path-disjointness
   augment /nw:networks/nw:network/nw:node:
     +--rw (slo-sle-policy)?
        +--:(standard)
-       |  +--rw slo-sle-template?         leafref
+       |  +--rw slo-sle-template?         slice-template-ref
        +--:(custom)
           +--rw service-slo-sle-policy
              +--rw description?   string
@@ -42,20 +42,20 @@ module: ietf-ns-topo
              |  |  +--rw percentile-value?    percentile
              |  |  +--rw bound?               uint64
              |  +--rw availability?   identityref
-             |  +--rw mtu?            uint16
+             |  +--rw mtu?            uint32
              +--rw sle-policy
-                +--rw security*               identityref
-                +--rw isolation*              identityref
-                +--rw max-occupancy-level?    uint8
-                +--rw steering-constraints
-                   +--rw path-constraints
-                   +--rw service-function
-                   +--rw disjointness?
-                           te-types:te-path-disjointness
+                +--rw security*              identityref
+                +--rw isolation*             identityref
+                +--rw max-occupancy-level?   uint8
+                +--rw path-constraints
+                   +--rw service-functions
+                   +--rw diversity
+                      +--rw diversity-type?
+                              te-types:te-path-disjointness
   augment /nw:networks/nw:network/nw:node/nt:termination-point:
     +--rw (slo-sle-policy)?
        +--:(standard)
-       |  +--rw slo-sle-template?         leafref
+       |  +--rw slo-sle-template?         slice-template-ref
        +--:(custom)
           +--rw service-slo-sle-policy
              +--rw description?   string
@@ -67,18 +67,20 @@ module: ietf-ns-topo
              |  |  +--rw percentile-value?    percentile
              |  |  +--rw bound?               uint64
              |  +--rw availability?   identityref
-             |  +--rw mtu?            uint16
+             |  +--rw mtu?            uint32
              +--rw sle-policy
-                +--rw security*               identityref
-                +--rw isolation*              identityref
-                +--rw max-occupancy-level?    uint8
-                +--rw steering-constraints
-                   +--rw path-constraints
-                   +--rw service-function
+                +--rw security*              identityref
+                +--rw isolation*             identityref
+                +--rw max-occupancy-level?   uint8
+                +--rw path-constraints
+                   +--rw service-functions
+                   +--rw diversity
+                      +--rw diversity-type?
+                              te-types:te-path-disjointness
   augment /nw:networks/nw:network/nt:link:
     +--rw (slo-sle-policy)?
        +--:(standard)
-       |  +--rw slo-sle-template?         leafref
+       |  +--rw slo-sle-template?         slice-template-ref
        +--:(custom)
           +--rw service-slo-sle-policy
              +--rw description?   string
@@ -90,92 +92,13 @@ module: ietf-ns-topo
              |  |  +--rw percentile-value?    percentile
              |  |  +--rw bound?               uint64
              |  +--rw availability?   identityref
-             |  +--rw mtu?            uint16
+             |  +--rw mtu?            uint32
              +--rw sle-policy
-                +--rw security*               identityref
-                +--rw isolation*              identityref
-                +--rw max-occupancy-level?    uint8
-                +--rw steering-constraints
-                   +--rw path-constraints
-                   +--rw service-function
-                   +--rw disjointness?
-                           te-types:te-path-disjointness
-  augment /ietf-nss:network-slice-services/ietf-nss:slo-sle-templates
-            /ietf-nss:slo-sle-template/ietf-nss:sle-policy
-            /ietf-nss:steering-constraints:
-    +--rw disjointness?   te-types:te-path-disjointness
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:slo-sle-policy/ietf-nss:custom
-            /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
-            /ietf-nss:steering-constraints:
-    +--rw disjointness?   te-types:te-path-disjointness
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:connection-groups/ietf-nss:connection-group
-            /ietf-nss:slo-sle-policy/ietf-nss:custom
-            /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
-            /ietf-nss:steering-constraints:
-    +--rw disjointness?   te-types:te-path-disjointness
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:connection-groups/ietf-nss:connection-group
-            /ietf-nss:slo-sle-policy/ietf-nss:custom
-            /ietf-nss:service-slo-sle-policy/ietf-nss:sle-policy
-            /ietf-nss:steering-constraints/ietf-nss:path-constraints:
-    +--rw network-ref?    -> /nw:networks/network/network-id
-    +--rw path-element* [index]
-       +--rw index            uint32
-       +--rw is-strict-hop?   boolean
-       +--rw (type)?
-          +--:(node-hop)
-          |  +--rw node-id?   nw:node-id
-          +--:(link-hop)
-          |  +--rw link-id?   nt:link-id
-          +--:(tp-hop)
-             +--rw tp-id?     nt:tp-id
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:connection-groups/ietf-nss:connection-group
-            /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
-            /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-            /ietf-nss:sle-policy/ietf-nss:steering-constraints:
-    +--rw disjointness?   te-types:te-path-disjointness
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:connection-groups/ietf-nss:connection-group
-            /ietf-nss:connectivity-construct/ietf-nss:slo-sle-policy
-            /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-            /ietf-nss:sle-policy/ietf-nss:steering-constraints
-            /ietf-nss:path-constraints:
-    +--rw network-ref?    -> /nw:networks/network/network-id
-    +--rw path-element* [index]
-       +--rw index            uint32
-       +--rw is-strict-hop?   boolean
-       +--rw (type)?
-          +--:(node-hop)
-          |  +--rw node-id?   nw:node-id
-          +--:(link-hop)
-          |  +--rw link-id?   nt:link-id
-          +--:(tp-hop)
-             +--rw tp-id?     nt:tp-id
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:connection-groups/ietf-nss:connection-group
-            /ietf-nss:connectivity-construct/ietf-nss:type
-            /ietf-nss:a2a/ietf-nss:a2a-sdp/ietf-nss:slo-sle-policy
-            /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-            /ietf-nss:sle-policy/ietf-nss:steering-constraints:
-    +--rw disjointness?   te-types:te-path-disjointness
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:connection-groups/ietf-nss:connection-group
-            /ietf-nss:connectivity-construct/ietf-nss:type
-            /ietf-nss:a2a/ietf-nss:a2a-sdp/ietf-nss:slo-sle-policy
-            /ietf-nss:custom/ietf-nss:service-slo-sle-policy
-            /ietf-nss:sle-policy/ietf-nss:steering-constraints
-            /ietf-nss:path-constraints:
-    +--rw network-ref?    -> /nw:networks/network/network-id
-    +--rw path-element* [index]
-       +--rw index            uint32
-       +--rw is-strict-hop?   boolean
-       +--rw (type)?
-          +--:(node-hop)
-          |  +--rw node-id?   nw:node-id
-          +--:(link-hop)
-          |  +--rw link-id?   nt:link-id
-          +--:(tp-hop)
-             +--rw tp-id?     nt:tp-id
+                +--rw security*              identityref
+                +--rw isolation*             identityref
+                +--rw max-occupancy-level?   uint8
+                +--rw path-constraints
+                   +--rw service-functions
+                   +--rw diversity
+                      +--rw diversity-type?
+                              te-types:te-path-disjointness
