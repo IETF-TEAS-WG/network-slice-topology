@@ -143,7 +143,7 @@ author:
 
 ### Use Case 1 : Multi-tenancy in Network Wholesaling
 
-   A typical use case in which the customer intent topology is essential is the wholesale multi-tenant case. Here, customer C may acquire a network slice from provider P and resell sub-slices to other customers/tenants. The creation of these sub-slices within C's slice necessitates specifying a topology intent—reflecting the topology of C's purchased slice - as a key input parameter.
+   A typical use case in which the customer intent topology is essential is the wholesale multi-tenant case. Here, customer C may acquire a network slice from provider P and resell sub-slices to other customers/tenants. The creation of these sub-slices within C's slice necessitates specifying a topology intent - reflecting the topology of C's purchased slice - as a key input parameter.
 
 ### Use Case 2 : 
 

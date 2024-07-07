@@ -258,8 +258,8 @@ Internet-Draft      Network Slice Topology Data Model          July 2024
    is the wholesale multi-tenant case.  Here, customer C may acquire a
    network slice from provider P and resell sub-slices to other
    customers/tenants.  The creation of these sub-slices within C's slice
-   necessitates specifying a topology intent--reflecting the topology of
-   C's purchased slice - as a key input parameter.
+   necessitates specifying a topology intent - reflecting the topology
+   of C's purchased slice - as a key input parameter.
 
 1.1.2.  Use Case 2 :
 
