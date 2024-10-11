@@ -75,10 +75,10 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     1.1.  Use Case Applicability  . . . . . . . . . . . . . . . . .   5
+     1.1.  Use Case Applicability  . . . . . . . . . . . . . . . . .   4
        1.1.1.  Use Case 1 : Multi-tenancy in Network Wholesaling . .   5
        1.1.2.  Use Case 2 :  . . . . . . . . . . . . . . . . . . . .   5
-     1.2.  Terminologies and Notations . . . . . . . . . . . . . . .   6
+     1.2.  Terminologies and Notations . . . . . . . . . . . . . . .   5
      1.3.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   6
      1.4.  Prefixes in Data Node Names . . . . . . . . . . . . . . .   6
    2.  Modeling Considerations . . . . . . . . . . . . . . . . . . .   7
@@ -86,26 +86,26 @@ Table of Contents
            Topology  . . . . . . . . . . . . . . . . . . . . . . . .   8
      2.2.  Relationship with Service Attachment Point (SAP)
            Topology  . . . . . . . . . . . . . . . . . . . . . . . .   8
-     2.3.  Relationship with ACTN Virtual Network (VN) . . . . . . .   8
-     2.4.  Data Model Relationship . . . . . . . . . . . . . . . . .   9
-   3.  Model Applicability . . . . . . . . . . . . . . . . . . . . .  10
-   4.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .  13
-   5.  Model Tree Structure  . . . . . . . . . . . . . . . . . . . .  13
-     5.1.  Network Slice Topology Model Tree Structure . . . . . . .  13
-     5.2.  Network Slice Underlay Path Model Tree Structure  . . . .  15
-   6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  17
-     6.1.  YANG Module for Network Slice Topology  . . . . . . . . .  17
-     6.2.  YANG Module for Network Slice Underlay Path . . . . . . .  20
-   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  24
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  24
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  25
-   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  25
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  25
-     11.1.  Normative References . . . . . . . . . . . . . . . . . .  25
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  28
-   Appendix A.  Consideration on Reusing ACTN VN for Network
-           Slicing . . . . . . . . . . . . . . . . . . . . . . . . .  28
+     2.3.  Data Model Relationship . . . . . . . . . . . . . . . . .   8
+   3.  Model Applicability . . . . . . . . . . . . . . . . . . . . .   9
+   4.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .  12
+   5.  Model Tree Structure  . . . . . . . . . . . . . . . . . . . .  12
+     5.1.  Network Slice Topology Model Tree Structure . . . . . . .  12
+     5.2.  Network Slice Underlay Path Model Tree Structure  . . . .  14
+   6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  16
+     6.1.  YANG Module for Network Slice Topology  . . . . . . . . .  16
+     6.2.  YANG Module for Network Slice Underlay Path . . . . . . .  19
+   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  23
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  23
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  24
+   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  24
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  24
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  24
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  27
+   Appendix A.  Relationship with ACTN Virtual Network (VN)  . . . .  27
+     A.1.  Consideration on Reusing ACTN VN for Network Slicing  . .  28
    Appendix B.  Data Tree for the Example in Section 3 . . . . . . .  29
+     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  29
 
 
 
@@ -114,7 +114,6 @@ Liu, et al.               Expires 15 April 2025                 [Page 2]
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
-     B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  29
    Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  36
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  36
 
@@ -160,8 +159,9 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
    connectivity constructs within the network slice, as outlined in
    [RFC9543].
 
-
-
+   A customer intent topology is defined within the customer's context.
+   It can include pure customer information or may also refer to network
+   resources identifiable within the provider's context.  There is a
 
 
 
@@ -170,9 +170,6 @@ Liu, et al.               Expires 15 April 2025                 [Page 3]
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
-   A customer intent topology is defined within the customer's context.
-   It can include pure customer information or may also refer to network
-   resources identifiable within the provider's context.  There is a
    minimum level of a-prior shared knowledge between the customer and
    the provider, and this is the same information needed to supported
    connectivity-based network slice services as desdribed in [RFC9543].
@@ -213,19 +210,6 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) [RFC8342].
 
-
-
-
-
-
-
-
-
-Liu, et al.               Expires 15 April 2025                 [Page 4]
-
-Internet-Draft      Network Slice Topology Data Model       October 2024
-
-
 1.1.  Use Case Applicability
 
    In Traffic Engineering (TE)-enabled networks like Layer-0/1 transport
@@ -234,6 +218,14 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
    most of the use cases for which this model target are transport
    oriented.  Nonetheless, it is also relevant to non-transport networks
    like IP/MPLS, where customers may use intent topologies to influence
+
+
+
+Liu, et al.               Expires 15 April 2025                 [Page 4]
+
+Internet-Draft      Network Slice Topology Data Model       October 2024
+
+
    the realization of network slices.  These intents help build the
    logical view of the desired RFC 9543 Network Slice service (and its
    constituent parts), aiding providers in fulfilling slice requests and
@@ -274,14 +266,6 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
    connectivity constructs of every topology segment (e.g., IP/MPLS,
    optical, microwave, etc).
 
-
-
-
-Liu, et al.               Expires 15 April 2025                 [Page 5]
-
-Internet-Draft      Network Slice Topology Data Model       October 2024
-
-
 1.2.  Terminologies and Notations
 
    The following terminologies for describing network slices are defined
@@ -290,6 +274,13 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
    *  Network Slice (NS)
 
    *  Network Slice Customer
+
+
+
+Liu, et al.               Expires 15 April 2025                 [Page 5]
+
+Internet-Draft      Network Slice Topology Data Model       October 2024
+
 
    *  Network Slice Service Provider
 
@@ -324,6 +315,15 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
    In this document, names of data nodes and other data model objects
    are prefixed using the standard prefix associated with the
    corresponding YANG imported modules, as shown in Table 1.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -425,55 +425,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
    SAP model.  However, the specifics of this mechanism fall beyond the
    scope of this document.
 
-2.3.  Relationship with ACTN Virtual Network (VN)
-
-   [RFC8453] and [I-D.ietf-teas-actn-vn-yang] introduce the concept of a
-   Virtual Network (VN), which can be presented to customers.  These VNs
-   are constructed from abstractions of the underlying networks,
-   specifically those that are traffic-engineering (TE) capable.  While
-   VNs share similarities with RFC 9543 network slicing, they operate
-   under the assumption of TE-capable networks.
-
-   Two distinct types of VNs are defined:
-
-   *  Type 1 VN: Modeled as a single abstract node with edge-to-edge
-      connectivity between customer endpoints.
-
-   *  Type 2 VN: Modeled as a single abstract node with an underlay
-      topology, allowing configuration of intended underlay paths for
-      connections within the single abstract node.
-
-
-
-Liu, et al.               Expires 15 April 2025                 [Page 8]
-
-Internet-Draft      Network Slice Topology Data Model       October 2024
-
-
-   The topologies for VNs, including both the single-node abstract
-   topology and the underlay topology, can either be mutually agreed
-   upon between the Customer Network Controller (CNC) and the Multi-
-   Domain Service Coordinator (MDSC) prior to VN creation, or they can
-   be created as part of VN instantiation by the customer.
-
-   In the context of network slicing, [RFC9543] defines a network slice
-   service as a collection of connectivity constructs between pairs of
-   Service Demarcation Points (SDPs).  This concept closely resembles
-   the Type 1 VN, which is implemented as a single abstract node.
-
-   [I-D.ietf-teas-ietf-network-slice-nbi-yang] further elaborates on
-   network slices by incorporating references to a customer intent
-   topology based on [RFC8345].  This approach aligns with the ACTN Type
-   2 VN, although without specifying the explicit use of such a
-   topology.
-
-   Consequently, the data model defined in this document serves as a
-   complementary option to the data model outlined in
-   [I-D.ietf-teas-ietf-network-slice-nbi-yang].  It empowers customers
-   to define a customized intent topology specifically tailored for
-   their network slices.
-
-2.4.  Data Model Relationship
+2.3.  Data Model Relationship
 
    The data model presented in this document builds upon the generic
    network topology model defined in [RFC8345].  Other data models,
@@ -493,15 +445,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-
-
-
-
-
-
-
-
-Liu, et al.               Expires 15 April 2025                 [Page 9]
+Liu, et al.               Expires 15 April 2025                 [Page 8]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -557,7 +501,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 10]
+Liu, et al.               Expires 15 April 2025                 [Page 9]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -613,7 +557,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 11]
+Liu, et al.               Expires 15 April 2025                [Page 10]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -669,7 +613,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 12]
+Liu, et al.               Expires 15 April 2025                [Page 11]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -725,7 +669,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 13]
+Liu, et al.               Expires 15 April 2025                [Page 12]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -781,7 +725,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 14]
+Liu, et al.               Expires 15 April 2025                [Page 13]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -837,7 +781,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 15]
+Liu, et al.               Expires 15 April 2025                [Page 14]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -893,7 +837,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 16]
+Liu, et al.               Expires 15 April 2025                [Page 15]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -949,7 +893,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 17]
+Liu, et al.               Expires 15 April 2025                [Page 16]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1005,7 +949,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 18]
+Liu, et al.               Expires 15 April 2025                [Page 17]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1061,7 +1005,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 19]
+Liu, et al.               Expires 15 April 2025                [Page 18]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1117,7 +1061,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 20]
+Liu, et al.               Expires 15 April 2025                [Page 19]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1173,7 +1117,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 21]
+Liu, et al.               Expires 15 April 2025                [Page 20]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1229,7 +1173,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 22]
+Liu, et al.               Expires 15 April 2025                [Page 21]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1285,7 +1229,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 23]
+Liu, et al.               Expires 15 April 2025                [Page 22]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1341,7 +1285,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 24]
+Liu, et al.               Expires 15 April 2025                [Page 23]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1397,7 +1341,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 25]
+Liu, et al.               Expires 15 April 2025                [Page 24]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1453,7 +1397,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 26]
+Liu, et al.               Expires 15 April 2025                [Page 25]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1509,7 +1453,7 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
 
 
 
-Liu, et al.               Expires 15 April 2025                [Page 27]
+Liu, et al.               Expires 15 April 2025                [Page 26]
 
 Internet-Draft      Network Slice Topology Data Model       October 2024
 
@@ -1542,7 +1486,58 @@ Internet-Draft      Network Slice Topology Data Model       October 2024
               <https://datatracker.ietf.org/doc/html/draft-contreras-
               teas-slice-controller-models-05>.
 
-Appendix A.  Consideration on Reusing ACTN VN for Network Slicing
+Appendix A.  Relationship with ACTN Virtual Network (VN)
+
+   [RFC8453] and [I-D.ietf-teas-actn-vn-yang] introduce the concept of a
+   Virtual Network (VN), which can be presented to customers.  These VNs
+   are constructed from abstractions of the underlying networks,
+   specifically those that are traffic-engineering (TE) capable.  While
+   VNs share similarities with RFC 9543 network slicing, they operate
+   under the assumption of TE-capable networks.
+
+   Two distinct types of VNs are defined:
+
+   *  Type 1 VN: Modeled as a single abstract node with edge-to-edge
+      connectivity between customer endpoints.
+
+   *  Type 2 VN: Modeled as a single abstract node with an underlay
+      topology, allowing configuration of intended underlay paths for
+      connections within the single abstract node.
+
+
+
+
+
+
+Liu, et al.               Expires 15 April 2025                [Page 27]
+
+Internet-Draft      Network Slice Topology Data Model       October 2024
+
+
+   The topologies for VNs, including both the single-node abstract
+   topology and the underlay topology, can either be mutually agreed
+   upon between the Customer Network Controller (CNC) and the Multi-
+   Domain Service Coordinator (MDSC) prior to VN creation, or they can
+   be created as part of VN instantiation by the customer.
+
+   In the context of network slicing, [RFC9543] defines a network slice
+   service as a collection of connectivity constructs between pairs of
+   Service Demarcation Points (SDPs).  This concept closely resembles
+   the Type 1 VN, which is implemented as a single abstract node.
+
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang] further elaborates on
+   network slices by incorporating references to a customer intent
+   topology based on [RFC8345].  This approach aligns with the ACTN Type
+   2 VN, although without specifying the explicit use of such a
+   topology.
+
+   Consequently, the data model defined in this document serves as a
+   complementary option to the data model outlined in
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang].  It empowers customers
+   to define a customized intent topology specifically tailored for
+   their network slices.
+
+A.1.  Consideration on Reusing ACTN VN for Network Slicing
 
    The ACTN VN model provides a self-consistent method for expressing
    connectivity intents (Type 1 VN) and optional path constraints (Type
@@ -1562,6 +1557,11 @@ Appendix A.  Consideration on Reusing ACTN VN for Network Slicing
    connectivity-constructs vs. LTPs and connectivity matrices), and
    additionally, would bind the network slice solution to TE
    technologies.
+
+
+
+
+
 
 
 

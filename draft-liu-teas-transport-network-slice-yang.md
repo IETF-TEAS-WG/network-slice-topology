@@ -260,42 +260,6 @@ Please remove this note.
    SAP model. However, the specifics of this mechanism fall beyond the
    scope of this document.
 
-## Relationship with ACTN Virtual Network (VN)
-
-   {{!RFC8453}} and {{!I-D.ietf-teas-actn-vn-yang}} introduce the concept of a Virtual
-   Network (VN), which can be presented to customers. These VNs are constructed from
-   abstractions of the underlying networks, specifically those that are 
-   traffic-engineering (TE) capable. While VNs share similarities with RFC 9543 network slicing,
-   they operate under the assumption of TE-capable networks.
-
-   Two distinct types of VNs are defined:
-
-   - Type 1 VN: Modeled as a single abstract node with edge-to-edge connectivity 
-     between customer endpoints.
-   - Type 2 VN: Modeled as a single abstract node with an underlay topology, allowing
-     configuration of intended underlay paths for connections within the single abstract
-     node.
-
-   The topologies for VNs, including both the single-node abstract topology and the
-   underlay topology, can either be mutually agreed upon between the Customer Network
-   Controller (CNC) and the Multi-Domain Service Coordinator (MDSC) prior to VN creation,
-   or they can be created as part of VN instantiation by the customer.   
-   
-   In the context of network slicing, {{!RFC9543}} defines
-   a network slice service as a collection of connectivity constructs between pairs of
-   Service Demarcation Points (SDPs). This concept closely resembles the Type 1 VN,
-   which is implemented as a single abstract node.
-
-   {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}} further elaborates on network slices
-   by incorporating references to a customer intent topology based on {{!RFC8345}}. 
-   This approach aligns with the ACTN Type 2 VN, although without specifying the 
-   explicit use of such a topology.
-
-   Consequently, the data model defined in this document serves as a complementary
-   option to the data model outlined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
-   It empowers customers to define a customized intent topology specifically tailored
-   for their network slices.
-
 ## Data Model Relationship
 
    The data model presented in this document builds upon the generic network
@@ -579,7 +543,43 @@ Please remove this note.
 
 --- back
 
-# Consideration on Reusing ACTN VN for Network Slicing
+## Relationship with ACTN Virtual Network (VN)
+
+   {{!RFC8453}} and {{!I-D.ietf-teas-actn-vn-yang}} introduce the concept of a Virtual
+   Network (VN), which can be presented to customers. These VNs are constructed from
+   abstractions of the underlying networks, specifically those that are 
+   traffic-engineering (TE) capable. While VNs share similarities with RFC 9543 network slicing,
+   they operate under the assumption of TE-capable networks.
+
+   Two distinct types of VNs are defined:
+
+   - Type 1 VN: Modeled as a single abstract node with edge-to-edge connectivity 
+     between customer endpoints.
+   - Type 2 VN: Modeled as a single abstract node with an underlay topology, allowing
+     configuration of intended underlay paths for connections within the single abstract
+     node.
+
+   The topologies for VNs, including both the single-node abstract topology and the
+   underlay topology, can either be mutually agreed upon between the Customer Network
+   Controller (CNC) and the Multi-Domain Service Coordinator (MDSC) prior to VN creation,
+   or they can be created as part of VN instantiation by the customer.   
+   
+   In the context of network slicing, {{!RFC9543}} defines
+   a network slice service as a collection of connectivity constructs between pairs of
+   Service Demarcation Points (SDPs). This concept closely resembles the Type 1 VN,
+   which is implemented as a single abstract node.
+
+   {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}} further elaborates on network slices
+   by incorporating references to a customer intent topology based on {{!RFC8345}}. 
+   This approach aligns with the ACTN Type 2 VN, although without specifying the 
+   explicit use of such a topology.
+
+   Consequently, the data model defined in this document serves as a complementary
+   option to the data model outlined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
+   It empowers customers to define a customized intent topology specifically tailored
+   for their network slices.
+
+## Consideration on Reusing ACTN VN for Network Slicing
 
    The ACTN VN model provides a self-consistent method for expressing connectivity intents (Type 1 VN)
    and optional path constraints (Type 2 VN) using TE metrics and TE objective functions defined in
