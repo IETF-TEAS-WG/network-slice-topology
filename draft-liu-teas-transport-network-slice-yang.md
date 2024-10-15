@@ -147,7 +147,7 @@ contributor:
 
    A typical use case in which the customer intent topology is essential is the wholesale multi-tenant case. Here, customer C may acquire a network slice from provider P and resell sub-slices to other customers/tenants. The creation of these sub-slices within C's slice necessitates specifying a topology intent - reflecting the topology of C's purchased slice - as a key input parameter.
 
-### Use Case 2 : 
+### Use Case 2 : Scoped Connectivity Constructs in Network Slicing
 
    The current expression of slice requests leveraging on {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}} allows the customer to request distinct connectivity constructs as part of the same Network Resource Partition (NRP). The topology provided by the customer could imply different NRPs, instead.
 
