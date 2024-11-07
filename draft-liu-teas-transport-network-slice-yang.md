@@ -351,7 +351,7 @@ Please remove this note.
        Customer Topology (Merged)          Customer Topology (Merged)
        Network Slice Blue                  Network Slice Red
                             +---+         +---+      +---+
-                       -----|R3 |---   ---|R2 |------|R3 |
+                       -----|R3 |---   ---|R1 |------|R2 |
                       /     +---+         +---+      +---+                  
       +---+      +---+        ^             ^          ^  \     +---+
    ---|R1 |------|R2 |        |             |          |   -----|R4 |---
