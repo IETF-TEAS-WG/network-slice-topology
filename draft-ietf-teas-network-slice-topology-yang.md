@@ -4,7 +4,7 @@ coding: utf-8
 title: IETF Network Slice Topology YANG Data Model
 
 abbrev: Network Slice Topology Data Model
-docname: draft-ietf-teas-transport-network-slice-yang-00
+docname: draft-ietf-teas-network-slice-topology-yang-00
 workgroup: TEAS Working Group
 category: std
 ipr: trust200902

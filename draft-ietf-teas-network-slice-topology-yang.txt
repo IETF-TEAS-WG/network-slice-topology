@@ -16,7 +16,7 @@ Expires: 18 September 2025                                    Telefonica
 
 
               IETF Network Slice Topology YANG Data Model
-            draft-ietf-teas-transport-network-slice-yang-00
+             draft-ietf-teas-network-slice-topology-yang-00
 
 Abstract
 
