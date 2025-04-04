@@ -4,15 +4,15 @@
 
 TEAS Working Group                                                X. Liu
 Internet-Draft                                                 Alef Edge
-Intended status: Standards Track                          L.M. Contreras
-Expires: 18 September 2025                                    Telefonica
+Intended status: Standards Track                         L. M. Contreras
+Expires: 6 October 2025                                       Telefonica
                                                               S. Belotti
                                                                    Nokia
                                                                   A. Guo
                                                                Futurewei
                                                                  I. Busi
                                                                   Huawei
-                                                           17 March 2025
+                                                            4 April 2025
 
 
               IETF Network Slice Topology YANG Data Model
@@ -49,13 +49,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 September 2025.
+   This Internet-Draft will expire on 6 October 2025.
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 1]
+Liu, et al.              Expires 6 October 2025                 [Page 1]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
 Copyright Notice
@@ -109,14 +109,14 @@ Table of Contents
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 2]
+Liu, et al.              Expires 6 October 2025                 [Page 2]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
      B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  29
    Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  36
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  36
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  37
 
 1.  Introduction
 
@@ -165,9 +165,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 3]
+Liu, et al.              Expires 6 October 2025                 [Page 3]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
    A customer intent topology is defined within the customer's context.
@@ -221,9 +221,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 4]
+Liu, et al.              Expires 6 October 2025                 [Page 4]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
 1.1.  Use Case Applicability
@@ -277,9 +277,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 5]
+Liu, et al.              Expires 6 October 2025                 [Page 5]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
 1.2.  Terminologies and Notations
@@ -333,9 +333,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 6]
+Liu, et al.              Expires 6 October 2025                 [Page 6]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
            +==========+============================+===========+
@@ -389,9 +389,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 7]
+Liu, et al.              Expires 6 October 2025                 [Page 7]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
 2.1.  Relationship with Traffic Engineering (TE)-based Topology
@@ -445,9 +445,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 8]
+Liu, et al.              Expires 6 October 2025                 [Page 8]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
         +----------+                 +----------+
@@ -501,9 +501,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025               [Page 9]
+Liu, et al.              Expires 6 October 2025                 [Page 9]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
    In the example shown in Figure 2, two topology intents named as
@@ -557,9 +557,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 10]
+Liu, et al.              Expires 6 October 2025                [Page 10]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
        Customer Topology (Merged)          Customer Topology (Merged)
@@ -613,9 +613,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 11]
+Liu, et al.              Expires 6 October 2025                [Page 11]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
                     +---+         +---+
@@ -669,9 +669,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 12]
+Liu, et al.              Expires 6 October 2025                [Page 12]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
                 |  |  +--rw percentile-value?    percentile
@@ -725,9 +725,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 13]
+Liu, et al.              Expires 6 October 2025                [Page 13]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
                 |  |  +--rw metric-unit          string
@@ -781,9 +781,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 14]
+Liu, et al.              Expires 6 October 2025                [Page 14]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
    module: ietf-ns-underlay-path
@@ -837,9 +837,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 15]
+Liu, et al.              Expires 6 October 2025                [Page 15]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
                 +--:(node-hop)
@@ -893,9 +893,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 16]
+Liu, et al.              Expires 6 October 2025                [Page 16]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
                    <mailto:italo.busi@huawei.com>
@@ -949,9 +949,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 17]
+Liu, et al.              Expires 6 October 2025                [Page 17]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
               "Its presence identifies the Network Slice type.";
@@ -1005,9 +1005,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 18]
+Liu, et al.              Expires 6 October 2025                [Page 18]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
               "Augmentation parameters apply only for networks
@@ -1061,9 +1061,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 19]
+Liu, et al.              Expires 6 October 2025                [Page 19]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
            Editor: Italo Busi
@@ -1117,9 +1117,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 20]
+Liu, et al.              Expires 6 October 2025                [Page 20]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
           container underlay-path {
@@ -1173,9 +1173,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 21]
+Liu, et al.              Expires 6 October 2025                [Page 21]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
         }
@@ -1229,9 +1229,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 22]
+Liu, et al.              Expires 6 October 2025                [Page 22]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
                 "/ietf-nss:path-constraints" {
@@ -1285,9 +1285,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 23]
+Liu, et al.              Expires 6 October 2025                [Page 23]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
    Some of the readable data nodes in this YANG module may be considered
@@ -1341,9 +1341,9 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 24]
+Liu, et al.              Expires 6 October 2025                [Page 24]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
    [I-D.ietf-ccamp-otn-topo-yang]
@@ -1362,14 +1362,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
               yang-otn-slicing-08>.
 
-   [I-D.ietf-teas-actn-vn-yang]
-              Lee, Y., Dhody, D., Ceccarelli, D., Bryskin, I., and B. Y.
-              Yoon, "A YANG Data Model for Virtual Network (VN)
-              Operations", Work in Progress, Internet-Draft, draft-ietf-
-              teas-actn-vn-yang-29, 22 June 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-vn-yang-29>.
-
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
@@ -1380,100 +1372,97 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
-              <https://www.rfc-editor.org/info/rfc3688>.
+              <https://www.rfc-editor.org/rfc/rfc3688>.
 
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
-              <https://www.rfc-editor.org/info/rfc6020>.
+              <https://www.rfc-editor.org/rfc/rfc6020>.
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
-              <https://www.rfc-editor.org/info/rfc6241>.
-
-
-
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 25]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
+              <https://www.rfc-editor.org/rfc/rfc6241>.
 
    [RFC6242]  Wasserman, M., "Using the NETCONF Protocol over Secure
               Shell (SSH)", RFC 6242, DOI 10.17487/RFC6242, June 2011,
-              <https://www.rfc-editor.org/info/rfc6242>.
+              <https://www.rfc-editor.org/rfc/rfc6242>.
 
    [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
-              <https://www.rfc-editor.org/info/rfc6991>.
+              <https://www.rfc-editor.org/rfc/rfc6991>.
+
+
+
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 25]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
-              <https://www.rfc-editor.org/info/rfc7950>.
+              <https://www.rfc-editor.org/rfc/rfc7950>.
 
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
-              <https://www.rfc-editor.org/info/rfc7951>.
+              <https://www.rfc-editor.org/rfc/rfc7951>.
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
-              <https://www.rfc-editor.org/info/rfc8040>.
+              <https://www.rfc-editor.org/rfc/rfc8040>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
-              <https://www.rfc-editor.org/info/rfc8340>.
+              <https://www.rfc-editor.org/rfc/rfc8340>.
 
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
-              <https://www.rfc-editor.org/info/rfc8341>.
+              <https://www.rfc-editor.org/rfc/rfc8341>.
 
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
               (NMDA)", RFC 8342, DOI 10.17487/RFC8342, March 2018,
-              <https://www.rfc-editor.org/info/rfc8342>.
+              <https://www.rfc-editor.org/rfc/rfc8342>.
 
    [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
-              2018, <https://www.rfc-editor.org/info/rfc8345>.
+              2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/info/rfc8446>.
-
-   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
-              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
-              DOI 10.17487/RFC8453, August 2018,
-              <https://www.rfc-editor.org/info/rfc8453>.
-
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 26]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
+              <https://www.rfc-editor.org/rfc/rfc8446>.
 
    [RFC8795]  Liu, X., Bryskin, I., Beeram, V., Saad, T., Shah, H., and
               O. Gonzalez de Dios, "YANG Data Model for Traffic
               Engineering (TE) Topologies", RFC 8795,
               DOI 10.17487/RFC8795, August 2020,
-              <https://www.rfc-editor.org/info/rfc8795>.
+              <https://www.rfc-editor.org/rfc/rfc8795>.
 
    [RFC9408]  Boucadair, M., Ed., Gonzalez de Dios, O., Barguil, S., Wu,
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
-              June 2023, <https://www.rfc-editor.org/info/rfc9408>.
+              June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
+
+
+
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 26]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
 
    [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
               Makhijani, K., Contreras, L., and J. Tantsura, "A
               Framework for Network Slices in Networks Built from IETF
               Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
-              <https://www.rfc-editor.org/info/rfc9543>.
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
 11.2.  Informative References
 
@@ -1486,14 +1475,24 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
               <https://datatracker.ietf.org/doc/html/draft-contreras-
               teas-slice-controller-models-05>.
 
+   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
+              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
+              DOI 10.17487/RFC8453, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8453>.
+
+   [RFC9731]  Lee, Y., Ed., Dhody, D., Ed., Ceccarelli, D., Bryskin, I.,
+              and B. Yoon, "A YANG Data Model for Virtual Network (VN)
+              Operations", RFC 9731, DOI 10.17487/RFC9731, March 2025,
+              <https://www.rfc-editor.org/rfc/rfc9731>.
+
 Appendix A.  Relationship with ACTN Virtual Network (VN)
 
-   [RFC8453] and [I-D.ietf-teas-actn-vn-yang] introduce the concept of a
-   Virtual Network (VN), which can be presented to customers.  These VNs
-   are constructed from abstractions of the underlying networks,
-   specifically those that are traffic-engineering (TE) capable.  While
-   VNs share similarities with RFC 9543 network slicing, they operate
-   under the assumption of TE-capable networks.
+   [RFC8453] and [RFC9731] introduce the concept of a Virtual Network
+   (VN), which can be presented to customers.  These VNs are constructed
+   from abstractions of the underlying networks, specifically those that
+   are traffic-engineering (TE) capable.  While VNs share similarities
+   with RFC 9543 network slicing, they operate under the assumption of
+   TE-capable networks.
 
    Two distinct types of VNs are defined:
 
@@ -1509,9 +1508,10 @@ Appendix A.  Relationship with ACTN Virtual Network (VN)
 
 
 
-Liu, et al.             Expires 18 September 2025              [Page 27]
+
+Liu, et al.              Expires 6 October 2025                [Page 27]
 
-Internet-Draft      Network Slice Topology Data Model         March 2025
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
    The topologies for VNs, including both the single-node abstract
@@ -1539,11 +1539,12 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 A.1.  Consideration on Reusing ACTN VN for Network Slicing
 
-   The ACTN VN model provides a self-consistent method for expressing
-   connectivity intents (Type 1 VN) and optional path constraints (Type
-   2 VN) using TE metrics and TE objective functions defined in
-   [RFC8795].  Type 2 VN path constraints rely on Type 1 VN for
-   expressing connectivity intents.
+   The ACTN VN model, defined in [RFC9731], provides a self-consistent
+   set of methods for expressing connectivity intents (Type 1 VN),
+   optional path constraints and topology intents (Type 2 VN), using TE
+   metrics and TE objective functions defined in [RFC8795].  Type 2 VN
+   path constraints rely on Type 1 VN for expressing connectivity
+   intents.  See Appendix A for more details.
 
    On the other hand, RFC9543 network slice services provide
    connectivity intents equivalent to Type 1 VN, using SLO and SLE
@@ -1558,23 +1559,38 @@ A.1.  Consideration on Reusing ACTN VN for Network Slicing
    additionally, would bind the network slice solution to TE
    technologies.
 
-
-
-
-
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 28]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
    The proposed models in this draft aim to deliver a solution
-   equivalent to Type 2 VN within the context of network slicing.  This
-   complements the existing solution outlined in
+   equivalent to Type 2 VN to provide optional path constraints and
+   topology intent within the context of RFC 9543 network slicing.
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 28]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
+   These models complement the existing solution outlined in
    [I-D.ietf-teas-ietf-network-slice-nbi-yang], while ensuring
-   consistency.
+   consistent use of SLO and SLE attributes in a technology-agnostic
+   manner to express customer intent.
+
+   In a nutshell:
+
+   *  the data models, defined in this draft, are intended to be used
+      when there is a need to extend the connectivity intent expressed
+      using the Network Slice Service data model defined in
+      [I-D.ietf-teas-ietf-network-slice-nbi-yang];
+
+   *  the VN type 2 data models, defined in [RFC9731], are intended to
+      be used when there is a need to extend the connectivity intent
+      expressed using the VN type 1 data models, defined in [RFC9731].
+
+   The guidelines provided in Appendix D of
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang] could be followed to
+   decide when to use the Network Slice Service data model, defined in
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang], or the VN type 1 data
+   models, defined in [RFC9731], to express the connectivity intent.
 
 Appendix B.  Data Tree for the Example in Section 3
 
@@ -1602,6 +1618,14 @@ B.1.  Native Topology
                  "sle-policy": {
                    "isolation": [
                      {
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 29]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
                        "ietf-network-slice-service:service-traffic-iso\
    lation"
                      }
@@ -1618,14 +1642,6 @@ B.1.  Native Topology
                ]
              },
              {
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 29]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
                "node-id": "VR3",
                "ietf-ns-topo:service-slo-sle-policy": {
                  "sle-policy": {
@@ -1658,6 +1674,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                    ]
                  }
                },
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 30]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
                "ietf-network-topology:termination-point": [
                  {
                    "tp-id": "5-3-1"
@@ -1674,14 +1698,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                "source": {
                  "source-node": "VR1",
                  "source-tp": "1-0-1"
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 30]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
                },
                "ietf-ns-topo:service-slo-sle-policy": {
                  "slo-policy": {
@@ -1714,6 +1730,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                },
                "ietf-ns-topo:service-slo-sle-policy": {
                  "slo-policy": {
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 31]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
                    "metric-bounds": {
                      "metric-bound": [
                        {
@@ -1730,14 +1754,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                      {
                        "ietf-network-slice-service:service-traffic-iso\
    lation"
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 31]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
                      }
                    ]
                  }
@@ -1770,6 +1786,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                    "isolation": [
                      {
                        "ietf-network-slice-service:service-traffic-iso\
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 32]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
    lation"
                      }
                    ]
@@ -1786,14 +1810,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                  "dest-node": "R1",
                  "dest-tp": "1-3-1"
                },
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 32]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
                "ietf-ns-topo:service-slo-sle-policy": {
                  "slo-policy": {
                    "metric-bounds": {
@@ -1826,6 +1842,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                "destination": {
                  "dest-node": "VR5",
                  "dest-tp": "5-3-1"
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 33]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
                },
                "ietf-ns-topo:service-slo-sle-policy": {
                  "slo-policy": {
@@ -1842,14 +1866,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                  },
                  "sle-policy": {
                    "isolation": [
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 33]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
                      {
                        "ietf-network-slice-service:service-traffic-iso\
    lation"
@@ -1882,6 +1898,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                    }
                  },
                  "sle-policy": {
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 34]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
                    "isolation": [
                      {
                        "ietf-network-slice-service:service-traffic-iso\
@@ -1898,14 +1922,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                  "source-tp": "5-0-1"
                },
                "ietf-ns-topo:service-slo-sle-policy": {
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 34]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
                  "slo-policy": {
                    "metric-bounds": {
                      "metric-bound": [
@@ -1938,6 +1954,14 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
                  "slo-policy": {
                    "metric-bounds": {
                      "metric-bound": [
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 35]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
+
+
                        {
                          "metric-type": "ietf-network-slice-service:se\
    rvice-slo-two-way-delay",
@@ -1954,14 +1978,6 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
    lation"
                      }
                    ]
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 35]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
                  }
                }
              }
@@ -1985,66 +2001,57 @@ Contributors
 
    Reza Rokui
    Ciena
-
    Email: rrokui@ciena.com
 
 
    Jeff Tantsura
    Microsoft
-
    Email: jefftant.ietf@gmail.com
+
+
+
+
+
+
+Liu, et al.              Expires 6 October 2025                [Page 36]
+
+Internet-Draft      Network Slice Topology Data Model         April 2025
 
 
    Igor Bryskin
    Individual
-
    Email: i_bryskin@yahoo.com
 
 
    Qin Wu
    Huawei
-
    Email: bill.wu@huawei.com
 
 
 Authors' Addresses
 
-
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 36]
-
-Internet-Draft      Network Slice Topology Data Model         March 2025
-
-
    Xufeng Liu
    Alef Edge
-
    Email: xufeng.liu.ietf@gmail.com
 
 
    Luis M. Contreras
    Telefonica
-
    Email: luismiguel.contrerasmurillo@telefonica.com
 
 
    Sergio Belotti
    Nokia
-
    Email: Sergio.belotti@nokia.com
 
 
    Aihua Guo
    Futurewei
-
    Email: aihuaguo.ietf@gmail.com
 
 
    Italo Busi
    Huawei
-
    Email: italo.busi@huawei.com
 
 
@@ -2062,11 +2069,4 @@ Internet-Draft      Network Slice Topology Data Model         March 2025
 
 
 
-
-
-
-
-
-
-
-Liu, et al.             Expires 18 September 2025              [Page 37]
+Liu, et al.              Expires 6 October 2025                [Page 37]
