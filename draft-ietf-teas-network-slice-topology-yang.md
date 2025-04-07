@@ -596,10 +596,10 @@ Please remove this note.
 
 In a nutshell:
 
-- the data models, defined in this draft, are intended to be used when there is a need to extend the connectivity intent expressed using the Network Slice Service data model defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}};
-- the VN type 2 data models, defined in {{?RFC9731}}, are intended to be used when there is a need to extend the connectivity intent expressed using the VN type 1 data models, defined in {{?RFC9731}}.
+- the data models, defined in this draft, are intended to be used when there is a need to extend, with more control over network resources allocation by the customer, the connectivity service intent, expressed using the Network Slice Service data model, defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}};
+- the VN type 2 data models, defined in {{?RFC9731}}, are intended to be used when there is a need to extend, with more control over network resources allocation by the customer, the connectivity service intent expressed using the VN type 1 data models, defined in {{?RFC9731}}.
 
-The guidelines provided in {{Appendix D of !I-D.ietf-teas-ietf-network-slice-nbi-yang}} could be followed to decide when to use the Network Slice Service data model, defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}, or the VN type 1 data models, defined in {{?RFC9731}}, to express the connectivity intent.
+{{Appendix D of !I-D.ietf-teas-ietf-network-slice-nbi-yang}} provides guidance to decide when to use the Network Slice Service data model, defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}, or the VN type 1 data models, defined in {{?RFC9731}}, to express the connectivity intent.
 
 # Data Tree for the Example in Section 3
 
