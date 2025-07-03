@@ -1,7 +1,7 @@
 ---
 coding: utf-8
 
-title: IETF Network Slice Topology YANG Data Model
+title: An IETF Network Slice Topology YANG Data Model
 
 abbrev: Network Slice Topology Data Model
 docname: draft-ietf-teas-network-slice-topology-yang-01
@@ -116,20 +116,20 @@ contributor:
    service-level objectives (SLOs) and service-level expectations (SLEs)
    across different elements within the customer intent topology.
       
-   The defined data model serves as an interface between customers and providers,
-   enabling configurations and state retrievals for network slicing as a service.
-   Customers can use this model to request or negotiate the creation of network
-   slice instances. Additionally, they can incrementally adjust requirements for
+   The defined data model can be exposed in an interface between customers and providers,
+   enabling configuration and state retrieval, so as to support network slice services.
+   Customers can use this model to request, or eventually negotiate the creation of network
+   slice instances with a network slicing provider . A customer can adjust the requirements for
    individual topology elements within the slice - for instance, adding or removing
-   nodes or links, updating link bandwidth - and retrieve operational states.
+   nodes or links, updating requested link bandwidth - and retrieve operational states.
    Leveraging other IETF mechanisms and data models, telemetry information can
    also be convey to the customer.
 
    The YANG model encompasses constructs that are independent of specific technologies,
-   accommodating network slicing across diverse layers (including IP/MPLS, MPLS-TP,
-   OTN, and WDM optical). As a result, this model serves as a foundational framework
+   accommodating network slicing of different technologies, e.g., IP/MPLS, MPLS-TP,
+   OTN, and WDM. As a result, this model serves as a foundational framework
    upon which technology-specific network slicing models - such as 
-   {{!I-D.ietf-ccamp-yang-otn-slicing}} - can be developed.
+   {{!I-D.ietf-ccamp-yang-otn-slicing}} - can be augmented.
 
    Section 3 of {{?I-D.ietf-teas-ns-controller-models}} outlines that the use
    of customer intent topologies and resource reservation control is optional within network
@@ -191,14 +191,12 @@ contributor:
 
 ## Tree Diagram
 
-   Tree diagrams used in this document follow the notation defined in
+    The meanings of the symbols in the tree diagrams are defined in
    {{!RFC8340}}.
    
 ## Prefixes in Data Node Names
 
-   In this document, names of data nodes and other data model objects
-   are prefixed using the standard prefix associated with the
-   corresponding YANG imported modules, as shown in {{tab-prefixes}}.
+   {{tab-prefixes}} list the prefixes of the modules that are used in this document.
 
    | Prefix   | YANG Module                  | Reference         |
    |----------|------------------------------|-------------------|
@@ -263,30 +261,30 @@ Please remove this note.
 ## Data Model Relationship
 
    The data model presented in this document builds upon the generic network
-   topology model defined in {{!RFC8345}}. Other data models, including OTN
-   Slicing (as defined in {{!I-D.ietf-ccamp-yang-otn-slicing}}), can leverage
-   this extended model.
+   topology model defined in {{!RFC8345}}. Furthermore, this model can be 
+   augmented with technology-specific network slicing data models, such as
+   OTN Slicing defined in {{!I-D.ietf-ccamp-yang-otn-slicing}}
    
    The relationship of the related data models is illustrated in {{fig-model-relationship}}. 
    Within this diagram, the box outlined with dotted lines specifically represents
    the data model defined in this document.
   
 ~~~~
-     +----------+                 +----------+
-     | Network  |                 | Network  |
-     | Slice    |                 | Topology +
-     | NBI YANG +------+          | Model    |
-     | Model    |      |          | RFC 8345 |
-     +----+-----+      |          +-----+----+
-          |            |                |
-          |augments    |augments        |augments
-          |            |                |
-     +----^-----+      |          ......^.....
-     | OTN      |      +----------< Network  :
-     | Slicing  | augments        : Slice    :
-     | Model    >-----------------: Topology :
-     |          |                 : Model    :
-     +----------+                 :..........:
+     +-----------+                +----------+
+     | Network   |                | Network  |
+     | Slice     |                | Topology |
+     | Service   +-----+          | Model    |
+     | YANG Model|     |          | RFC 8345 |
+     +-----+-----+     |          +-----+----+
+           |           |                |
+           |augments   |augments        |augments
+           |           |                |
+     +-----^-------+   |          ......^.....
+     | Technology- |   +----------< Network  :
+     | Specific    | augments     : Slice    :
+     | Slicing     >--------------: Topology :
+     | Model       |              : Model    :
+     +-------------+              :..........:
 ~~~~
 {: #fig-model-relationship title="Model Relationship"}
   
@@ -308,7 +306,7 @@ Please remove this note.
    resources associated with each link are immediately commissioned during
    the network slice configuration process.
    
-   Alternatively, a customer can request resources to be reserved for potential
+   A customer may also request resources to be reserved for potential
    network slices through a customer intent topology. These reserved resources
    are not immediately commissioned at the time of the request. Instead, they
    serve as a pool of allocated resources that the customer can utilize to build
@@ -370,7 +368,7 @@ Please remove this note.
    ---------------------------------------------------------------------
                                  Provider
 
-        Customized Topology (Network Resouce Partition)
+        Customized Topology (Network Resource Partition)
         Provider Network with Virtual Devices
 
         Network Slice Blue: VR1, VR3, VR5         +---+             
@@ -502,7 +500,7 @@ Please remove this note.
 
 # IANA Considerations
 
-   It is proposed to IANA to assign new URIs from the "IETF XML
+   This document requests IANA to assign new URIs from the "IETF XML
    Registry" {{!RFC3688}} as follows:
 
 ~~~~
@@ -517,7 +515,7 @@ Please remove this note.
    XML: N/A; the requested URI is an XML namespace.
 ~~~~
 
-   This document registers two YANG modules in the YANG Module Names
+   This document requests IANA to register two YANG modules in the YANG Module Names
    registry {{!RFC6020}}.
 
 ~~~~
