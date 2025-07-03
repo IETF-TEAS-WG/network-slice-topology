@@ -4,7 +4,7 @@ coding: utf-8
 title: IETF Network Slice Topology YANG Data Model
 
 abbrev: Network Slice Topology Data Model
-docname: draft-ietf-teas-network-slice-topology-yang-00
+docname: draft-ietf-teas-network-slice-topology-yang-01
 workgroup: TEAS Working Group
 category: std
 ipr: trust200902
@@ -101,13 +101,13 @@ contributor:
    Customer intent topology complements connectivity-based network slicing by providing
    customers a mechanism to specify additional underlay service paths to gain
    extensive control over specific or all connectivity constructs within the network slice,
-   as outlined in {{!RFC9543}}.
+   as outlined in {{?RFC9543}}.
 
    A customer intent topology is defined within the customer's context. It can include pure customer information or may also refer to network
    resources identifiable within the provider's context. There is a minimum
    level of a-prior shared knowledge between the customer and the provider,
    and this is the same information needed to supported connectivity-based
-   network slice services as desdribed in {{!RFC9543}}.
+   network slice services as desdribed in {{?RFC9543}}.
    The provider's responsibility lies in understanding the customer intent topology request and translating that into suitable realization within their domain.
 
    This document introduces a YANG data model, based on {{!RFC7950}}, for
@@ -131,7 +131,7 @@ contributor:
    upon which technology-specific network slicing models - such as 
    {{!I-D.ietf-ccamp-yang-otn-slicing}} - can be developed.
 
-   Section 3 of {{?I-D.contreras-teas-slice-controller-models}} outlines that the use
+   Section 3 of {{?I-D.ietf-teas-ns-controller-models}} outlines that the use
    of customer intent topologies and resource reservation control is optional within network
    slicing. These features complement the data model defined in 
    {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
@@ -158,7 +158,7 @@ contributor:
 ## Terminologies and Notations
 
    The following terminologies for describing network slices are defined in 
-   {{!RFC9543}} and are not redefined herein.
+   {{?RFC9543}} and are not redefined herein.
    
    - Network Slice (NS)
    
@@ -174,20 +174,20 @@ contributor:
    
    - Customer Intent Topology:
        A topology defined by the customer and provided as input to the
-	   network slice service provider (specifically, the Network Slice
-	   Controller or NSC). It represents the customer's desired network
-	   topology.
-	   
+       network slice service provider (specifically, the Network Slice
+       Controller or NSC). It represents the customer's desired network
+       topology.
+       
    - Abstract Topology:
        A topology exposed to the customer by the network slice service
-	   provider prior to the creation of network slices. The provider
-	   may optionally uses an abstract topology to expose useful information,
+       provider prior to the creation of network slices. The provider
+       may optionally uses an abstract topology to expose useful information,
        such as available resources to the customer, which can facilitate
-	   the build-up of customer intent topologies by the customer.
-	   
+       the build-up of customer intent topologies by the customer.
+       
    - NRP Topology:
        A topology internal to the NSC to facilitate the mapping of
-	   network slices to underlying network resources.
+       network slices to underlying network resources.
 
 ## Tree Diagram
 
@@ -297,7 +297,7 @@ Please remove this note.
    resource reservation-based network slices. In this approach, resources for
    network slices are reserved and represented using a customer intent topology.
    This topology can then be mapped to a network resource partition (NRP)
-   and realized based on the scenarios outlined in {{!RFC9543}}.
+   and realized based on the scenarios outlined in {{?RFC9543}}.
    
    Network slices can be abstracted in various ways, depending on the specific
    requirements of the network slice customer. For instance, a customer might
@@ -443,7 +443,7 @@ Please remove this note.
 
 ## YANG Module for Network Slice Topology
 ~~~~
-   <CODE BEGINS> file "ietf-ns-topo@2024-07-02.yang"
+   <CODE BEGINS> file "ietf-ns-topo@2025-07-03.yang"
 {::include ./ietf-ns-topo.yang}
    <CODE ENDS>
 ~~~~
@@ -451,7 +451,7 @@ Please remove this note.
 
 ## YANG Module for Network Slice Underlay Path
 ~~~~
-   <CODE BEGINS> file "ietf-ns-underlay-path@2024-07-02.yang"
+   <CODE BEGINS> file "ietf-ns-underlay-path@2025-07-03.yang"
 {::include ./ietf-ns-underlay-path.yang}
    <CODE ENDS>
 ~~~~
@@ -545,7 +545,7 @@ Please remove this note.
 
 ## Relationship with ACTN Virtual Network (VN) {#vn-intro}
 
-   {{?RFC8453}} and {{?RFC9731}} introduce the concept of a Virtual
+   {{?RFC8453}} and {{!RFC9731}} introduce the concept of a Virtual
    Network (VN), which can be presented to customers. These VNs are constructed from
    abstractions of the underlying networks, specifically those that are 
    traffic-engineering (TE) capable. While VNs share similarities with RFC 9543 network slicing,
@@ -564,7 +564,7 @@ Please remove this note.
    Controller (CNC) and the Multi-Domain Service Coordinator (MDSC) prior to VN creation,
    or they can be created as part of VN instantiation by the customer.   
    
-   In the context of network slicing, {{!RFC9543}} defines
+   In the context of network slicing, {{?RFC9543}} defines
    a network slice service as a collection of connectivity constructs between pairs of
    Service Demarcation Points (SDPs). This concept closely resembles the Type 1 VN,
    which is implemented as a single abstract node.
@@ -581,7 +581,7 @@ Please remove this note.
 
 ## Consideration on Reusing ACTN VN for Network Slicing
 
-   The ACTN VN model, defined in {{?RFC9731}}, provides a self-consistent set of methods for expressing connectivity intents (Type 1 VN),
+   The ACTN VN model, defined in {{!RFC9731}}, provides a self-consistent set of methods for expressing connectivity intents (Type 1 VN),
    optional path constraints and topology intents (Type 2 VN), using TE metrics and TE objective functions defined in
    {{!RFC8795}}. Type 2 VN path constraints rely on Type 1 VN for expressing connectivity intents. See {{vn-intro}} for more details.
    
@@ -597,9 +597,9 @@ Please remove this note.
 In a nutshell:
 
 - the data models, defined in this draft, are intended to be used when there is a need to extend, with more control over network resources allocation by the customer, the connectivity service intent, expressed using the Network Slice Service data model, defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}};
-- the VN type 2 data models, defined in {{?RFC9731}}, are intended to be used when there is a need to extend, with more control over network resources allocation by the customer, the connectivity service intent expressed using the VN type 1 data models, defined in {{?RFC9731}}.
+- the VN type 2 data models, defined in {{!RFC9731}}, are intended to be used when there is a need to extend, with more control over network resources allocation by the customer, the connectivity service intent expressed using the VN type 1 data models, defined in {{!RFC9731}}.
 
-{{Appendix D of !I-D.ietf-teas-ietf-network-slice-nbi-yang}} provides guidance to decide when to use the Network Slice Service data model, defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}, or the VN type 1 data models, defined in {{?RFC9731}}, to express the connectivity intent.
+{{Appendix D of !I-D.ietf-teas-ietf-network-slice-nbi-yang}} provides guidance to decide when to use the Network Slice Service data model, defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}, or the VN type 1 data models, defined in {{!RFC9731}}, to express the connectivity intent.
 
 # Data Tree for the Example in Section 3
 
