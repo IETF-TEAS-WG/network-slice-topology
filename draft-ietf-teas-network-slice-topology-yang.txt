@@ -5,18 +5,18 @@
 TEAS Working Group                                                X. Liu
 Internet-Draft                                                 Alef Edge
 Intended status: Standards Track                          L.M. Contreras
-Expires: 23 January 2026                                      Telefonica
+Expires: 28 July 2026                                         Telefonica
                                                               S. Belotti
                                                                    Nokia
                                                                   A. Guo
                                                                Futurewei
                                                                  I. Busi
                                                                   Huawei
-                                                            22 July 2025
+                                                         24 January 2026
 
 
               IETF Network Slice Topology YANG Data Model
-             draft-ietf-teas-network-slice-topology-yang-02
+             draft-ietf-teas-network-slice-topology-yang-03
 
 Abstract
 
@@ -49,18 +49,18 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 January 2026.
+   This Internet-Draft will expire on 28 July 2026.
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 1]
+Liu, et al.               Expires 28 July 2026                  [Page 1]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 2]
+Liu, et al.               Expires 28 July 2026                  [Page 2]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
      B.1.  Native Topology . . . . . . . . . . . . . . . . . . . . .  29
@@ -165,9 +165,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 3]
+Liu, et al.               Expires 28 July 2026                  [Page 3]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    A customer intent topology is defined within the customer's context.
@@ -221,9 +221,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 4]
+Liu, et al.               Expires 28 July 2026                  [Page 4]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
 1.1.  Use Case Applicability
@@ -277,9 +277,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 5]
+Liu, et al.               Expires 28 July 2026                  [Page 5]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
 1.2.  Terminologies and Notations
@@ -333,9 +333,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 6]
+Liu, et al.               Expires 28 July 2026                  [Page 6]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
            +==========+============================+===========+
@@ -389,9 +389,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 7]
+Liu, et al.               Expires 28 July 2026                  [Page 7]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
 2.1.  Relationship with Traffic Engineering (TE)-based Topology
@@ -445,9 +445,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 8]
+Liu, et al.               Expires 28 July 2026                  [Page 8]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    Appendix D of [I-D.ietf-teas-ietf-network-slice-nbi-yang] provides
@@ -501,9 +501,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026                [Page 9]
+Liu, et al.               Expires 28 July 2026                  [Page 9]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
         +----------+                 +----------+
@@ -557,9 +557,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 10]
+Liu, et al.               Expires 28 July 2026                 [Page 10]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    In the example shown in Figure 2, two topology intents named as
@@ -613,9 +613,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 11]
+Liu, et al.               Expires 28 July 2026                 [Page 11]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
        Customer Topology (Merged)          Customer Topology (Merged)
@@ -669,9 +669,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 12]
+Liu, et al.               Expires 28 July 2026                 [Page 12]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                     +---+         +---+
@@ -725,9 +725,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 13]
+Liu, et al.               Expires 28 July 2026                 [Page 13]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                 |  |  +--rw percentile-value?    percentile
@@ -781,9 +781,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 14]
+Liu, et al.               Expires 28 July 2026                 [Page 14]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                 |  |  +--rw metric-unit          string
@@ -837,9 +837,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 15]
+Liu, et al.               Expires 28 July 2026                 [Page 15]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    module: ietf-ns-underlay-path
@@ -893,9 +893,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 16]
+Liu, et al.               Expires 28 July 2026                 [Page 16]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                 +--:(node-hop)
@@ -949,9 +949,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 17]
+Liu, et al.               Expires 28 July 2026                 [Page 17]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                    <mailto:italo.busi@huawei.com>
@@ -1005,9 +1005,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 18]
+Liu, et al.               Expires 28 July 2026                 [Page 18]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
               "Its presence identifies the Network Slice type.";
@@ -1061,9 +1061,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 19]
+Liu, et al.               Expires 28 July 2026                 [Page 19]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
               "Augmentation parameters apply only for networks
@@ -1117,9 +1117,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 20]
+Liu, et al.               Expires 28 July 2026                 [Page 20]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
            Editor: Italo Busi
@@ -1173,9 +1173,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 21]
+Liu, et al.               Expires 28 July 2026                 [Page 21]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
           container underlay-path {
@@ -1229,9 +1229,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 22]
+Liu, et al.               Expires 28 July 2026                 [Page 22]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
         }
@@ -1285,9 +1285,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 23]
+Liu, et al.               Expires 28 July 2026                 [Page 23]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                 "/ietf-nss:path-constraints" {
@@ -1341,9 +1341,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 24]
+Liu, et al.               Expires 28 July 2026                 [Page 24]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    Some of the readable data nodes in this YANG module may be considered
@@ -1397,9 +1397,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 25]
+Liu, et al.               Expires 28 July 2026                 [Page 25]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    [I-D.ietf-ccamp-otn-topo-yang]
@@ -1414,9 +1414,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
               Guo, A., Contreras, L. M., Belotti, S., Rokui, R., Xu, Y.,
               Zhao, Y., and X. Liu, "Framework and Data Model for OTN
               Network Slicing", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-yang-otn-slicing-09, 3 July 2025,
+              ietf-ccamp-yang-otn-slicing-10, 5 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              yang-otn-slicing-09>.
+              yang-otn-slicing-10>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
@@ -1453,9 +1453,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 26]
+Liu, et al.               Expires 28 July 2026                 [Page 26]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
@@ -1509,9 +1509,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 27]
+Liu, et al.               Expires 28 July 2026                 [Page 27]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    [RFC9731]  Lee, Y., Ed., Dhody, D., Ed., Ceccarelli, D., Bryskin, I.,
@@ -1525,9 +1525,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
               Contreras, L. M., Rokui, R., Tantsura, J., Wu, B., and X.
               Liu, "IETF Network Slice Controller and its Associated
               Data Models", Work in Progress, Internet-Draft, draft-
-              ietf-teas-ns-controller-models-05, 7 July 2025,
+              ietf-teas-ns-controller-models-06, 20 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-ns-
-              controller-models-05>.
+              controller-models-06>.
 
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
@@ -1565,9 +1565,9 @@ Appendix A.  Relationship with ACTN Virtual Network (VN)
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 28]
+Liu, et al.               Expires 28 July 2026                 [Page 28]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    The topologies for VNs, including both the single-node abstract
@@ -1621,9 +1621,9 @@ B.1.  Native Topology
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 29]
+Liu, et al.               Expires 28 July 2026                 [Page 29]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
              }
@@ -1677,9 +1677,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 30]
+Liu, et al.               Expires 28 July 2026                 [Page 30]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                  "sle-policy": {
@@ -1733,9 +1733,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 31]
+Liu, et al.               Expires 28 July 2026                 [Page 31]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
              },
@@ -1789,9 +1789,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 32]
+Liu, et al.               Expires 28 July 2026                 [Page 32]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                          "bound": 30
@@ -1845,9 +1845,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 33]
+Liu, et al.               Expires 28 July 2026                 [Page 33]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
              {
@@ -1901,9 +1901,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 34]
+Liu, et al.               Expires 28 July 2026                 [Page 34]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                          "metric-type": "ietf-network-slice-service:se\
@@ -1957,9 +1957,9 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 35]
+Liu, et al.               Expires 28 July 2026                 [Page 35]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
                "link-id": ",,VR5,5-0-1",
@@ -2013,9 +2013,9 @@ Contributors
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 36]
+Liu, et al.               Expires 28 July 2026                 [Page 36]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    Reza Rokui
@@ -2069,9 +2069,9 @@ Authors' Addresses
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 37]
+Liu, et al.               Expires 28 July 2026                 [Page 37]
 
-Internet-Draft      Network Slice Topology Data Model          July 2025
+Internet-Draft      Network Slice Topology Data Model       January 2026
 
 
    Italo Busi
@@ -2125,4 +2125,4 @@ Internet-Draft      Network Slice Topology Data Model          July 2025
 
 
 
-Liu, et al.              Expires 23 January 2026               [Page 38]
+Liu, et al.               Expires 28 July 2026                 [Page 38]
