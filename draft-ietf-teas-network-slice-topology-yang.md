@@ -15,7 +15,7 @@ pi: [toc, sortrefs, symrefs, comments]
 author:
   -
     name: Xufeng Liu
-    org: Alef Edge
+    org: Individual
     email: xufeng.liu.ietf@gmail.com
   -
     name: Luis M. Contreras

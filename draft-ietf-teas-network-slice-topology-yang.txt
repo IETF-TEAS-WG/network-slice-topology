@@ -3,7 +3,7 @@
 
 
 TEAS Working Group                                                X. Liu
-Internet-Draft                                                 Alef Edge
+Internet-Draft                                                Individual
 Intended status: Standards Track                          L.M. Contreras
 Expires: 31 January 2027                                      Telefonica
                                                               S. Belotti
@@ -2045,7 +2045,7 @@ Internet-Draft      Network Slice Topology Data Model          July 2026
 Authors' Addresses
 
    Xufeng Liu
-   Alef Edge
+   Individual
 
    Email: xufeng.liu.ietf@gmail.com
 
