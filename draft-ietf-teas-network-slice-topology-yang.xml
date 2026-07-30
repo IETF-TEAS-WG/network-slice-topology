@@ -10,7 +10,7 @@
 <?rfc symrefs="yes"?>
 <?rfc comments="yes"?>
 
-<rfc ipr="trust200902" docName="draft-ietf-teas-network-slice-topology-yang-03" category="std">
+<rfc ipr="trust200902" docName="draft-ietf-teas-network-slice-topology-yang-04" category="std">
 
   <front>
     <title abbrev="Network Slice Topology Data Model">IETF Network Slice Topology YANG Data Model</title>
@@ -46,7 +46,7 @@
       </address>
     </author>
 
-    <date year="2026" month="January" day="24"/>
+    <date year="2026" month="July" day="30"/>
 
     
     <workgroup>TEAS Working Group</workgroup>
@@ -1130,7 +1130,7 @@ module: ietf-ns-underlay-path
 </reference>
 
 
-<reference anchor='I-D.ietf-ccamp-yang-otn-slicing' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-yang-otn-slicing-10'>
+<reference anchor='I-D.ietf-ccamp-yang-otn-slicing' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-yang-otn-slicing-11'>
    <front>
       <title>Framework and Data Model for OTN Network Slicing</title>
       <author fullname='Aihua Guo' initials='A.' surname='Guo'>
@@ -1154,7 +1154,7 @@ module: ietf-ns-underlay-path
       <author fullname='Xufeng Liu' initials='X.' surname='Liu'>
          <organization>Alef Edge</organization>
       </author>
-      <date day='5' month='January' year='2026'/>
+      <date day='2' month='March' year='2026'/>
       <abstract>
 	 <t>   The requirement of slicing network resources with desired quality of
    service is emerging at every network technology, including the
@@ -1172,12 +1172,12 @@ module: ietf-ns-underlay-path
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-yang-otn-slicing-10'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-yang-otn-slicing-11'/>
    
 </reference>
 
 
-<reference anchor='I-D.ietf-teas-ietf-network-slice-nbi-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-25'>
+<reference anchor='I-D.ietf-teas-ietf-network-slice-nbi-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-26'>
    <front>
       <title>A YANG Data Model for the RFC 9543 Network Slice Service</title>
       <author fullname='Bo Wu' initials='B.' surname='Wu'>
@@ -1195,7 +1195,7 @@ module: ietf-ns-underlay-path
       <author fullname='John Mullooly' initials='J.' surname='Mullooly'>
          <organization>Cisco Systems, Inc</organization>
       </author>
-      <date day='9' month='May' year='2025'/>
+      <date day='26' month='May' year='2026'/>
       <abstract>
 	 <t>   This document defines a YANG data model for RFC 9543 Network Slice
    Service.  The model can be used in the Network Slice Service
@@ -1205,7 +1205,7 @@ module: ietf-ns-underlay-path
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ietf-network-slice-nbi-yang-25'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ietf-network-slice-nbi-yang-26'/>
    
 </reference>
 
@@ -1273,7 +1273,7 @@ module: ietf-ns-underlay-path
 </reference>
 
 
-<reference anchor='I-D.ietf-ccamp-otn-topo-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-20'>
+<reference anchor='I-D.ietf-ccamp-otn-topo-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-21'>
    <front>
       <title>A YANG Data Model for Optical Transport Network Topology</title>
       <author fullname='Haomian Zheng' initials='H.' surname='Zheng'>
@@ -1283,7 +1283,7 @@ module: ietf-ns-underlay-path
          <organization>Huawei Technologies</organization>
       </author>
       <author fullname='Xufeng Liu' initials='X.' surname='Liu'>
-         <organization>Alef Edge</organization>
+         <organization>Individual</organization>
       </author>
       <author fullname='Sergio Belotti' initials='S.' surname='Belotti'>
          <organization>Nokia</organization>
@@ -1291,7 +1291,7 @@ module: ietf-ns-underlay-path
       <author fullname='Oscar Gonzalez de Dios' initials='O. G.' surname='de Dios'>
          <organization>Telefonica</organization>
       </author>
-      <date day='7' month='November' year='2024'/>
+      <date day='16' month='June' year='2026'/>
       <abstract>
 	 <t>   This document defines a YANG data model for representing, retrieving,
    and manipulating Optical Transport Network (OTN) topologies.  It is
@@ -1301,7 +1301,7 @@ module: ietf-ns-underlay-path
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-otn-topo-yang-20'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ccamp-otn-topo-yang-21'/>
    
 </reference>
 
@@ -1485,7 +1485,7 @@ module: ietf-ns-underlay-path
 </reference>
 
 
-<reference anchor='I-D.ietf-teas-ns-controller-models' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ns-controller-models-06'>
+<reference anchor='I-D.ietf-teas-ns-controller-models' target='https://datatracker.ietf.org/doc/html/draft-ietf-teas-ns-controller-models-07'>
    <front>
       <title>IETF Network Slice Controller and its Associated Data Models</title>
       <author fullname='Luis M. Contreras' initials='L. M.' surname='Contreras'>
@@ -1502,7 +1502,7 @@ module: ietf-ns-underlay-path
       </author>
       <author fullname='Xufeng Liu' initials='X.' surname='Liu'>
          </author>
-      <date day='20' month='October' year='2025'/>
+      <date day='10' month='June' year='2026'/>
       <abstract>
 	 <t>   This document describes an approach for structuring the IETF Network
    Slice Controller as well as how to use different data models being
@@ -1513,7 +1513,7 @@ module: ietf-ns-underlay-path
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ns-controller-models-06'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-teas-ns-controller-models-07'/>
    
 </reference>
 
@@ -1965,11 +1965,11 @@ on"
   </back>
 
 <!-- ##markdown-source:
-H4sIACWec2kAA+19aXMbR5Lod0b4P9TSEc+kjYYkSvIBj21RJC1rQ6K0JEea
+H4sIAE1Ga2oAA+19aXMbR5Lod0b4P9TSEc+kjYYkSvIBj21RJC1rQ6K0JEea
 jfF4owEUgB41ujF9kMJaer/95VVXHyApjdfeeWCEFCRQlZWVlVdlZWVFUfTJ
 ziSfJtl8pOpqFn39yc4nO1VSpXqknp5c/KhOdXWVF2/UeZpMtLrIV3maz9fq
 Pw9Pn6jjuIrV83yqU+wVj8eFvhz19fAbT/NJFi9hiGkRz6oo0TBypeMyyrhv
-VGLfqJK+0TrO5tHd+5/s4JfzIq9XI3VxcniuXsPfgLt6gp/BTOJKz/NiPVJl
+VGLfqJK+0TrO5tHdB5/s4JfzIq9XI3VxcniuXsPfgLt6gp/BTOJKz/NiPVJl
 Nf1kJ1kVI1UVdVkd3L37zd0DxLKs4mz6X3GaZzD8Wpef7KySkfprlU8GqsyL
 qtCzEn5bL/mXSb5c6qwq/0YzrKtFXow+2VEqwv+U4ln8pZ5pQOJZUvOneQHU
 PEz1TJ1M55o/08s4SUfqLTUdpkk9xFk/muPHQxilBfRZnZTq+VAd5RkgVcSl
@@ -2239,7 +2239,7 @@ BLZDfgKBvYEE3UZgrzWw16qHrbxuBr+V1z+kvD4keX04ePiby2sryvFxBrYZ
 3ggFtmPzvRXY31BgH24F9pp5/jMEVsR0YEX3IwS2Q34Cgb2BBP1zPeJr9cNW
 YDeD3wrsH1JgPzZuer2gboM//4OSc7CVnOvmaVp8YMBUhObjAqbXuYdbmdnK
 jP35I8jMBmtjf2+f692GPzeRaSOJuih6K9Ig5J932qTZcJbpyBFqE2z0fue9
-vbJAd4n5epuefrc7i9NS4yMe/w9F0OjFOeMAAA==
+vbJAd4n5epuefrc7i9NS4yMe/w8w1TJTOeMAAA==
 
 -->
 
